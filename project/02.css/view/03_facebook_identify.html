@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko" id="facebook" class="">
+  <head>
+    <!-- 제목 : 상단 탭에 표시 됨 -->
+    <title id="pageTitle">Facebook - 로그인 또는 가입</title>
+    
+    <!-- 메타 정보 -->
+    <meta charset="utf-8" />
+    <meta name="referrer" content="origin-when-crossorigin" id="meta_referrer"/>
+    <meta property="og:site_name" content="Facebook"/>
+    <meta property="og:url" content="https://ko-kr.facebook.com/"/>
+    <meta property="og:image" content="https://www.facebook.com/images/fb_icon_325x325.png"/>
+    <meta property="og:locale" content="ko_KR"/>
+    <meta name="description" content="Facebook에 로그인하세요. 친구, 가족, 지인들과 함께 하는 즐거운 Facebook 생활이 시작됩니다."/>
+    
+    <!-- 링크 -->
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.facebook.com/"/>
+    <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yb/r/hLRJ1GG_y0J.ico"/>
+  </head>
+  <body>
+    <div class="logo-box">
+      <img src="../images/facebook-logo.svg" width="200px"/>
+    </div>
+
+    <form  class="card-box" action="" method="post" onsubmit="">
+      <div class="head">
+        <h2>내 계정 찾기</h2>
+      </div>
+
+      <div class="body">
+        <table>
+          <tr>
+            <td></td>
+            <td><div>계정을 검색하려면 이메일 주소 또는 휴대폰 번호를 입력하세요.</div></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <input class="in-box" type="text" name="email" placeholder="이메일 또는 휴대폰 번호" autofocus="1"/>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="foot">
+        <a class="cancel" role="button" href="./01_facebook_index.html">취소</a>
+        <button class="find" value="200" type="submit">검색</button>
+      </div>
+    </form>
+  </body>
+</html>
+
+<style>
+  * { padding: 0; margin: 0; }
+
+  body { background: #f0f2f5; }
+
+  .logo-box { 
+    padding-top: 5px;
+    text-align: left;
+    background: white;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 10%), 0 2px 4px rgb(0 0 0 / 10%);
+  }
+
+  .log-box > img {
+    height: 50px;
+  }
+
+  .card-box {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%), 0 2px 4px rgb(0 0 0 / 10%);
+    margin: 0 auto; /*중앙에 배치*/
+    width: 500px;
+    background: white;
+    margin-top: 90px;
+  }
+
+  .card-box > .head {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0px;
+    height: 60px;
+  }
+
+  .card-box > .head > h2 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: -15px;
+    padding: 18px 16px 18px 18px;
+  }
+
+  .card-box > .body {
+    margin: 16px;
+  }
+
+  .card-box > .body td div {
+    font-size: 17px;
+    line-height: 20px; /*높이도 늘리고 텍스트도 중심에 놓고 싶다면 height말고 line-height를 써라!*/
+    margin-bottom: 16px;
+  }
+
+  .card-box > .body .in-box {
+    border-radius: 6px;
+    color: #8a8d91;
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 0px;
+    padding: 16px 0 16px 16px;
+    width: 444px;
+    border: 1px solid #ccd0d5;
+    outline: none !important;
+  }
+
+  .card-box > .body .in-box:focus {
+    outline: none !important;
+  }
+
+  .card-box > .foot {
+    height: 70px;
+    text-align: right;
+    padding-right: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .card-box > .foot > .cancel {
+    background-color: #e4e6eb;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 36px;
+    margin-left: 8px;
+    padding: 0px 20px;
+    color: #4b4f56;
+    display: inline-block;
+    text-decoration: none; /*a태그 밑줄*/
+    cursor: pointer;
+  }
+
+  .card-box > .foot > .find {
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 36px;
+    margin-left: 8px;
+    padding: 0px 20px;
+    color: white;
+    cursor: pointer; /*마우스 가져갔을 때 클릭 포인터로 바꿔주는 거*/
+    text-decoration: none;
+  }
+</style>

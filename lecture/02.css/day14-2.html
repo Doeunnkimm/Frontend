@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <h2>flex-direction</h2>
+
+        <p>row</p>
+        <div class="container row">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+
+        <p>row-reverse</p>
+        <div class="container row-reverse">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+
+        <p>column</p>
+        <div class="container column">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+
+        <p>column-reverse</p>
+        <div class="container column-reverse">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+    </body>
+</html>
+
+<style>
+    div {
+        background-color: gray;
+        border: 1px dotted black;
+        margin: 2px;
+    }
+
+    .container { display: flex; width: 300px; }
+    .item { width: 50px; height: 50px; background-color: yellow; display: inline-block; }
+
+    .row { flex-direction: row; height: 100px; }
+    .row-reverse { flex-direction: row-reverse; height: 100px; }
+    .column { flex-direction: column; height: 500px; }
+    .column-reverse { flex-direction: column-reverse; height: 500px; }
+</style>

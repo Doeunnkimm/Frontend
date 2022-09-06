@@ -1,0 +1,50 @@
+<body>
+    <h2>background-attachment</h2>
+
+    <section style="width: 900px; height: 600px;">
+        <div style="background-attachment: scroll;">
+            <h1>scroll</h1>
+            <p>배경을 요소 자체에 고정</p>
+            <p>콘텐츠와 함께 스크롤 되지 않음</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+        </div>
+        <div style="background-attachment: fixed;">
+            <h1>fixed</h1>
+            <p>배경을 뷰포트에 고정</p>
+            <p>화면에 스크롤이 있어도 스크롤 안함</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+        </div>
+        <div style="background-attachment: local;">
+            <h1>local</h1>
+            <p>배경을 콘텐츠에 고정</p>
+            <p>콘텐츠와 함께 배경도 스크롤 됨</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+            <p>안녕하세요</p><p>프론트엔드</p><p>과정입니다.</p>
+        </div>
+    </section>
+</body>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        padding-bottom: 2000px;
+    }
+
+    div {
+        display: inline-block;
+        border: 1px solid gray;
+        width: 30%;
+        height: 500px;
+        overflow: auto; /*이게 있어야 스크롤이 나옴*/
+        background-image: url('./day12-3.jpg');
+        background-repeat: no-repeat;
+        line-height: 80px;
+        font-size: 18px;
+    }
+</style>

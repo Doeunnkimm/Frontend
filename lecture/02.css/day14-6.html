@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h2>align-items</h2>
+
+        <p>stretch</p>
+        <div class="container stretch" stretch>
+            <div class="item a">A</div>
+            <div class="item b">B</div>
+            <div class="item c">C</div>
+            <div class="item d">D</div>
+            <div class="item e">E</div>
+        </div>
+        <p>flex-start</p>
+        <div class="container flex-start" stretch>
+            <div class="item a">A</div>
+            <div class="item b">B</div>
+            <div class="item c">C</div>
+            <div class="item d">D</div>
+            <div class="item e">E</div>
+        </div>
+        <p>flex-end</p>
+        <div class="container flex-end" stretch>
+            <div class="item a">A</div>
+            <div class="item b">B</div>
+            <div class="item c">C</div>
+            <div class="item d">D</div>
+            <div class="item e">E</div>
+        </div>
+        <p>center</p>
+        <div class="container center" stretch>
+            <div class="item a">A</div>
+            <div class="item b">B</div>
+            <div class="item c">C</div>
+            <div class="item d">D</div>
+            <div class="item e">E</div>
+        </div>
+        <p>baseline</p>
+        <div class="container baseline" stretch>
+            <div class="item a">A</div>
+            <div class="item b">B</div>
+            <div class="item c">C</div>
+            <div class="item d">D</div>
+            <div class="item e">E</div>
+        </div>
+    </body>
+</html>
+
+<style>
+    div { 
+        background-color: gray;
+        border: 1px dotted black;
+        margin: 2px;
+    }
+
+    .container { display: flex; width: 200px; height: 140px; flex-wrap: wrap; }
+    .item { background-color: yellow; width: 50px; height: 50px; display: inline-block; }
+
+    .stretch { align-items: stretch; }
+    .stretch .item { height: unset; }
+
+    .a { height: 50px; font-size: 25px; line-height: 50px;}
+    .b { height: 20px; font-size: 14px; line-height: 20px;}
+    .c { height: 30px; font-size: 30px; line-height: 30px;}
+
+    .flex-start { align-items: flex-start; }
+    .flex-end { align-items: flex-end; }
+    .center { align-items: center; }
+    .baseline { align-items: baseline; }
+</style>

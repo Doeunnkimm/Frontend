@@ -1,0 +1,35 @@
+<body>
+    배경 색상
+    <div style="background-color: gray;"></div>
+
+    배경 이미지
+    <div style="background-image: url('./sample.png') ;"></div>
+
+    배경 반복 없음(center center)
+    <div style="background-image: url('./sample.png'); 
+            background-repeat: no-repeat;
+            background-position: center center;">
+    </div>
+    배경 반복 없음(bottom right)
+    <div style="background-image: url('./sample.png'); 
+            background-repeat: no-repeat;
+            background-position: bottom right;">
+    </div>
+    배경 반복 없음(botton left)
+    <div style="background-image: url('./sample.png'); 
+            background-repeat: no-repeat;
+            background-position: bottom left;">
+    </div>
+    배경 반복(repeat-x)
+    <div style="background-image: url('./sample.png'); 
+            background-repeat: repeat-x;">
+    </div>
+</body>
+
+<style>
+    div {
+        width:500px;
+        height: 500px;
+        border: 1px dotted gray;
+    }
+</style>

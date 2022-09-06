@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h2>가로 가운데 정렬</h2>
+        <section class="div-h-1"><div>display: flex; justify-content: center;</div></section>
+        <section class="div-h-2"><div>display: grid, justify-content: center;</div></section>
+
+        <h2>세로 가운데 정렬</h2>
+        <section class="div-v-1"><div>display: flex; align-items: center;</div></section>
+        <section class="div-v-2"><div>display: grid; align-items: center;</div></section>
+
+        <h2>가로/세로 가운데 정렬</h2>
+        <section class="div-hv-1"><div>display: flex;</div></section>
+        <section class="div-hv-2"><div>display: grid;</div></section>
+    </body>
+</html>
+
+<style>
+    * { padding: 0; margin: 0; }
+    body { margin: 5px; }
+
+    section {
+        display: block;
+        height: 200px;
+        border-bottom: 1px dashed;
+        padding: 10px;
+    }
+
+    div {
+        border: 1px dotted rgb(48, 48, 48);
+        width: 300px;
+        height: 100px;
+        background-color: rgb(204, 204, 204);
+    }
+
+    .div-h-1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .div-h-2 {
+        display: grid;
+        justify-content: center;
+    }
+
+    .div-v-1 {
+        display: flex;
+        align-items: center;
+    }
+
+    .div-v-2 {
+        display: grid;
+        align-items: center;
+    }
+
+    .div-hv-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .div-hv-2 {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+</style>

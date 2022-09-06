@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <h2>가로 가운데 정렬 방법</h2>
+        <section>
+            <div class="div-h-1">margin left/right</div>
+        </section>
+        
+        <section>
+            <div class="div-h-2">position/transform(박스 넓이를 모를 경우)</div>
+        </section>
+
+        <section class="div-h-3">
+            <div>text-align: center</div>
+        </section>
+        
+        <h2>세로 가운데 정렬 방법</h2>
+        <section>
+            <div class="div-v-1">top/margin top</div>
+        </section>
+
+        <section>
+            <div class="div-v-2">position/transform(박스 높이를 모를 경우)</div>
+        </section>
+
+        <h2>가로/세로 가운데 정렬 방법</h2>
+        <section>
+            <div class="div-hv-1">margin: left/right</div>
+        </section>
+
+        <section>
+            <div class="div-hv-2">position/transform(박스 높이를 모를 경우)</div>
+        </section>
+    </body>
+</html>
+
+<style>
+    * { padding: 0; margin: 0; }
+    body { margin: 5px; }
+
+    section {
+        display: block;
+        height: 200px;
+        border-bottom: 1px dashed;
+        padding: 10px;
+    }
+
+    div {
+        border: 1px dotted rgb(48, 48, 48);
+        width: 300px;
+        height: 100px;
+        background-color: rgb(204, 204, 204);
+    }
+
+    /* margin 이용 가로 가운데 정렬 방법 */
+    .div-h-1 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .div-h-2 {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .div-h-3 {
+        text-align: center;
+    }
+
+    .div-h-3 > div {
+        display: inline-block;
+    }
+
+    .div-v-1 {
+        position: relative;
+        top: 50%;
+        margin-top: -50px;
+    }
+
+    .div-v-2 {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .div-hv-1 {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        top: 50%;
+        margin-top: -50px;
+    }
+
+    .div-hv-2 {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>

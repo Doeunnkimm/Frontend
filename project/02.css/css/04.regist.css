@@ -1,0 +1,133 @@
+* { padding: 0; margin: 0; font-size: 0; } /*크기는 맞지만 블록이 딱 맞지 않을 때는 font-size: 0으로 해결 가능*/
+
+  body { background: #f0f2f5; }
+
+  /* 컨테이너 중앙 정렬 */
+  .container {
+    width: 480px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .logo > img {
+    height: 100px;
+  }
+
+  /* 카드 배경 및 그림자 설정 */
+  .card {
+    position: relative;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+  }
+
+  /* 입력 폼의 기본 설정 */
+  input, select, .in-rdo {
+    color: #1c2e21;
+    border: 1px solid #ccd0d5;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 15px;
+    line-height: 16px;
+    padding: 10px;
+    outline: none !important;
+    margin-bottom: 8px;
+  }
+
+  .header {
+    border-bottom: 1px solid #ccd0d5;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .header > .title {
+    font-size: 25px;
+    line-height: 32px;
+    text-align: center;
+  }
+
+  .header > .subject {
+    color: #606770;
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .body {
+    padding: 20px;
+  }
+
+  .in-name > div {
+    width: calc(50% - 4px);
+    margin-left: 2px;
+    margin-right: 2px;
+    display: inline-block;
+  }
+
+  .in-name input, .in-info input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .in-info > div {
+    width: calc(100% - 4px);
+    display: block;
+  }
+
+  .in-age select, .in-type .in-rdo {
+    width: calc(100%/3 - 5px);
+    display: inline-block;
+    height: 36px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+
+  .text {
+    color: #606770;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+
+  .in-rdo > label {
+    font-size: 16px;
+    line-height: normal;
+  }
+
+  .guide {
+    color: #777777;
+    font-size: 11px;
+  }
+
+  .regist, .login {
+    text-align: center;
+    margin: 15px 0;
+  }
+
+  button {
+    background: #00a400;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    height: 36px;
+    padding: 0 32px;
+    margin-top: 20px;
+    width: 200px;
+    cursor: pointer;
+  }
+
+  .login > a {
+    font-size: 16px;
+    color: #1877f2;
+    text-decoration: none;
+  }

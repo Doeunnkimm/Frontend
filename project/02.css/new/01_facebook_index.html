@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" id="facebook">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 먼저 기존의 CSS 우선으로 링크하자. -->
+        <link rel="stylesheet" type="text/css" href="../css/01.index.css">
+        <!-- 그리고 반응형 css 파일 링크하자 -->
+        <link rel="stylesheet" type="text/css" href="../css/11.index.css">
+    </head>
+    <bod>
+        <div class="container-box">
+            <div class="logo-box">
+                <img src="../images/facebook-logo.svg" width="200px">
+                <h2>Facebook에서 전세계에 있는 친구, 가족, 지인들과 함께 이야기를 나눠보세요.</h2>
+            </div>
+            <div class="login-box">
+                <form action="./02_facebook_main.html" id="login-form" method="GET">
+                    <div>
+                        <input class="input-email" type="text" name="email" id="email" placeholder="이메일 또는 전화번호">
+                    </div>
+                    <div>
+                        <input class="input-pass" type="password" name="pass" id="pass" placeholder="비밀번호">
+                    </div>
+                    <div>
+                        <button class="login-button" name="login" type="submit">로그인</button>
+                    </div>
+                    <div>
+                        <a href="./03_facebook_identify.html">비밀번호를 잊으셨나요?</a>
+                    </div>
+                    <div class="div-line"></div>
+                    <div>
+                        <a class="regist" href="./04_facebook_regist.html">새 계정 만들기</a>
+                    </div>
+                </form>
+                <div class="new-page">유명인, 브랜드 또는 비즈니스를 위한
+                    <a href="./05_facebook_create.html">페이지 만들기</a>
+                </div>
+            </div>
+        </div>
+    </bod>
+</html>

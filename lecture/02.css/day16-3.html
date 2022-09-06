@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h2>미디어 쿼리</h2>
+        <div class="desktop">이 텍스트는 데스크탑에서만 보여집니다.</div>
+        <div class="mobile">이 텍스트는 모바일에서만 보여집니다.</div>
+    </body>
+</html>
+
+<style>
+    div { width: 200px; height: 200px; margin-bottom: 30px; border: 1px solid gray; color: black; }
+
+    .desktop, .mobile { display: block; }
+
+    /* 모바일에서만 보여주자... */
+    @media ( max-width: 768px ) {
+        .desktop { display: none; } /*화면에 표시하지 않는다.*/
+        .mobile { display: block; background-color: red; }
+    }
+
+    /* 데스크탑에서만 보여주자... */
+    @media ( min-width: 768px ) {
+        .mobile { display: none; }
+        .desktop { display: block; background-color: aquamarine; }
+    }
+</style>

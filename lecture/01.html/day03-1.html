@@ -1,0 +1,55 @@
+<body>
+    <header>머리말</header>
+    <main>
+        <nav>
+            <div>
+                <span>홈</span>
+                <span>메일</span>
+                <span>뉴스</span>
+            </div>
+        </nav>
+        <section>
+            <article>
+                첫번째 아티클(블로그 포스팅)
+            </article>
+            <article>
+                두번째 아티클(블로그 포스팅)
+            </article>
+            <article>
+                세번째 아티클(블로그 포스팅)
+            </article>
+        </section>
+        <aside>
+            <ul>
+                <li>사이드바 메뉴 1</li>
+                <li>사이드바 메뉴 2</li>
+                <li>사이드바 메뉴 3</li>
+            </ul>
+        </aside>
+    </main>
+    <footer>
+        <p>바닥글</p>
+        <span>회사소개</span>
+        <span>서울 강남 역삼동...</span>
+        <span>대표 : 홍길동</span>
+    </footer>
+</body>
+
+<style>
+    header, footer, nav, section, article, aside { padding: 10px; }
+  
+    body { margin: 0; }
+    header { height: 40px; background: rgb(255, 181, 181); }
+    main { height: calc(100vh - 240px); background: rgb(255, 248, 188); padding: 2px; position: relative; }
+    footer { height: 200px; background: rgb(201, 223, 255); }
+  
+    header, main, footer {
+      border: 1px solid gray;
+      box-sizing: border-box;
+    }
+  
+    nav { border: 1px solid rgb(255, 86, 86); }
+    section { border: 1px solid rgb(117, 107, 255); height: calc(100% - 64px); width: calc(80% - 44px); }
+    aside { border: 1px solid rgb(0, 133, 22); height: calc(100% - 68px); width: calc(20%); position: absolute; top: 45px; right: 2; }
+    article { border: 1px solid rgb(233, 123, 255); height: calc(100% - 40px); width: calc(33.33333% - 26px); display: inline-block; }
+  </style>

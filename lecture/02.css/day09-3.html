@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko" id="facebook">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <div class="login-box">
+            <form>
+                <input class="input-email" type="text" placeholder="이메일 또는 전화번호">
+                <input class="input-pass" type="password" placeholder="비밀번호">
+
+                <div>
+                    <button class="login-button">로그인</button>
+                </div>
+
+                <div>
+                    <a href="#">비밀번호를 잊으셨나요?</a>
+                </div>
+                <div class="div-line"></div>
+                <div>
+                    <a class="regist" href="#">새 계정 만들기</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
+
+<style>
+    .login-box {
+        position: relative;
+        width: 400px;
+        height: 360px;
+        margin: 0 auto; /*위아래는 0, 좌우는 auto(중앙배치)*/
+        margin-top: 100px;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    }
+
+    .input-email, .input-pass {
+        width: 100%; /*부모 레이아웃에 100% 차지하도록*/
+        height: 48px;
+        border: 1px solid #dddfe2;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding: 0 10px;
+    }
+
+    .input-email:focus, .input-pass:focus {
+        /* 포커싱 될 때 */
+        outline: none !important; /*포커스 되었을 때 테두리 없애줌*/
+        border-color: #1877f2;
+        box-shadow: 0 0 0 2px #e7f3ff;
+        caret-color: #1877f2; /*커서 색깔*/
+    }
+
+    .login-button {
+        width: 100%;
+        height: 28px;
+        background-color: #1877f2;
+        border: none;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        margin-top: 12px;
+        cursor: pointer; /*마우스가 올라갔을 때 커서 모양 바뀌는 것*/
+    }
+
+    .div-line {
+        border-bottom: 1px solid #dadde1;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    a {
+        margin-top: 12px;
+        display: block;
+        color: #1877f2;
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+
+    a:hover { /*a 태그위에 마우스가 올라왔을 때*/
+        text-decoration: underline;
+    }
+
+    .regist {
+        border-radius: 6px;
+        border: none;
+        font-size: 17px;
+        line-height: 48px;
+        padding: 0 16px;
+        cursor: pointer;
+        display: inline-block;
+        text-decoration: none;
+        background-color: #42b72a;
+        color: white;
+        font-weight: bold;
+    }
+
+    .regist:hover {
+        text-decoration: none;
+    }
+
+</style>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body { padding: 0; margin: 0; overflow: hidden; } /*overflow: hidden <- 스크롤 없애기*/
+
+            .box {
+                position: relative;
+                width: 100vw; /*viewport width. 뷰포트는 스크롤을 제외한 보이는 화면 전체*/
+                height: 100vh; /*100은 화면을 어떻게 줄이든 늘리던 가득 차도록 */
+                background-image: url("./day13-1.jpg");
+                background-position: center;
+                background-size: cover; /*화면 전체를 채우겠다*/
+                animation: anizoom 10s forwards; 
+            }
+
+            .title {
+                font-size: 80px;
+                color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: fit-content;
+                transform: translate(-50%, -50%);
+                opacity: 0.6; /*투명도 설정*/
+            }
+
+            /* body:hover  .box {
+                animation: anizoom 10s forwards;
+            } */
+
+            @keyframes anizoom {
+                0% { opacity: 1.0; transform: scale(1); }
+                100% { opacity: 0.8; transform: scale(1.5); }
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <h1 class="title">프론트엔드, 환영합니다.</h1>
+    </body>
+</html>

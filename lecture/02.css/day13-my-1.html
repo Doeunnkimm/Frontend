@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            div {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                animation-name: move, fadeout, changeColor;
+                animation-duration: 5s;
+                animation-iteration-count: infinite; /*재생 횟수*/
+            }
+
+            @keyframes move {
+                from { left: 0; }
+                to { left: 300px; }
+            }
+            @keyframes fadeout {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            @keyframes changeColor {
+                from { background-color: red; }
+                to { background-color: blue; }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div></div>
+    </body>
+</html>

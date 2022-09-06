@@ -1,0 +1,54 @@
+<body>
+    <div style="background: rgb(255, 255, 140);">
+        <div class="div-a">DIV 태그는 너비가 100%의 기본 속성을 가지므로...</div>
+    </div>
+
+    <div style="background: rgb(196, 255, 177);">
+        <span class="span-a">SPAN A</span>
+        <span class="span-a">SPAN B</span>
+        <span class="span-a">SPAN C</span>
+    </div>
+
+    <div style="background: rgb(177, 250, 255); margin-top: 100px">
+        <span class="span-b">SPAN A</span>
+        <span class="span-b">SPAN B</span>
+        <span class="span-b">SPAN C</span>
+    </div>
+</body>
+
+<style>
+    .div-a {
+        width: 200px;
+        height: 100px;
+        background: rgb(235, 235, 235);
+        border: 10px solid blue;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px;
+    }
+
+    .span-a {
+        width: 300px;
+        height: 300px;
+        /* span은 inline이다. 따라서 width, height 속성은 무시된다. */
+        background-color: rgb(255, 177, 190);
+        border-radius: 10px;
+        border-width: 5px;
+        border-style: dashed;
+        border-top-color: red;
+        border-bottom-width: 5px;
+        padding: 10px;
+        margin: 20px;
+    }
+
+    .span-b {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        margin: 20px;
+        border: 1px solid red;
+    }
+</style>

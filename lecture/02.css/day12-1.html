@@ -1,0 +1,20 @@
+<body>
+    배경 이미지에서 repeat를 설정하지 않으면 기본값은 repeat이다.
+    <div class="back-size"></div>
+
+    repeat를 no-repeat로 설정하고 2개의 이미지를 설정
+    <div class="back-size back-layer"></div>
+</body>
+
+<style>
+    div { border: 2px dotted gray; }
+    .back-size {
+        width: 200px;
+        height: 200px;
+        background-image: url('./day12-1.png');
+    }
+    .back-layer {
+        background-image: url('./day12-1.png'), url('./day12-2.jpg');
+        background-repeat: no-repeat;
+    }
+</style>

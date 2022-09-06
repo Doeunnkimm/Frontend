@@ -1,0 +1,83 @@
+<body>
+    <h2>테이블 태그 사용 예(단순 사용)</h2>
+    <table>
+        <tr>
+            <td>섹션 1</td>
+            <td>섹션 2</td>
+        </tr>
+        <tr>
+            <td>섹션 3</td>
+            <td>섹션 4</td>
+        </tr>
+    </table>
+    <h2>테이블 태그 사용(thead, tbody 사용)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>학교</th>
+                <th>창립연도</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>서울대학교</td>
+                <td>1942</td>
+            </tr>
+            <tr>
+                <td>고려대학교</td>
+                <td>1905</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <caption>개인정보</caption>
+        <colgroup>
+            <col width="200px" />
+            <col width="300px" />
+            <col width="100px" />
+        </colgroup>
+        <tr>
+            <th colspan="2">이름</th>
+            <th>나이</th>
+        </tr>
+        <tr>
+            <td>홈</td>
+            <td>길동</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>김</td>
+            <td>유신</td>
+            <td>24</td>
+        </tr>
+    </table>
+
+    <h2>수직 테이블</h2>
+    <table class="t1">
+        <colgroup>
+            <col width="200px" />
+        </colgroup>
+
+        <tr>
+            <th>이름</th>
+            <td>홍 길동</td>
+            <td>김 유신</td>
+        </tr>
+        <tr>
+            <th>나이</th>
+            <td>24</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td>경기도 성남시</td>
+            <td>서울 동작구</td>
+        </tr>
+    </table>
+</body>
+
+<style>
+    .t1 th { text-align: left; }
+    .t1 th, .t1 td { border: 1px solid black; border-spacing: 0; }
+</style>  

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" id="facebook" class="">
+  <head>
+    <!-- 제목 : 상단 탭에 표시 됨 -->
+    <title id="pageTitle">Facebook - 로그인 또는 가입</title>
+    
+    <!-- 메타 정보 -->
+    <meta charset="utf-8" />
+    <meta name="referrer" content="origin-when-crossorigin" id="meta_referrer"/>
+    <meta property="og:site_name" content="Facebook"/>
+    <meta property="og:url" content="https://ko-kr.facebook.com/"/>
+    <meta property="og:image" content="https://www.facebook.com/images/fb_icon_325x325.png"/>
+    <meta property="og:locale" content="ko_KR"/>
+    <meta name="description" content="Facebook에 로그인하세요. 친구, 가족, 지인들과 함께 하는 즐거운 Facebook 생활이 시작됩니다."/>
+    
+    <!-- 링크 -->
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.facebook.com/"/>
+    <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yb/r/hLRJ1GG_y0J.ico"/>
+  </head>
+  <body>
+    <div>
+      <div>
+        <img src="../images/facebook-logo.svg" width="200px"/>
+      </div>
+      <div>
+        <div>
+          <div>새 계정 만들기</div>
+          <div>빠르고 쉽습니다.</div>
+        </div>
+      </div>
+      <form action="" method="post">
+        <div>
+          <div>
+            <div>성</div>
+            <input type="text" name="lastname"/>
+          </div>
+          <div>
+            <div>이름(성은 제외)</div>
+            <input type="text" name="firstname"/>
+          </div>
+          <div>
+            <div>휴대폰 번호 또는 이메일</div>
+            <input type="text" name="reg_email"/>
+          </div>
+          <div>
+            <div>새 비밀번호</div>
+            <input type="password" name="reg_password"/>
+          </div>
+          <div>
+            <div>생일
+              <a href="#" title="더 자세한 정보를 원하시면 여기를 클릭하세요"></a>
+              <i></i>
+            </div>
+            <div>
+              <select name="birthday_year" title="연도">
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+              </select>
+              <select name="birthday_month" title="연도">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <select name="birthday_day" title="연도">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div>연령</div>
+          <div>
+            <div>회원님의 연령</div>
+            <input type="text" name="birthday_age"/> 
+          </div> <!-- href="#" 해줌으로써 페이지 리프레시 방지-->
+          <a href="#" role="button">생년월일 사용</a>
+        </div>
+        <div>
+          <div>성별
+            <a title="자세한 정보를 보려면 여기를 클릭하세요." href="#">
+            <i class="fas fa-solid fa-circle-question"></i>
+            </a>
+          </div>
+          <span> <!-- name을 하나로 묶을으로써 그룹핑-->
+            <span>
+              <label for="rdo-1">여성</label> <!--for과 id를 같게 함으로써 label을 클릭한 것과 radio버튼을 클릭한 것과 같게 함-->
+              <input id="rdo-1" type="radio" name="sex" value="1"/>
+            </span>
+            <span>
+              <label for="rdo-2">남성</label> 
+              <input id="rdo-2" type="radio" name="sex" value="2"/>
+            </span>
+            <span>
+              <label for="rdo-3">개인 지정</label> 
+              <input id="rdo-3" type="radio" name="sex" value="3"/>
+            </span>
+          </span>
+        </div>
+        <div>
+          <div>
+            <select name="profered_pronoun"> <!-- selected="1"은 화면을 실행하자마자 선택되도록, disabled="1"은 선택하지 못하도록 설정-->
+              <option selected="1" value="" disabled="1">회원님을 어떻게 지칭할지 선택하세요</option>
+              <option value="1">여성(she): "생일을 축하해주세요!"</option>
+              <option value="2">남성(he): "생일을 축하해주세요!"</option>
+              <option value="3">성별무관(They): "생일을 축하해주세요!"</option>
+            </select>
+          </div>
+          <div>
+            <button type="submit" name="websubmit">가입하기</button>
+          </div>
+          <div>
+            <a href="./01_facebook_index.html">이미 계정이 있으신가요?</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    
+  </body>
+</html>

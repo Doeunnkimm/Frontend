@@ -1,0 +1,50 @@
+<!-- 일반적으로 HTML 문서의 정보를 설정/표시한다.  -->
+<head>
+    <!-- 메타 정보를 표시한다. -->
+    <meta name="author" content="홍길동" />
+    <meta name="description" content="우리 사아트가 최고!" />
+    <!-- 링크로 연결된 아이콘을 표시하거나, 스타일 등을 가져와 연결한다. -->
+    <link rel="shortcut icon" href="" />
+    <link rel="stylesheet" href="" />
+</head>
+
+<!-- 여기에서부터 실제 화면에 표시되는 정보를 표시한다. -->
+<body>
+    <!-- 텍스트 문자를 표시한다. -->
+    <p onclick="clickbutton()">환영합니다.</p>
+    <!-- 이미지 정보를 표시한다. -->
+    <img scr="https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png" />
+</body>
+
+<style>
+    /* 여기에서 주석은 이와 같이 표시한다. */
+    /* 이미지의 높이와 넓이를 설정한다.  */
+    img {
+        width: 500px;
+        height: 400px;
+    }
+    /*텍스트 크기와 넓이 그리고 색상을 설정한다. */
+    p {
+        font-size: 30px;
+        font-weight: bold;
+        color: blue;
+    }
+</style>
+
+<!--
+    화면에서 동적인 기능 부분을 여기에 코딩한다.
+    현재는 거의 대부분의 경우 자바스크립트로 코드를 작성한다.
+-->
+
+<script>
+    // 여기에서 주석은 프로그래밍 주석이므로 //로 주석을 한다.(헌줄 주석)
+    /*
+        여러 줄 주석: 범위 주석
+        주석을 여러 줄로 ...
+    */
+
+    // 버튼이 클릭될 경우 시스템 알람을 화면에 표시한다.
+    function clickbutton() {
+        alert("환영합니다. 오늘 수업은 여기까지입니다.")
+    }
+</script>

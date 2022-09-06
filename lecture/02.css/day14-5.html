@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h2>align-content</h2>
+
+        <p>stretch</p>
+        <div class="container stretch">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+            <div class="item">E</div>
+            <div class="item">E</div>
+        </div>
+
+        <p>flex-start</p>
+        <div class="container flex-start">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+            <div class="item">E</div>
+            <div class="item">E</div>
+        </div>
+
+        <p>flex-end</p>
+        <div class="container flex-end">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+            <div class="item">E</div>
+            <div class="item">E</div>
+        </div>
+
+        <p>center</p>
+        <div class="container center">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+            <div class="item">E</div>
+            <div class="item">E</div>
+        </div>
+
+        <p>space-between</p>
+        <div class="container space-between">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+            <div class="item">E</div>
+            <div class="item">E</div>
+        </div>
+
+        <p>space-around</p>
+        <div class="container space-around">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+            <div class="item">E</div>
+            <div class="item">E</div>
+        </div>
+    </body>
+</html>
+
+<style>
+    div { 
+        background-color: gray;
+        border: 1px dotted black;
+        margin: 2px;
+    }
+
+    .container { display: flex; width: 200px; height: 200px; flex-wrap: wrap; }
+    .item { background-color: yellow; width: 50px; height: 50px; display: inline-block; }
+
+    .stretch { align-content: stretch; }
+    .stretch .item { height: unset; } /*아이템의 높이 설정을 없애버림*/
+    .flex-start { align-content: flex-start; }
+    .flex-end { align-content: flex-end; }
+    .center { align-content: center; }
+    .space-between { align-content: space-between; }
+    .space-around { align-content: space-around; }
+</style>

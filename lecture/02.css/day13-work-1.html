@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <div class="box">화면 정 중앙(가로/세로) 배치</div>
+    </body>
+</html>
+
+<style>
+    * { padding: 0; margin: 0; }
+
+    body { margin: 5px; }
+
+    div {
+        border: 1px dotted rgb(48, 48, 48);
+        width: 400px;
+        height: 500px;
+        background-color: rgb(200, 200, 200);
+    }
+
+    .box {
+        position: absolute; /*부모 엘리먼트가 없기 때문에 절대 위치로 해야 함*/
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>

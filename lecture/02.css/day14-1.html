@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <h2>display 속성</h2>
+
+        <p>flex</p>
+        <div class="container flex">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+        <div class="container flex">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+
+        <p>inline-flex</p>
+        <div class="container inline-flex">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+        <div class="container inline-flex">
+            <div class="item"></div><div class="item"></div><div class="item"></div>
+        </div>
+    </body>
+</html>
+
+<style>
+    div {
+        background-color: rgb(200, 200, 200);
+        border: 1px dotted rgb(48, 48, 48);
+        margin: 2px;
+    }
+
+    .container { width: 300px; }
+    .item { width: 50px; height: 50px; background-color: yellow; }
+
+    .flex { display: flex; height: 100px; }
+    .inline-flex { display: inline-flex; height: 100px; }
+</style>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>기본 디자인</h1>
+    <table class="table-a">
+        <colgroup>
+            <col width="100px">
+            <col width="100px">
+            <col width="300px">
+            <col width="500px">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>연락처</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>21</td>
+                <td>010-2222-2222</td>
+                <td>서울시 강남구 역삼동1</td>
+            </tr>
+            <tr>
+                <td>김길동</td>
+                <td>22</td>
+                <td>010-2222-2222</td>
+                <td>서울시 강남구 역삼동2</td>
+            </tr>
+            <tr>
+                <td>이길동</td>
+                <td>23</td>
+                <td>010-2222-2222</td>
+                <td>서울시 강남구 역삼동3</td>
+            </tr>
+            <tr>
+                <td>전길동</td>
+                <td>24</td>
+                <td>010-2222-2222</td>
+                <td>서울시 강남구 역삼동4</td>
+            </tr>
+            <tr>
+                <td>나길동</td>
+                <td>25</td>
+                <td>010-2222-2222</td>
+                <td>서울시 강남구 역삼동5</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>CSS 디자인</h1>
+    <table class="table-b">
+        <colgroup>
+            <col width="100px">
+            <col width="100px">
+            <col width="300px">
+            <col width="500px">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>연락처</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>21</td>
+                <td>010-2222-2222</td>
+                <td class="t-addr">서울시 강남구 역삼동1</td>
+            </tr>
+            <tr>
+                <td>김길동</td>
+                <td>22</td>
+                <td>010-2222-2222</td>
+                <td class="t-addr">서울시 강남구 역삼동2</td>
+            </tr>
+            <tr>
+                <td>이길동</td>
+                <td>23</td>
+                <td>010-2222-2222</td>
+                <td class="t-addr">서울시 강남구 역삼동3</td>
+            </tr>
+            <tr>
+                <td>전길동</td>
+                <td>24</td>
+                <td>010-2222-2222</td>
+                <td class="t-addr">서울시 강남구 역삼동4</td>
+            </tr>
+            <tr>
+                <td>나길동</td>
+                <td>25</td>
+                <td>010-2222-2222</td>
+                <td class="t-addr">서울시 강남구 역삼동5</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+<style>
+    h1 { margin-top: 50px; }
+
+    /* 테이블 B 스타일 설정 */
+    .table-b {
+        display: block;
+        border-collapse: collapse; /*기본 속성을 없앨 수 있음*/
+        border-radius: 5px;
+        width: fit-content;
+        overflow: hidden;
+    }
+
+    .table-b thead tr { background-color: rgb(119, 119, 218);  color: white;}
+    .table-b td { border: none; }
+    .table-b tr {
+        background-color: rgb(240, 240, 240);
+        border-bottom: 1px solid gray;
+        text-align: center;
+        line-height: 50px;
+        color: rgb(50, 50,50);
+    }
+
+    .table-b .t-addr {
+        text-align: left;
+        padding-left: 10px;
+        color: #7a7aff;
+        text-decoration: underline;
+        font-weight: 800;
+    }
+
+    /* 짝수 행(row)들만 배경 색상 바꾸기 */
+    .table-b tr:nth-child(even) { background-color: rgb(213, 230, 255); }
+    
+</style>

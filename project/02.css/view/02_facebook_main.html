@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko" id="facebook" class="">
+  <head>
+    <title id="pageTitle">Facebook - 로그인 또는 가입</title>
+  </head>
+  <!-- https://www.flaticon.com/kr/free-icon/home-icon-silhouette_69524 -->
+  <body>
+      <header>
+        <div class="head-logo">
+          <img src="../images/facebook-icon.png" alt="메인 로고 아이콘" >
+          <input placeholder="Facebook 검색" />
+        </div>
+        <div class="head-nav">
+          <nav class="">
+            <span class="btn-box active"><img src="../images/home.png" alt="홈 바로가기" /><span class="btn-line"></span></span>
+            <span class="btn-box"><img src="../images/youtube.png" alt="동영상 바로가기" /><span class="btn-line"></span></span>
+            <span class="btn-box"><img src="../images/people.png" alt="사용자 바로가기" /><span class="btn-line"></span></span>
+            <span class="btn-box"><img src="../images/game.png" alt="게임 바로가기" /><span class="btn-line"></span></span>
+          </nav>
+        </div>
+        <div class="head-side">
+          <span class="btn-box"><img src="../images/menu.png" alt="메뉴 바로가기" /></span>
+          <span class="btn-box"><img src="../images/alarm.png" alt="알림 바로가기" /></span>
+          <span class="btn-box"><img src="../images/more.png" alt="더보기 바로가기" /></span>
+        </div>
+      </header>
+      <main>
+        <section class="container">
+          <ul class="list">
+            <li>
+              <div class="card">
+
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+  </body>
+</html>
+
+<style>
+    * { padding: 0; margin: 0;}
+
+    header {
+        height: 60px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0,0,0,0.1);
+        background-color: white;
+        top: 0;
+        z-index: 1;
+        position: sticky; /*스크롤을 움직여도 최상단에 붙어있도록*/
+    }
+
+    header img { height: 24px; }
+    header > div {
+        height: 100%;
+    }
+    header .head-logo, header .head-side {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+    }
+    header .head-logo { left: 0; }
+    header .head-log > im { height: 40px; margin-left: 10px; }
+    header .head-logo > input {
+        width: 200px;
+        line-height: 40px;
+        margin-left: 10px;
+        padding: 0 20px;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        background-color: rgb(240, 240, 240);
+        font-size: 16px;
+    }
+    header .head-nav { display: block; text-align: center; }
+    header .head-nav nav {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    header .head-nav .btn-box {
+        width: 140px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 4px;
+        border-radius: 5px;
+        position: relative;
+    }
+    header .head-nav .btn-box:hover {
+        background-color: rgb(240, 240, 240);
+        cursor: pointer;
+    }
+    header .head-nav .btn-line {
+        background-color: #1b74e4;
+        width: 100%;
+        height: 5px;
+        position: absolute;
+        bottom: -8px;
+        display: none;
+    }
+    header .head-nav .btn-box.active > .btn-line {
+        display: block; /*active인 부분을 표시하겠다*/
+    }
+    header .head-side { 
+    right: 0; 
+    padding-right: 20px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+  }
+  header .head-side .btn-box { 
+    width: 40px; 
+    height: 40px; 
+    margin: 0 5px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+    border-radius: 30px;
+  }
+  header .head-side .btn-box:hover {
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+  }
+  header .head-side img { height: 20px; }
+
+  .list  { height: 4000px; }
+</style>
+
+<script>
+    const list = [...document.getElementsByClassName("btn-box")];
+  
+    list.forEach(element => element.onclick = () => {
+      list.forEach(a => a.className = "btn-box")
+      element.classList.add('active');
+    })
+  </script>

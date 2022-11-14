@@ -1,0 +1,39 @@
+@media (max-width: 800px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        overflow: hidden; /*스크롤바 없앰 <- 화면 위아래/왼쪽오른쪽으로 못 옮김*/
+        overflow-y: auto; /*위아래 overflow 되면 스크롤 되고 더 내용 없으면 스크롤X <- 자동으로*/
+        background-color: white;
+    }
+    .container-box {
+        max-width: 100%;
+        margin-top: 100px;
+    }
+    .logo-box, .login-box {
+        display: block;
+        text-align: center;
+        max-width: 100%;
+        box-shadow: none;
+    }
+    .logo-box {
+        height: 200px;
+        width: 100%;
+    }
+    .logo-box > img {
+        width: 240px;
+        margin: 0;
+    }
+    .logo-box > h2 {
+        font-size: 20px;
+        width: 100%;
+        padding: 0 40px;
+        box-sizing: border-box;
+    }
+    .login-box {
+        margin: 10px auto;
+    }
+}

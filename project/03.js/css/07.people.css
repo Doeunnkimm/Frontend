@@ -1,0 +1,140 @@
+main .container.people {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.people .bg-image {
+    position: absolute; /*absolute 이용해서 겹치게 설정*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 650px;
+    z-index: -1; /*모든 컨텐츠의 기본 z-index: 0이므로 0보다 작은 숫자를 주면 배경으로 깔리게 됨*/
+    background: linear-gradient(to top, #ffffff, rgb(255, 255, 255), rgb(255 255 255 / 70%), rgb(0 0 0 /60%), rgb(0 0 0 / 10%));
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+}
+
+.people .t-layer .t-img {
+    border-radius: 0 0 8px 8px; /*아래 부분만 radius 주기*/
+    overflow: hidden;
+    position: relative;
+}
+
+.people .t-layer .t-img img {
+    width: 100%;
+}
+
+.people .t-layer .t-img .label {
+    background-color: #1877f2;
+    position: absolute; /*부모 엘리먼트인 t-img에 맞춰 absolute 적용*/
+    bottom: 0;
+    width: 100%;
+    line-height: 40px;
+    color: white;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.people .t-layer .t-title {
+    position: relative;
+    margin-top: 10px;
+}
+
+.people .t-layer .title .tl h1 {
+    line-height: 40px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.people .t-layer .t-title .tl span{
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.people .t-layer .t-title .tr {
+    display: inline-flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.people .t-layer .t-title .tr .g-btn {
+    background-color: #1877f2;
+    border-radius: 4px;
+    color: white;
+    border: 0;
+    height: 30px;
+    padding: 0 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.people .t-layer .t-title .tr .g-btn span {
+    margin-left: 10px;
+}
+
+.people .t-layer .t-title .tr .g-btn > img {
+    width: 16px;
+    object-position: center;
+    display: inline-block;
+}
+
+.people .t-layer .t-title .tr > img {
+    padding: 6px 18px;
+    border-radius: 4px;
+    width: 16px;
+    display: inline-block;
+    box-sizing: content-box;
+    background-color: #e5e5e5;
+    margin-left: 10px;
+}
+
+.people .t-layer .t-navi {
+    margin-top: 20px;
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.people .t-layer .t-navi img {
+    width: 20px;
+}
+
+.people .t-layer .t-navi .box {
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.people .t-layer .t-navi .box:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.people .t-layer .t-navi .box .line {
+    width: 100%;
+    height: 3px;
+    display: block;
+    background-color: #1877f2;
+    visibility: hidden; /*일단 보이지 않게*/
+}
+
+.people .t-layer .t-navi .box .active .line {
+    visibility: visible; /*active인 엘리먼트의 라인만 보여주도록*/
+}
+
+.people .t-layer .t-navi .tr img {
+    padding: 6px 18px;
+    border-radius: 4px;
+    width: 16px;
+    display: inline-block;
+    box-sizing: content-box;
+    background-color: #e5e5e5;
+    margin-left: 10px;
+}

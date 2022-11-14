@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>JavaScript</h1>
+    </body>
+</html>
+
+<script>
+    var a = 1;
+
+    // switch 조건문은 기본적으로 () 안에 변수(값)가 온다.
+    switch(a) {
+        case 1:
+            console.log("1와 같은 경우...");
+            break;
+        case 2:
+            console.log("2와 같은 경우...");
+            break;
+        default:
+            console.log("앞에 모든 경우가 아니면...");
+            break;
+    }
+
+    // 변수의 자료형 모두 가능하지만, case 에서도 동일하게 맞춰야 한다.
+    var b = "1";
+    switch(b) {
+        case 1:
+            console.log("숫자 1 입니다.");
+            break;
+        case "1":
+            console.log("문자 1 입니다.");
+            break;
+        default:
+            console.log("앞에 모든 경우가 아니면....");
+            break;
+    }
+
+    // ()안에 연산식도 가능하다. 즉, 연산후 최종 결과는 값이다.
+    var c = 10;
+
+    // 하수(코더)
+    switch(c % 2) {
+        case 0:
+            console.log("짝수 입니다.");
+            break;
+        default: 
+            console.log("홀수 입니다.");
+            break;
+    }
+
+    // 중수(개발자)
+    if(c % 2 === 0) {
+        console.log("짝수 입니다.");
+    } else {
+        console.log("홀수 입니다.");
+    }
+
+    // 고수(설계자)
+    c % 2 === 0 ? console.log("짝수 입니다.") : console.log("홀수 입니다.");
+
+    // 초고수
+    console.log((c % 2 === 0 ? "짝수" : "홀수") + " 입니다.");
+
+    switch(c > 4) {
+        case true:
+            console.log("c는 4보다 큽니다.");
+            break;
+        // case false:
+        //     console.log("c는 4보다 크지 않습니다.")
+        //     break;
+        default:
+            console.log("c는 4보다 크지 않습니다.")
+            break;
+    }
+
+</script>

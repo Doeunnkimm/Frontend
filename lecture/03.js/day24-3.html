@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h1>JavaScript</h1>
+    </body>
+</html>
+
+<script>
+    console.log("시작입니다.");
+    
+    // 기본 기능 함수 선언문(생성)
+    function print() {
+        console.log("안녕하세요. 홍길동입니다.");
+    }
+    // 함수 호출
+    print();
+
+    // function printName(name) {
+    //     console.log("안녕하세요. 제 이름은 " + name + "입니다.");
+    // }
+
+    // function printAge(age) {
+    //     console.log("제 나이는 " + age + "살 입니다.");
+    // }
+
+    // function printAddr(addr) {
+    //     console.log("우리집은 " + addr + "에 있습니다.");
+    // }
+
+    // // 함수 호출
+    // printName("이순신");
+    // printAge(30);
+    // printAddr("강남");
+
+    // printName("김유신");
+    // printAge(10);
+    // printAddr("논현");
+
+    // printName("강감찬");
+    // printAge(40);
+    // printAddr("청담");
+    
+    // printName("이성계");
+    // printAge(50);
+    // printAddr("종로");
+
+    function printInfo(name, age, addr) {
+        console.log("안녕하세요. 제 이름은 " + name + "입니다.");
+        console.log("제 나이는 " + age + "살 입니다.");
+        console.log("우리집은 " + addr + "에 있습니다.");
+    }
+
+    printInfo("이순신", 30, "강남");
+    printInfo("김유신", 20, "논현");
+    printInfo("이성계", 40, "종로");
+
+    console.log("종료입니다.");
+
+    // 생각해보기 문제...
+    // 더하기 함수 선언
+    function sum(num1, num2) {
+        var val = num1 + num2;
+        console.log(num1 + " + " + num2 + " = " + val);
+        return val // 객체의 최종값으로 됨
+    }
+    var a1 = sum(1,3);
+    console.log("덧셈 결과는 " + a1);
+
+    
+</script>

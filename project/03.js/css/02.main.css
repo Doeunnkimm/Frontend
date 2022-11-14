@@ -1,0 +1,215 @@
+* { padding: 0; margin: 0;}
+
+    header {
+        height: 60px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0,0,0,0.1);
+        background-color: white;
+        top: 0;
+        z-index: 1;
+        position: sticky; /*스크롤을 움직여도 최상단에 붙어있도록*/
+    }
+
+    header img { height: 24px; }
+    header > div {
+        height: 100%;
+    }
+    header .head-logo, header .head-side {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+    }
+    header .head-logo { left: 0; }
+    header .head-log > im { height: 40px; margin-left: 10px; }
+    header .head-logo > input {
+        width: 200px;
+        line-height: 40px;
+        margin-left: 10px;
+        padding: 0 20px;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        background-color: rgb(240, 240, 240);
+        font-size: 16px;
+    }
+    header .head-nav { display: block; text-align: center; }
+    header .head-nav nav {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    header .head-nav .btn-box {
+        width: 140px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 4px;
+        border-radius: 5px;
+        position: relative;
+    }
+    header .head-nav .btn-box:hover {
+        background-color: rgb(240, 240, 240);
+        cursor: pointer;
+    }
+    header .head-nav .btn-line {
+        background-color: #1b74e4;
+        width: 100%;
+        height: 5px;
+        position: absolute;
+        bottom: -8px;
+        display: none;
+    }
+    header .head-nav .btn-box.active > .btn-line {
+        display: block; /*active인 부분을 표시하겠다*/
+    }
+    header .head-side { 
+    right: 0; 
+    padding-right: 20px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+  }
+  header .head-side .btn-box { 
+    width: 40px; 
+    height: 40px; 
+    margin: 0 5px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+    border-radius: 30px;
+  }
+  header .head-side .btn-box:hover {
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+  }
+  header .head-side img { height: 20px; }
+
+  /* 메인 콘텐츠 스타일 */
+  body { background-color: #f0f2f5; }
+  main .list {
+    list-style: none;
+  }
+  main .container {
+    height: 4000px; /*스크롤바 만들려고 임의로*/
+    width: 800px;
+    margin: 10px auto;
+  }
+
+  main .container li {
+    margin: 10px 0;
+  }
+
+  main .card {
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  main .head {
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  main .head .logo {
+    height: 40px;
+    border-radius: 50px;
+  }
+
+  main .head .title {
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    margin-left: 10px;
+  }
+
+  main .head .more {
+    height: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    float: right; /*오른쪽 끝으로 보냄*/
+    cursor: pointer;
+  }
+
+  main .head .more:hover {
+    background-color: rgb(240, 240, 240);
+  }
+
+  main .head .text {
+    padding-top: 10px;
+    white-space: pre-line; /*자동 줄바꿈*/
+  }
+
+  main .body .image {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 1px solid gray;
+  }
+
+  main .body .text {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    white-space: pre-line;
+  }
+
+  main .body button {
+    height: 40px;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  main .body button:hover {
+    background-color: rgb(200, 200, 200);
+  }
+
+  p.blue { color: #1877f2; }
+  p.grey { color: #65676b; }
+  p.bold { font-weight: bold; }
+  p.sm { font-size: 14px; margin-bottom: 5px; }
+
+  main .foot {
+    height: 40px;
+    font-size: 0; /*div와 div 사이의 공백이 생기는 오류 보완*/
+    display: flex;
+    flex-direction: row;
+  }
+
+  main .foot img { height: 20px; }
+  main .foot .btn-box {
+    display: flex;
+    flex-grow: 1;
+    font-size: 10px;
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 0;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  main .foot .btn-box:hover {
+    background-color: rgb(200, 200, 200);
+  }
+
+  main .foot .btn-box > div {
+    margin: 0 auto;
+    display: flex;
+  }
+
+  main .foot .btn-box img {
+    margin-right: 10px;
+  }
+
+  header .head-nav .btn-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }

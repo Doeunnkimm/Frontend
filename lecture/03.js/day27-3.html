@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h2>Array 객체</h2>
+    </body>
+</html>
+
+<script>
+    let arr1 = ["AB", "CD", "EFG", "가나다", 123]; // 생성과 동시에 초기화
+    let arr2 = new Array(); // 배열을 생성하기만 함
+    let arr3 = new Array(5); // 생성과 동시에 공간을 만들어 줌
+    let arr4 = new Array("AB", 123); // 생성과 동시에 초기화
+
+    console.log(arr1);
+    console.log(arr2);
+    console.log(arr3);
+    console.log(arr4);
+
+    // pop() : 배열의 마지막 요소를 제거한 후 리턴
+    console.log("====> pop");
+    console.log(arr1.pop());
+    console.log(arr1);
+
+    // push()
+    console.log("====> push");
+    console.log(arr1.push("안녕!"));
+    console.log(arr1);
+    console.log(arr1.push("우리", "나라", "만세"));
+    console.log(arr1);
+
+    // reverse() : 배열의 요소 순서 반전
+    console.log("====> reverse");
+    console.log(arr1.reverse());
+
+    // sort() : 배열 요소 정렬, 기본값은 문자열 오름차순
+    console.log("====> sort");
+    console.log(arr1.sort());
+    console.log([1, 2, 7, 8, 3].sort());
+
+    // 오름차순 정렬
+    console.log([1, 2, 7, 8, 3].sort((a, b) => {return a-b}));
+    // 내림차순 정렬
+    console.log([1, 2, 7, 8, 3].sort((a, b) => {return b-a}));
+
+    // splice() : 요소의 지정된 부분 삭제 후 삭제한 요소 리턴
+    console.log("====> splice");
+    console.log(arr1.toString());
+    console.log(arr1.splice(1,2)); // 1번 인덱스, 2번 인덱스 삭제 후 그걸 리턴
+    console.log(arr1);
+
+    // slice() : 요소의 지정한 부분 반환
+    console.log("====> slice");
+    console.log(arr1.toString());
+    console.log(arr1.slice(1,3));
+    console.log(arr1.toString());
+
+    // concat() : 매개변수로 입력한 배열의 요소를 모두 합쳐서 배열 생성 후 반환
+    console.log("====> concat");
+    console.log([1, 2, 3].concat(3, "하루", "길동", "AB"));
+
+    let a1 = [1, 2, 3];
+    let a2 = ["우리", "나라", "만세"];
+    let a3 = a1.concat(a2);
+    console.log(a3.toString());
+
+    // join() : 배열 안의 모든 요소를 문자열로 변환 후 반환
+    console.log("====> join");
+    // 인자를 입력하지 않으면 , 으로 구분해서 문자열 생성
+    console.log(arr1.join());
+    console.log(arr1.join(" ")); // 인자를 주게 되면 인자로 구분되어 문자열 생성
+    console.log(arr1.join("#"));
+
+    // indexOf() : 배열의 앞쪽부터 특정 요소의 위치 검색
+    console.log("====> indexOf");
+    console.log(arr1.indexOf("나라"));
+    console.log(arr1.indexOf("미국"));
+    // lastIndexOf() : 배열의 뒤쪽부터 특정 요소의 위치 검색
+    console.log("====> lastIndexOf");
+    console.log(arr1.lastIndexOf("나라"));
+    console.log(arr1.lastIndexOf("미국"));
+</script>

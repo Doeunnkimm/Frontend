@@ -1,0 +1,53 @@
+@media (max-width: 800px) {    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        overflow: hidden;
+        overflow-y: auto;    
+    }
+
+    header .head-logo > input {
+        display: none;
+    }
+    
+    header .head-nav {
+        display: none;
+    }
+
+    header .head-side {
+        right: 10px;
+    }
+
+    main .head .text {
+        font-size: 14px;
+    }
+
+    main .container {
+        width: 100%;
+    }
+
+    main .card {
+        border-radius: 0;
+    }
+
+    main .body .image img {
+        width: 100%;
+    }
+
+    main .body .text {
+        font-size: 10px;
+    }
+
+    main .body button {
+        font-size: 12px;
+        padding: 0 5px;
+    }
+
+    main .foot .btn-box {
+        font-size: 12px;
+    }
+}
+

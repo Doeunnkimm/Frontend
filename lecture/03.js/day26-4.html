@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>JavaScript</h1>
+    </body>
+</html>
+
+<script>
+    // Object 객체를 생성하는 방법
+    let obj1 = {};
+    let obj2 = new Object();
+
+    console.log(obj1);
+    console.log(obj2);
+
+    // 프로퍼티는 바뀌지만 객체의 constructor는 바뀌지 않는다.
+    obj1.title = "오브젝트 객체입니다.";
+    console.log(obj1);
+
+    // constructor() : 객체의 생성자 함수를 나타낸다.
+    // 생성자는 객체 그 자체(원형)을 나타낸다.
+    console.log(obj1.constructor);
+
+    // 사용자 객체 Person을 생성
+    function Person(name) {
+        this.name = name;
+        this.age = "";
+    }
+
+    const obj3 = new Person("홍길동");
+    console.log(obj3);
+
+    // 생성자는 객체 그 자체(원형)을 나타낸다.
+    console.log(obj3.constructor);
+
+    obj3.title = "사람 객체입니다.";
+    console.log(obj3.constructor);
+    console.log(obj3);
+
+    // hasOwnProperty(name) : 객체가 name 속성을 가지고 있는지 확인
+    console.log("=====> hasOwnProperty()");
+    console.log(obj3.hasOwnProperty("name")); // true
+    console.log(obj3.hasOwnProperty("abc")); // false
+
+    // isPrototypeof(object) : 객체가 object의 프로토타입인지 검사
+    console.log("====> isPrototypeOf()");
+    console.log(Object.prototype.isPrototypeOf(obj1)); // true
+    console.log(Object.prototype.isPrototypeOf(obj3)); // true
+
+    console.log(Person.prototype.isPrototypeOf(obj1)); // false
+    console.log(Person.prototype.isPrototypeOf(obj3)); // true
+
+    function Student(name) {
+        this.name = name;
+        this.age = "";
+    }
+
+    const obj4 = new Student("한국인");
+
+    console.log(Person.prototype.isPrototypeOf(obj4)); // false
+
+    // toString() : 객체를 문자열로 변경
+    console.log("====> toString()");
+    console.log(obj1.toString());
+
+    // 재정의
+    Person.prototype.toString = function() {
+        this.age = 50;
+        return this.name + ", " + this.age + ", " + this.title;
+    }
+
+    console.log(obj3.toString())
+
+    // valueOf() : 객체의 값을 표시
+    console.log("====> valueOf()");
+    console.log(obj3.valueOf());
+    console.log(obj3);
+</script>

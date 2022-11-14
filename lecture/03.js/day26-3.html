@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>JavaScript</h1>
+    </body>
+</html>
+
+<script>
+    const person = {
+        name: '홍길동',
+        age: 10,
+        print: function() {
+            console.log(`제 이름은 ${this.name}이고 나이는 ${this.age}살입니다.`);
+        }
+    }
+
+    // 프로퍼티 변수 추가 방식1
+    person.type = '남';
+    console.log(person);
+
+    // 프로퍼티 변수 추가 방식2
+    person['birth'] = '2000-12-01';
+    console.log(person);
+
+    // 프로퍼티 메소드 추가
+    person.title = function() {
+        return "안녕하세요. 반갑습니다.";
+    }
+    console.log(person);
+    console.log(person.title()); // title은 함수이므로 괄호(())를 꼭 써주자!
+
+    // 프로퍼티 삭제
+    delete person['type'];
+    delete person.birth;
+    console.log(person);
+    delete person.title;
+</script>

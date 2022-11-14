@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h1>JavaScript</h1>
+    </body>
+</html>
+
+<script>
+    // 1. 객체 리터럴 방식
+    const person = {
+        name: '홍길동',
+        age: 10,
+        print: function() {
+            console.log("제 이름은 " + this.name + "이고 나이는 " + this.age + "입니다.");
+        }
+    }
+
+    person.print();
+    console.log(person);
+
+    // 2. Object() 생성자 함수를 이용
+    const teacher = new Object();
+
+    // teacher 객체의 프로퍼티 정의(초기화)
+    teacher.name = '김유신';
+    teacher.age = 20;
+    teacher.print = function() {
+        console.log(`제 이름은 ${this.name}이고 나이느 ${this.age}살입니다.`);
+    }
+    teacher.print()
+    console.log(teacher);
+
+    // 3. 생성자 함수를 사용한 방식(객체지향 클래스 흉내내기)
+    function Student(name, age) {
+        this.name = name;
+        this.age = age;
+        this.print = function() {
+            console.log(`제 이름은 ${this.name}이고 나이느 ${this.age}살입니다.`);
+        }
+    }
+    // 위에서 생성한 생성자 함수를 호출
+    const st1 = new Student('이순신', 30);
+    st1.print();
+    console.log(st1);
+</script>

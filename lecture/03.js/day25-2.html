@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    
+    <body>
+        <h2>마우스 이벤트</h2>
+        <button onclick="clickme()";>클릭하세요</button>
+        <button ondblclick="clickme()";>더블 클릭하세요</button>
+
+        <h2>마우스 이벤트 2</h2>
+        <!-- 버튼에서 마우스가 나갈 때 이벤트 발생 -->
+        <button onmouseout="MouseEvent('마우스 아웃')">마우스 아웃</button>
+        <!-- 마우스를 클릭했을 때(버튼이 다운되었을 때) 이벤트 발생 -->
+        <button onmousedown="MouseEvent('마우스 다운')">마우스 다운</button>
+        <!-- 버튼에 마우스가 올라가면 1번 이벤트 발생 -->
+        <button onmouseover="MouseEvent('마우스 오버')">마우스 오버</button>
+        <!-- 마우스를 클릭하고 뗐을 때 이벤트 발생-->
+        <button onmouseup="MouseEvent('마우스 업')">마우스 업</button>
+        <!-- 버튼 내에서 움직이면 모두 이벤트로 발생 -->
+        <button onmousemove="MouseEvent('마우스 이동')">마우스 이동</button>
+        <!-- 마우스 우클릭했을 때 이벤트 발생 -->
+        <button oncontextmenu="MouseEvent('마우스 우클릭<메뉴>')">마우스 우클릭</button>
+
+        <h2>키 이벤트</h2>
+        <textarea onkeydown="keydown(event);"></textarea>
+        <textarea onkeyup="keyup(event);"></textarea>
+        <textarea onkeypress="keypress(event);"></textarea>
+
+        <h2>폼 이벤트</h2>
+        <label><input type="radio" name="fruit" value="apple" onchange="change('사과', event)">사과</label>
+        <label><input type="radio" name="fruit" value="apple" onchange="change('바나나', event)">바나나</label>
+        <textarea oninput="input(event);"></textarea>
+    </body>
+</html>
+
+<script>
+    function clickme() {
+        console.log("클릭하셨습니다");
+    }
+
+    function MouseEvent(text) {
+        console.log("마우스 이벤트 ===> " + text);
+    }
+
+    function keydown(event) {
+        console.log(event);
+    }
+    function keyup(event) {
+        console.log(event);
+    }
+    function keypress(event) {
+        // console.log(event);
+        console.log(event.keyCode);
+
+        // 엔터를 입력할 경우 경고창 표시
+        if (event.keyCode === 13) {
+            alert("엔터를 입력하셨습니다.");
+        }
+    }
+
+    function change(title, event) {
+        alert(title + "를 선택하셨습니다.");
+        console.log(event);
+    }
+
+    function input(event) {
+        // console.log(evnet);
+        // 입력되는 값 하나하나를 따로 가져오는 keypress와 달리 
+        // 매번 textarea에 있는 값 전체를 가져옴
+        var text = event.target.value;
+        console.log(text);
+    }
+</script>

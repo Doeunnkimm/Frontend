@@ -1,0 +1,101 @@
+* { padding: 0; margin: 0; }
+    header {
+        height: 60px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    header > h1 { text-align: center; padding-top: 10px; color: #1e65ff;}
+
+    /* 메인 콘텐츠 스타일 */
+    body { background-color: #f0f2f5;}
+    main .list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    main .container {
+        height: 2000px;
+        width: 1000px;
+        margin: 10px auto;
+    }
+
+    main .container li {
+        margin: 10px 0;
+        width: 25%;
+        min-width: 25%; /*25%이하로 줄이지 않겠다*/
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    main .card {
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        width: 100%;
+        height: 300px;
+        overflow: hidden; /*겹치는 부분은 안 보이도록*/
+    }
+
+    main .card > img {
+        height: 140px;
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    main .card button {
+        height: 40px;
+        width: 80%;
+        padding: 8px 12px;
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 10%;
+    }
+
+    main .card button:hover {
+        background-color: aliceblue;
+    }
+
+    main .card .text {
+        padding: 5px 20px;
+    }
+
+    main .card .text .title {
+        color: black;
+        font-size: 16px;
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    main .card .text .lable {
+        color: gray;
+        font-size: 14px;
+        display: block;
+    }
+
+    main .card .btn-box {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(80, 80, 80, 0.2);
+        border-radius: 30px;
+        position: absolute;
+        top: 5px;
+        right: 0px;
+    }
+
+    main .card .btn-box img { height: 16px; }
+    main .card .btn-box:hover { background-color: rgba(80, 80, 80, 0.5); cursor: pointer; }

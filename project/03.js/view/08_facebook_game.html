@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" id="facebook" class="">
+  <head>
+    <title id="pageTitle">Facebook - 로그인 또는 가입</title>
+    <meta name="viewport" content="width=device-width, initial-scal=1">
+    <!-- 먼저 기존의 css를 우선으로 링크하지 -->
+    <link rel="stylesheet" type="text/css" href="../css/02.main.css" />
+    <!-- 그리고 반응형 css 파일을 링크하자 -->
+    <link rel="stylesheet" type="text/css" href="../css/12.main.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/08.game.css" />
+  </head>
+  <!-- https://www.flaticon.com/kr/free-icon/home-icon-silhouette_69524 -->
+  <body>
+      <header>
+        <div class="head-logo">
+          <img src="../images/facebook-icon.png" alt="메인 로고 아이콘" >
+          <input placeholder="Facebook 검색" />
+        </div>
+        <div class="head-nav">
+          <nav class="">
+            <span class="btn-box">
+              <img src="../images/home.png" alt="홈 바로가기" />
+              <span class="btn-line"></span>
+              <a class="btn-link" href="./02_facebook_main.html"></a>
+            </span>
+            <span class="btn-box">
+              <img src="../images/youtube.png" alt="동영상 바로가기" />
+              <span class="btn-line"></span>
+              <a class="btn-link" href="./06_facebook_video.html"></a>
+            </span>
+            <span class="btn-box">
+              <img src="../images/people.png" alt="사용자 바로가기" />
+              <span class="btn-line"></span>
+              <a class="btn-link" href="./07_facebook_people.html"></a>
+            </span>
+            <span class="btn-box active">
+              <img src="../images/game.png" alt="게임 바로가기" />
+              <span class="btn-line"></span>
+              <a class="btn-link" href="./08_facebook_game.html"></a>
+            </span>
+          </nav>
+        </div>
+        <div class="head-side">
+          <span class="btn-box"><img src="../images/menu.png" alt="메뉴 바로가기" /></span>
+          <span class="btn-box"><img src="../images/alarm.png" alt="알림 바로가기" /></span>
+          <span class="btn-box"><img src="../images/more.png" alt="더보기 바로가기" /></span>
+        </div>
+      </header>
+      <main>
+        <section class="container game">
+          <!-- Carousel or Slide -->
+          <ul class="list">
+            <li class="img-box left">
+              <img src="../images/game-a.jpg"/>
+            </li>
+            <li class="img-box center">
+              <button class="btn-prev"><img src="../images/left.png"/></button>
+              <img src="../images/game-b.jpg"/>
+              <button class="btn-next"><img src="../images/right.png"/></button>
+            </li>
+            <li class="img-box right">
+              <img src="../images/game-c.jpg"/>
+            </li>
+          </ul>
+          <div class="card">
+            <h3 class="title">추천게임</h3>
+            <ul>
+              <li class="c-li"><img src="../images/game-1.jpg"/></li>
+              <li class="c-li"><img src="../images/game-2.jpg"/></li>
+              <li class="c-li"><img src="../images/game-3.jpg"/></li>
+              <li class="c-li"><img src="../images/game-1.jpg"/></li>
+              <li class="c-li"><img src="../images/game-2.jpg"/></li>
+              <li class="c-li"><img src="../images/game-3.jpg"/></li>
+              <button class="btn-next"><img src="../images//right.png"/></button>
+            </ul>
+          </div>
+        </section>
+      </main>
+  </body>
+</html>

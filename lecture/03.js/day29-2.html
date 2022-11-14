@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h2 id="title">문서 객체 모델 탐색</h2>
+        <div id="fruits">
+            <ul class="ul-list">
+                <li id="apple" name="list">사과</li>
+                <li id="banana" name="list">바나나</li>
+                <li id="orange" name="list">오렌지</li>
+            </ul>
+        </div>
+        <div id="animals">
+            <ul class="ul-list">
+                <li>강아지</li>
+                <li>고양이</li>
+                <li>토끼</li>
+            </ul>
+        </div>
+    </body>
+</html>
+
+<script>
+    window.onload = function() {
+        // <head> 노드를 가져오기
+        console.log("---------------> head");
+        const head = document.head;
+        console.log(head);
+        
+        // <body> 노드를 가져오기
+        console.log("---------------> body");
+        const body = document.body;
+        console.log(body);
+
+        // <body> 노드의 자식 노드를 가져오기
+        // 자식 노드 다 가져옴
+        console.log("----------------> childNodes");
+        const childs = body.childNodes;
+        console.log(childs);
+        
+        // <body> 노드의 첫 번째 자식 노드를 가져오기
+        console.log("----------------> firstChild");
+        const first = body.firstChild;
+        console.log(first);
+
+        // <body> 노드의 마지막 자식 노드를 가져오기
+        console.log("----------------> lastChild");
+        const last = body.lastChild;
+        console.log(last);
+
+        // 첫번째 노드 -> 다음 노드 가져오기
+        // 즉 자식노드 중 2번째 노드 선택
+        console.log("--------------> nextSibling");
+        const next = first.nextSibling;
+        console.log(next);
+
+        // 즉 자식노드 중 마지막 이전 노드 가져오기
+        console.log("--------------> previousSibling");
+        const prev = last.previousSibling;
+        console.log(prev);
+
+        // 부모 노드 가져오기
+        console.log("--------------> parentNode");
+        const parent = next.parentNode;
+        console.log(parent);
+    }
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h2>문서 객체 모델(DOM)</h2>
+
+        <h2>정적 객체 문서</h2>
+
+        <p>이것은 문서가 로딩되기 전 이미 만들어진 "정적" 텍스트 입니다.</p>
+        <!-- 이후로 자바스크립트로 추가할 거임 -->
+    </body>
+</html>
+
+<script>
+    // 문서가 모두 로딩된 후에 실행된다.
+    window.onload = function() {
+        // alert("로드가 완료되었습니다.");
+        //<h2></h2> 요소를 만든다.
+        const header = document.createElement("h2");
+        const text1 = document.createTextNode("동적 객체 문서");
+
+        // <h2></h2>에 text를 연결(삽입)한다.
+        header.appendChild(text1);
+
+        // <body> 문서 하위로 <h2> 문서 객체를 삽입한다.
+        document.body.appendChild(header);
+
+        // <p> 요소를 생성하고 텍스트를 연결한다.
+        const para = document.createElement("p");
+        const text2 = document.createTextNode("이것은 실행중 자바스크립트를 통해 작성한 '동적' 텍스트 입니다. ")
+
+        para.appendChild(text2);
+
+        // <body> 문서 하위로 객체 삽입
+        document.body.appendChild(para);
+        
+    }
+</script>

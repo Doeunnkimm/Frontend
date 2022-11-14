@@ -1,0 +1,32 @@
+.video .list .card .head .text {
+    font-size: bold;
+    min-height: 40px;
+}
+
+.video .image video {
+    width: 100%; /*100vw로 하게 되면 부모 엘리먼트와는 상관없이 화면 양끝에 붙어버림*/
+}
+
+.video .foot {
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+.video .foot .left {
+    display: flex;
+}
+
+.video .foot .left .btn-box {
+    margin-left: 20px;
+}
+
+.video .foot .right {
+    line-height: 40px;
+    margin-right: 20px;
+}
+
+@media (max-width: 800px) {
+    .video .foot {
+        font-size: 12px;
+    }
+}

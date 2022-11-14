@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h2>String 객체</h2>
+    </body>
+</html>
+
+<script>
+    // String 객체를 생성하는 방법
+
+    // 문자열 변수
+    let str1 = "ABCDEFG"; 
+    // 문자열 객체
+    let str2 = new String("가나다라마바사");
+
+    console.log(str1);
+    console.log(str2);
+
+    // constructor로 객체 원형을 알아보자
+    console.log(str1.constructor); // ƒ String() { [native code] }
+    console.log(str2.constructor); // ƒ String() { [native code] }
+
+    // typeof : 피연산자의 데이터 타입을 반환하는 타입 연산자
+    console.log("====> typeof");
+    console.log(typeof str1);
+    console.log(typeof str2);
+
+    // instanceof : 개체가 특정 객체 타입인지 확인하는 비교 연산자
+    console.log("====> instanceof");
+    // str1이 String(객체)으로 만들어진 것인지 물어보는 것
+    console.log(str1 instanceof String); // false
+    console.log(str2 instanceof String); // true
+
+    // charAt(position)
+    console.log("====> charAt");
+    // 0번 인덱스에 있는 값이 무엇인지
+    console.log(str1.charAt(0));
+    console.log(str2.charAt(1));
+
+    // charCodeaAt(position)
+    console.log("====> charCodeAt");
+    // 0번 인덱스에 있는 아스키 코드를 묻는 것
+    console.log(str1.charCodeAt(0));
+    console.log(str2.charCodeAt(1));
+
+    // concat(args) : 매개변수로 입력한 문자열을 결합
+    console.log("====> concat");
+    console.log(str1.concat("1234"));
+    console.log(str2.concat("!@#$"));
+
+    // indexOf(searchString, position) : 앞에서부터 일치하는 문자열의 인덱스 반환
+    console.log("====> indexOf");
+    console.log(str1.indexOf("C")); // 2
+    console.log(str2.indexOf("c")); // -1(못찾아서)
+
+    // lastIndexOf(searchString, position) : 뒤에서부터 일치하는 문자열의 인덱스 반환
+    console.log("====> lastIndexOf");
+    console.log(str1.lastIndexOf("C"));
+    console.log(str2.lastIndexOf("c"));
+
+    // match(regExp) : 문자열 안에 regExp가 있는지 확인
+    console.log("====> match");
+    console.log(str1.match("BC"));
+    console.log(str2.match("가가")); // null
+    // match가 되었는지 안 되었는지 boolean값으로 보기 위해서
+    console.log(Boolean(str1.match("BC"))); // true
+    console.log(Boolean(str2.match("가가"))); // false
+
+    // replace(regExp, replacement)
+    console.log("====> replace");
+    console.log(str1.replace("ABC", "가나다"));
+    console.log(str2.replace("가나다", "12"));
+
+    // search(regExp) : regExp를 찾으면 위치 반환
+    console.log(str1.search("CD")); // 2
+    console.log(str2.search("213")); // -1
+
+    // slice(start, end)
+    console.log("====> slice")
+    console.log(str1.slice(1,3)); // BC
+    console.log(str2.slice(0,3)); // 가나다
+
+    // substr(start, count) : start부터 count까지 문자열을 잘라서 반환
+    console.log("====> substr");
+    console.log(str1.substr(2,3)); // 2번 인덱스부터 3개
+    console.log(str2.substr(2,1)); // 2번 인덱스부터 1개
+
+    // substring(start, end) : start부터 end까지 문자열을 잘라서 반환
+    console.log("====> substring");
+    console.log(str1.substring(2,3));
+    console.log(str2.substring(1,2));
+
+    // toLowerCase() : 문자열을 소문자로 바꾸어 반환
+    console.log("====> toLowerCase()");
+    console.log("ABCD".toLowerCase());
+    console.log("ABcDef".toLowerCase());
+    
+    // toUpperCase() : 문자열을 대문자로 바꾸어 반환
+    console.log("====> toUpperCase()");
+    console.log("abcde".toUpperCase());
+    console.log("aBcDe".toUpperCase());
+</script>

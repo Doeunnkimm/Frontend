@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h1>JavaScript</h1>
+    </body>
+</html>
+
+<script>
+    // 1. 중복 선언
+    var va = 10;
+    console.log("첫번째 var 변수 선언 및 초기화(10) : " + va);
+
+    var va = 20; // var는 중복 선언이 가능
+    console.log("두번째 var 변수 선언 및 초기화(20) : " + va);
+
+    var va;
+    console.log("세번째 var 변수 선언/초기화(X) : " + va);
+
+    var va1;
+    console.log("네번째 var 변수 선언/초기화(X) : " + va1);
+
+    
+    let la = 10;
+    console.log("첫번째 let 변수 선언 및 초기화(10) : " + la);
+
+    // let은 중복 선언이 불가능하다.
+    // let la = 20; // SyntaxError
+    // console.log("두번째 let 변수 선언 및 초기화(20) : " + la);
+    const ca = 10;
+    console.log("첫번째 const 변수 선언 및 초기화(10) : " + ca);
+
+    // const는 중복 선언이 불가능하다.
+    // const ca = 20;
+    // console.log("두번째 const 변수 선언 및 초기화(20) : " + ca);
+
+    // 2. 재할당
+    var vb = 10;
+    vb = 20;
+    console.log("var 변수 재할당 : " + vb);
+
+    let lb = 30;
+    lb = 40;
+    console.log("let 변수 재할당 : " + lb);
+
+    const cb = 10;
+    // cb = 20; // const는 재할당이 불가능
+    console.log("const 변수 재할당 : " + cb);
+
+    // 스코프 : 전역변수 vs 지역변수
+    if (true) {
+        var var1 = "123";
+        let var2 = "456";
+        const var3 = "789";
+
+        console.log(var1);
+        console.log(var2);
+        console.log(var3);
+    }
+
+    console.log(var1);
+    // console.log(var2);  // 블록 범위를 벗어나서 에러
+    // console.log(var3);  // 블록 범위를 벗어나서 에러
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h2>자바스크립트 객체</h2>
+    </body>
+</html>
+
+<script>
+    // 일반적인 변수 정의 및 사용
+    var name = "홍길동";
+    console.log(name);
+
+    // 객체 정의
+    var person = {
+        name: '홍길동',
+        age: 23,
+        's-type': '남',
+        'birth day': '2000.01.01' // 공백도 ' or "로 감싸야 한다.
+    }
+    console.log(person.name);
+    console.log(person['age']);
+    console.log(person['s-type']);
+    console.log(person['birth day']);
+
+    console.log(person);
+
+    // 객체의 프로퍼티 함수(메소드)
+    var student = {
+        age: 20,
+        score: [100, 90, 80],
+        print: function(name, age) { // 메소드
+            return `제 이름은 ${name} 이고 ${age}살 입니다.`;
+        }
+    }
+    console.log(student.age);
+    console.log(student.score);
+    console.log(student.print('홍길동', student.age));
+
+    // this 사용해보기
+    var student = {
+        age: 20,
+        score: [100, 90, 80],
+        print: function(name) { // 메소드
+            return `제 이름은 ${name} 이고 ${this.age}살 입니다.`;
+        }
+    }
+    console.log(student.age);
+    console.log(student.score);
+    console.log(student.print('홍길동'));
+</script>

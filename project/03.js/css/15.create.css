@@ -1,0 +1,22 @@
+@media (max-width: 800px) {
+    * { font-size: 0; }
+
+    main .container {
+        width: 100vw;
+    }
+
+    main .list {
+        width: 100vw;
+    }
+
+    main .contnainer li {
+        width: 33.33333;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 600px) { /*모바일 화면에서*/
+        main .container li {
+            width: 50%;
+        }
+    }
+}

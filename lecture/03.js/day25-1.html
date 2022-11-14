@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        <h2>인라인(inline) 방식</h2>
+
+        <button onclick="alert('Hello World!')">Hello World!</button>
+        <button onclick="clickme(); clickme1();">Button Click</button>
+
+        <h2>프로퍼티(property) 방식</h2>
+
+        <button id="a-button">Button A</button>
+
+        <h2>addEventListener 방식</h2>
+
+        <button id="b-button">Button B</button>
+    </body>
+</html>
+
+<script>
+    // 인라인 방식 
+    // 두개를 연결 가능
+    function clickme() {
+        alert("버튼을 클릭했습니다.");
+    }
+    function clickme1() {
+        alert("여기는 두번째 함수입니다.");
+    }
+
+    // 프로퍼티 방식
+    // 마지막으로 바인딩된 함수만 실행됨
+    var button = document.getElementById('a-button');
+    button.onclick = function() {
+        alert("첫번째 바인딩한 클릭 함수");
+    }
+    button.onclick = function() {
+        alert("두번째 바인딩한 클릭 함수");
+    }
+
+    // Dom의 addEventListener를 이용한 방식
+    var btn = document.querySelector('#b-button');
+
+    // 첫번재 바인딩
+    // click 이라는 이벤트에 리스너를 추가한다.
+    btn.addEventListener('click', function() {
+        alert("첫번째 바인딩한 클릭 함수!");
+    })
+    // 두번째 바인딩
+    btn.addEventListener('click', () => {
+        alert("두번째 바인딩한 클릭 함수!");
+    })
+    // 세번째 바인딩
+    // 함수를 따로 분리
+    // 함수를 나중에 재사용하거나 길어질 때 유용
+    btn.addEventListener('click', func);
+
+    function func() {
+        alert("세번째 바인딩한 클릭 함수!");
+    }
+</script>

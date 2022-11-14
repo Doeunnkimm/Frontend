@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h2 id="title">문서 객체 모델 읽기</h2>
+        <div id="fruits">
+            <ul class="ul-list">
+                <li id="apple" name="list">사과</li>
+                <li id="banana" name="list">바나나</li>
+                <li id="orange" name="list">오렌지</li>
+            </ul>
+        </div>
+        <div id="animals">
+            <ul class="ul-list">
+                <li>강아지</li>
+                <li>고양이</li>
+                <li>토끼</li>
+            </ul>
+        </div>
+    </body>
+</html>
+
+<script>
+    // 문서가 모두 로딩된 후에 실행
+    window.onload = function () {
+        // getElementById()
+        console.log("=================> getElementById");
+        // id로 요소를 가져오게 됨
+        const fruits = document.getElementById("fruits");
+        console.log(fruits);
+
+        // getElementsByTagName()
+        console.log("=================> getElementsByTagName");
+        const ul = document.getElementsByTagName("ul");
+        console.log(ul);
+        console.log(ul[0]);
+        console.log(ul[1]);
+
+        // getElementsByName()
+        console.log("=================> getElementsByName");
+        const list = document.getElementsByName("list");
+        console.log(list);
+
+        // getElementsByClassName()
+        console.log("=================> getElementsByClassName");
+        const clslist = document.getElementsByClassName("ul-list");
+        console.log(list);
+
+        // querySelector() -> id
+        console.log("=================> querySelector -> id")
+        const id = document.querySelector("#animals"); // # : id를 의미
+        console.log(id);
+
+        // querySelector() -> class
+        console.log("=================> querySelector -> class")
+        // 제일 처음 찾은 요소만 해당됨
+        const cls = document.querySelector(".ul-list"); // . : class를 의미
+        console.log(id);
+
+        // querySelectorAll()
+        console.log("=================> querySelectorAll")
+        // 해당되는 모든 요소를 가져옴
+        const clsarr = document.querySelectorAll(".ul-list"); // # : id를 의미
+        console.log(clsarr);
+
+        // querySelector() -> tag
+        console.log("=================> querySelector -> tag")
+        // 처음으로 찾은 요소만 해당됨
+        const tag= document.querySelector("ul"); // 태그로 요소 가져옴
+        console.log(tag);
+    }
+</script>

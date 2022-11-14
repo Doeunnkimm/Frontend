@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  // 변수를 활용하여 컬러 색성을 통일성 있게
+  $color-white: white;
+  $color-gray: rgb(200, 200, 200);
+  
+  // dark 테마
+  // $color-primary: #40618b;
+  // $color-hover: blue;
+  // $color-text: white;
+  // $bg-color: black;
+  // $bg-color-body: rgb(61, 61, 61);
+  // $bg-button: rgb(80, 80, 80);
+  
+  // white 테마
+  $color-primary: #1877f2;
+  $color-hover: blue;
+  $color-text: black;
+  $bg-color: white;
+  $bg-color-body: #f0f2f5;
+  $bg-button: #f0f2f5;
+  
+  /* 메인 콘텐츠 스타일 */
+  body {
+    background-color: $bg-color-body;
+    color: $color-text;
+  }
+  
+  header {
+    height: 60px;
+    border-bottom: 1px solid $color-gray;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background-color: $bg-color;
+  
+    & > a {
+      padding: 5px 30px;
+      text-decoration: none;
+      color: $color-text;
+    }
+  
+    & > a:hover {
+      color: $color-hover;
+      text-decoration: underline;
+    }
+  }
+  
+  main {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    /* background-color: rgb(230, 230, 230); */
+    min-height: 600px;
+  
+    .login-box {
+      position: relative;
+      display: block;
+      padding: 20px;
+      margin: 0 auto;
+      margin-top: 100px;
+      box-sizing: border-box;
+      width: 400px;
+      height: 360px;
+      border-radius: 8px;
+      box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      background: $bg-color;
+  
+      .input-email,
+      .input-password {
+        width: calc(100%);
+        height: 48px;
+        border: 1px solid #dddfe2;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding: 0 10px;
+      }
+  
+      .input-email:focus,
+      .input-password:focus {
+        outline: none !important;
+        border-color: $color-primary;
+        box-shadow: 0 0 0 2px #e7f3ff;
+        caret-color: $color-primary;
+      }
+  
+      .login-button {
+        width: 100%;
+        height: 48px;
+        background-color: $color-primary;
+        border: none;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 20px;
+        color: $color-white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+  
+      .div-line {
+        border-bottom: 1px solid #dadde1;
+        width: 100%;
+        margin: 20px 0;
+      }
+  
+      .regist {
+        border-radius: 6px;
+        border: none;
+        font-size: 17px;
+        line-height: 48px;
+        padding: 0 16px;
+        cursor: pointer;
+        display: inline-block;
+        text-decoration: none;
+        background-color: #42b72a;
+        color: $color-white;
+        font-weight: bold;
+      }
+    }
+  
+    .container {
+      height: 2000px;
+      width: 1000px;
+      margin: 10px auto;
+  
+      span {
+        margin-top: 5px;
+        display: block;
+        color: $color-primary;
+        font-size: 14px;
+        cursor: pointer;
+      }
+  
+      span:hover {
+        text-decoration: underline;
+      }
+  
+      .list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+      }
+  
+      li {
+        margin: 10px 0;
+        width: 25%;
+        min-width: 25%;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+  
+      .card {
+        border-radius: 8px;
+        background: $bg-color;
+        box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+  
+        & > img {
+          height: 140px;
+          width: 100%;
+          object-fit: cover;
+          object-position: top;
+        }
+  
+        button {
+          height: 40px;
+          width: 80%;
+          padding: 8px 12px;
+          font-weight: bold;
+          font-size: 16px;
+          border: none;
+          margin-top: 10px;
+          cursor: pointer;
+          border-radius: 5px;
+          margin-left: 10%;
+          position: absolute;
+          bottom: 10px;
+          color: $color-text;
+          background: $bg-button;
+        }
+        
+        .text {
+          padding: 5px 20px;
+        }
+        
+        .text .title {
+          color: $color-text;
+          font-size: 16px;
+          display: block;
+        }
+        
+        .text .label {
+          color: rgb(160, 160, 160);
+          font-size: 14px;
+          display: block;
+        }
+        
+        .btn-box {
+          width: 30px;
+          height: 30px;
+          margin: 0 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(80, 80, 80, 0.2);
+          border-radius: 30px;
+          position: absolute;
+          right: 0px;
+          top: 5px;
+        }
+        
+        .btn-box:hover {
+          background-color: rgba(80, 80, 80, 0.5);
+          cursor: pointer;
+        }
+        
+        .btn-box img {
+          height: 16px;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,82 @@
+body {
+  text-align: center;
+  justify-content: center;
+}
+
+.logo-box {
+  display: inline-block;
+}
+
+.logo {
+  margin-top: 10px;
+  display: block;
+  width: 400px;
+}
+
+main {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.form-control {
+  width: 350px;
+  margin-top: 10px;
+  border: 1px solid #dddfe2;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none !important;
+  border-color: rgb(89, 131, 208);
+  box-shadow: 0 0 0 2px #e7f3ff;
+}
+
+.login-btn, .signup-go-btn, .signup-btn {
+  border: none;
+  background-color: rgb(89, 131, 208);
+  color: white;
+  width: 350px;
+}
+
+.login-btn:focus, .signup-go-btn:focus, .signup-btn:focus {
+  outline: none !important;
+}
+
+.underline {
+  width: 350px;
+}
+
+.logo-box-main {
+  display: inline;
+  float: left;
+}
+
+.user-name {
+  margin-right: 10px;
+}
+
+.logout-btn {
+  border: none;
+  background-color: rgb(89, 131, 208);
+  color: white;
+}
+
+.logout-btn:focus {
+  outline: none !important;
+}
+
+.user-frame {
+  display: block;
+  float: right;
+  margin-top: 40px;
+}
+
+.signup-text {
+  font-weight: bold;
+  display: block;
+  float: left;
+  font-size: 13px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}

@@ -54,3 +54,22 @@ const http = require("http").createServer(app);
 app.listen(8080, () => {
   console.log("start! express server!");
 });
+
+// module(시작을 소문자..)로 하면 실행 되지 않았음
+// const Module = require("./src/Day04/module.js");
+// console.log(Module.add(1, 2));
+// console.log(Module.sub(2, 1));
+// console.log(Module.mul(3, 4));
+// console.log(Module.add(10, 2));
+
+// 내장 모듈 불러오기
+// const System = require("./src/Day04/system");
+// System.info();
+// System.path();
+
+const Moment = require("./src/Day04/moment");
+// Moment.today();
+// Moment.date();
+// Moment.format();
+// Moment.add();
+Moment.diff();

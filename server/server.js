@@ -67,9 +67,23 @@ app.listen(8080, () => {
 // System.info();
 // System.path();
 
-const Moment = require("./src/Day04/moment");
+// const Moment = require("./src/Day04/moment");
 // Moment.today();
 // Moment.date();
 // Moment.format();
 // Moment.add();
-Moment.diff();
+// Moment.diff();
+
+// const ConsoleExam = require("./src/Day05/consoleExam");
+// ConsoleExam.time();
+// ConsoleExam.table();
+// ConsoleExam.log();
+// ConsoleExam.dir();
+// ConsoleExam.rest();
+
+const TimerExam = require("./src/Day05/timer");
+// TimerExam.timeout();
+// TimerExam.interval();
+// TimerExam.clear();
+// TimerExam.counter();
+TimerExam.downcounter();

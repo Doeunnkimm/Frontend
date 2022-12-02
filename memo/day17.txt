@@ -1,0 +1,59 @@
+프론트엔드 17일차 목차
+
+1. CSS vs SCSS vs CSS3
+2. 반응형 사이트(Index)
+3. 반응형 사이트(Main)
+
+--------------------------------------------
+CSS(Cascading Style Sheets)
+	웹 화면 디자인을 위한 가장 기본적인 스타일 시트
+SASS(Syntactically Awesome Style Sheets)
+	CSS를 확장한 스타일 시트 SASS 표기법을 따른다.
+SCSS(Syntactically Cascading Style Sheets)
+	CSS를 확장한 스타일 시트 SCSS 표기법을 따른다.
+
+SASS는 함수나 변수를 처리하기 때문에 'CSS 프리(Pre) 프로세서'라고 불리기도 한다.
+
+SCSS 기본 표기법
+	.box-group{
+		width: 100px;
+		.box1 {
+			background-color: blue;
+		}
+		.box2 {
+			background-color: green;
+		}
+	}
+
+CSS
+	.box-group { width: 100px; }
+	.box-group .box1 { background-color: blue; }
+	.box-group .box2 { background-colro: green; }
+
+SASS 기본 표기법
+	.box-group
+		width: 100px;
+		.box1
+			background-color:blue;
+		.box2
+			background-color: green;
+
+SASS는 SASS 표기법(.sass)과 SCSS(.scss) 표기법이 존재하는데
+SASS 3.0부터 기본 표기법으로 채택된 SCSS 사용을 권장하고 있다.
+SCSS는 SASS가 CSS와의 호환성이 부족한 부분이 있어 만들어진 방식
+
+
+
+CSS vs CSS3
+CSS3는 모듈을 기반으로 한다.
+	각종 브라우저 디바이스가 필요에 따라 원하는 CSS 모듈만을 탑재하거나 
+	필요한 모듈만 따른 업데이트를 하는 것을 돕는다.
+CSS3는 역동적이고 화려한 기술을 더한다(animation, transform, transition 등)
+CSS3는 디자인 영역에서만 가능했던 부분을 코딩으로 가능하게 한다.(border-radius, gradient 등)
+
+앞으로 CSS4는 존재하지 않는다. CSS2.1 버전 이후의 버전인 CSS3부터 모듈로 관리되므로
+차기 버전으로 업데이트가 아닌 CSS3의 하나의 모듈로 업데이트/추가 등이 이루어진다.
+
+
+
+

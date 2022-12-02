@@ -1,0 +1,102 @@
+HTML(HyperText Markup Language) 개요
+	웹 페이지와 그 내용을 구조화하여 보여주기 위한 웹브라우저용 언어(문서)
+
+
+	SGML(Standard Generalized Markup Language)
+		문서용 마크업 언어
+	XML(eXtensible Markup Language)
+		확장성 있는(특수한 목적을 갖는 마크업 언어
+	ML(Machine Learning) - 딥러닝과 관련된 기계 학습 약자
+
+	W3C(World Wide Web Consortium) - 웹의 표준을 정의하는 국제 컨소시엄
+
+DOCTYPE(DOcument TYPE declration)
+	어떤 SGML이나 XML 또는 웹에서의 HTML 기반 문서 내에
+	그 문서가 특정 문서 형식과 규칙 및 정의를 따라 작성된 문서다 라는 것을 의미
+
+문서형 정의(DTD: Document Type Definition)
+	선언으로 시작하여 해당 웹문서의 버전과 종류를 나타냄
+
+문서형 정의의 종류
+HTML
+   	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 
+      		4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+XHTML
+   	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+HTML5
+  	<!DOCTYPE html>
+
+HTML5 추가된 태그
+	<article> <aside> <audio> <canvas> <embed> <footer> <figure>
+	<header> <menu> <nav> <progress> <section> <summary> <time>
+	<video> ...
+
+
+------------------------------------------------------------------------------------
+
+
+HTML 구성 요소
+
+요소(Elements)
+	 HTML에서 시작 태그와 종료 태그로 이루어진 모든 명령어들을 의미
+
+태그(Tag)
+	요소(Element)의 일부로 태그는 각자의 태그에 해당하는 의미를 가짐
+	태그는 시작 태그와 종료 태그로 한쌍을 이루는 것이 일반적
+	단, 일부 태그는 종료 태그가 없는 것도 존재
+	제목를 의미하는 태그
+		<h1>제목입니다.</h1>
+	문단을 의마하는 태그
+		<p>텍스트입니다.</p>
+
+속성(Attribute)
+	 요소의 시작 태그 안에서 사용되는 명령어 체계를 의미
+	태그의 기능을 정하거나 추가적인 정보를 표시
+	속성을 이용해 문단에서 문자열 가운데 정렬
+		<p align="center">가운데 정렬합니다.</p>
+	이미지 태그에서 이미지의 path를 설정하는 예
+		<img src="./my_photo.jpg" />
+
+콘텐츠(Content)
+	요소의 내용으로 일반적으로 텍스트에 해당
+	사용 예
+		<p>텍스트 콘텐츠입니다.</p>
+
+
+부모와 자식 요소
+	<Parnet>
+		<Child>
+			<Child></Child>
+		</Child>
+	</Parent>
+
+실제 사용 예
+	<section class="fruits">
+		<h1>과일 목록</h1>
+		<u1>
+			<li>사과</li>
+			<li>딸기</li>
+			<li>바나나</li>
+			<li>오렌지</li>
+		</ul>
+	</section>
+
+Go Live 실행 단축키
+	Alt + L + O
+
+META		웹 페이지의 정보
+LINK		외부 문서를 연결할 때 사용(주로 css, icon 등을 연결할 때 사용)
+STYLE		문서의 스타일을 설정하는 태그, CSS를 작성
+SCRIPT	Javascript를 불러오거나 작성하기 위한 영역
+TITLE		문서의 제목을 표시 문서
+
+HTML		문서 범위
+HEAD 	정보 범위
+		웹 브라우저가 해석해야 할 HTML 문서의 정보
+		현재 웹 페이지의 제목, 문자 인코딩 방식, 연결할 외부 파일 위치 등등
+		웹 페이지를 구조화하기 위한 기본 설정 값을 의미
+BODY		구조 범위
+		웹 브라우저가 해석해야 할 HTML 문서의 구조
+		사용자가 화면을 통해서 볼 수 있는 내용의 형태 또는 레이어 수 등을 의미
+		일반적으로 사용자에게 보여지는 화면이 여기에 해당

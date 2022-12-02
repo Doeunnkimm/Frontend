@@ -1,0 +1,86 @@
+프론트엔드 28일차 목차
+
+1. Array 반복
+2. 문서 객체 모델
+3. DOM 노드 탐색
+
+----------------------------------------------------------
+
+반복/검색/조건 메소드
+	forEach()		배열을 for in 반복문처럼 사용 가능
+				array.forEach((element, index, array) => {});
+
+	map()			기존의 배열에 특정 규칙을 적용해서 새로운 배열 생성
+				const res = array.map((element, index) => {
+					return element + 연산
+				});
+
+	filter()		특정 조건을 만족하는 요소를 추출해 새로운 배열 생성
+				const res = array.filter((element, index, array) => {
+					return element < 5
+				});
+
+	find()		특정 조건을 만족하는 요소를 1개만 검색
+				const res = array.find((element, index, array) => {
+					return element === 5
+				});
+
+	findIndex()	특정 조건을 만족하는 요소 1개의 위치를 검색
+				const res = array.findIndex((element, index, array) => {
+					return element === 5
+				});
+
+	every()		배열의 요소가 조건을 만족하는지 확인(모든 요소가 조건에 만족해야 true)
+				const res = array.every((element, index, array) => {
+					return element < 10
+				});
+
+	some()		배열의 요소가 특정 조건을 적어도 하나는 만족하는지 확인(만족시 종료)
+
+	* every는 모든 요소, some은 단 하나라도 조건에 부합하는지 확인한 후 true or false 반환
+		-> 즉 every는 앞에서 찾더라도 끝까지 for문을 돈다.
+		-> some은 찾으면 바로 for문 중단
+
+
+문서 객체 모델(DOM: Document Object Model)
+	웹 문서의 모든 요소를 자바스크립트를 이용해 조작할 수 있도록
+	객체를 사용하여 문서를 해석하는 방법
+	웹 문서의 모든 요소들을 객체로 만들고 이를 트리 구조로 구성한 모델
+
+DOM 트리 구조
+	웹 문서의 요소를 부모와 자식 요소로 구성된 트리 구조
+
+문서 노드(Documnet Node)
+	트리의 최상위에 존재하며, 하위 자식 노드에 접근하기 위해서는 반드시 Document Node를 통해야만 한다.
+	DOM 트리에 접근하기 위한 시작점이다.
+	
+요소 노드(Element Node)
+	웹 문서의 태그 Element Node로 표현된다.
+	모든 Element Node는 Attribute/Text Node를 자식으로 가질 수 있는데,
+	이 자식 노드들을 변경하여 웹 페이지를 동적으로 조작할 수 있다.
+
+속성 노드(Attribute Node)
+	태그의 모든 속성은 Attribute Node로 표현하며 해당 태그의 자식 노드로 인식된다.
+
+텍스트 노드(Text Node)
+	태그가 가지고 있는 텍스트는 해당 Element Node의 자식노드인 Text Node로 표현된다.
+	Text Node는 Dom 트리의 가장 아래쪽에 위치하여 자신의 자식 노드는 가질 수 없다.
+
+주석 노드(Comment Node)
+	주석은 Comment Node로 표현한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

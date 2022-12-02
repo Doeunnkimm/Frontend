@@ -1,0 +1,104 @@
+프론트엔드 43일차 목차
+
+1. module
+2. 내장 모듈
+3. 외장 모듈
+
+-----------------------------------------------------------------------------
+
+모듈(module)
+	연관된 코드들을 하나의 단위로 그룹화하여 관리하기 위한 개발 방법
+
+내장 모듈
+	노드에서 자주 사용되는 모듈로 미리 만들어져 있는 모듈이다.
+	이와 반대로 우리가 npm을 사용하여 설치하는 모든 것을 외장 모듈이라 한다.
+
+외장 모듈
+	일반 또는 훌륭한 Node.js(Javascript) 개발자들이 만들어 놓은 모듈
+	외장 모듈을 사용하기 위해서는 npm(Node Package Manager)을 사용한다.
+
+모듈 사용 예
+	const Hello = {
+		print: function() { // 어떤 기능이 들어감 }
+		printoutL () => { // 어떤 기능이 들어감 }
+	}
+
+	Hello.today = () => {} // 나중에 모듈에 추가도 가능
+
+	or
+	
+	var exp = module.exports =  {
+		add: function(a,b) {
+			return a+b;
+		},
+		sub: (a,b) => a - b
+	}
+
+	exp.mul = function(a, b) {
+		return a * b
+	}
+
+외부에서 사용 예
+	const Module = require("./src/module")
+	const { add, sub } = require("./src/module")
+
+	
+내장 모듈
+	노드에서 자주 사용하는 모듈로 미리 만들어져 있는 모듈이다.
+
+os 모듈
+	version			os의 커널 버전을 가져온다.
+	arch()			os의 CPU 아키텍처 정보를 리턴한다.
+	homedir()			현재 사용자의 홈 디렉토리 정보를 가져온다.
+	hostname()			컴퓨터의 이름을 보여준다.
+	totalmem()			os의 총 메모리 용량을 바이트 단위로 출력한다.
+	freemem()			os의 가용 메모리 정보를 바이트 단위의 정수로 반환한다.
+	uptime()			os의 부팅 이후 흐른시간을 보여준다.
+	networkinterface()	 os에 할당된 네트워크 인터페이스에 대한 정보를 리턴한다.
+
+path 모듈
+	join()			여러 개의 문자열을 가변인자로 받아서 하나의 완전한 경로로 조합	
+	dirname()			주어진 경로에서 파일 이름을 제외한 디렉토리 경로를 얻어온다.
+	extname()			주어진 경로에서 파일의 .을 포함한 확장자를 얻어온다.
+
+대표적인 외장 모듈
+	moment			날짜 관련 라이브러리 중 가장 많이 사용되었던 모듈
+	mysql				mysql 접속 및 쿼리 관련 모듈
+	passport			회원가입 및 로그인 등 세션과 쿠키 처리 등 인증/인가 관련
+	day.js			moment 모듈 업데이트 종료로 현재 자주 사용되는 모듈
+
+moment 설치 및 설정
+	npm install moment			install
+	import moment from "moment"		import(in React)
+	const moment = require("moment)	import(in Node)
+
+자주 사용하는 함수
+	moment()			현재 날짜/시간을 또는 날짜를 지정하여 객체를 생성한다.
+	format()			날짜/시간을 원하는 형태의 문자열로 변경할 수 있다.
+	startOf()			해당 날짜 기준 시간 단위의 시작 시간을 가져온다.
+	endOf()			해당 날짜 기준 시간 단위의 마지막 시간을 가져온다.
+	add()				날짜 및 시간을 더하거나 빼는 연산을 수행한다.
+	diff()			날짜 및 시간 차이를 구한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

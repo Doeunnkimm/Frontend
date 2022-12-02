@@ -1,0 +1,83 @@
+프론트엔드 45일차 목차
+
+1. 스프레드 연산자
+2. Node.js 파라미터 전달
+
+------------------------------------------------------------
+
+스프레드 연산자(Spread Operator)
+	ES6에서는 "..."와 같이 다소 특이한 형태의 문법이 추가되었다.
+	점 3개가 연달아 붙어있는 이 표시를 스프레드 연산자 훅인 전개 구문이라고 한다.
+
+스프레드 연산자 특징
+	배열, 함수, 객체 등에서 주로 사용되며, 편리한 기능을 제공한다.
+	배열, 함수, 객체 등의 연결, 복사 등의 용도로 꽤 활용도과 높은 편이다.
+
+기본 문법
+	// Aray
+	var arr1 = [1, 2, 3, 4, 5]
+	var arr2 = [...arr1, 6, 7, 8]
+
+	// String
+	var str1 = "paper block"
+	var str2 = {...str1}
+
+	console.log(str2); // ["p". "a", "p", "e", "r", ...]
+
+배열 병합(Array Concatenation)
+배열 복사(Copying Arrays)
+구조 분해(Destructing)
+
+HTTP(HyperText Transfer Protocol)
+	하이퍼텍스트(HTML) 문서를 교환하기 위해 만들어진 프로토콜(통신규약)
+
+Request Message 기본 구조
+	Start Line   			Get /test.html HTTP/1.1   
+	HTTP Method, target, version 등 HTTP 기본 정보 
+
+	Headers   
+		Host: google.com   	보내는 주소
+      	Accept: text/html   	미디어 타입
+      	Accept-Encoding   	한글/일본어 등의 인코딩 정보
+      	Authorization:       	인증/인가(로그인) 권한 정보
+
+	Host의 주소, 포트 및 미디어 타입 등 Request에 대한 추가 정보.
+         
+   	Body      	search=”test”&page=20&total=100
+         		Request가 전송하는 데이터(파라미터)를 담고 있는 부분
+
+Request 예
+POST /test HTTP/1.1
+
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 83
+Content-Type: application/json
+Host: google.com
+
+{
+    "test_id": "tmp_1234567",
+    "order_id": "8237352"
+}
+
+HTTP에서 데이터 전달 방법 3가지
+   Param(파라미터)   주소에 변수(데이터를) 포함시켜 전달하는 방법
+            서버에서 보통 Path Variable로 명명한다.
+            예> https://naver.com/post/12345
+   Query(쿼리)      주소와 구분(&로 연결)하여 변수를 담는 방법
+            서버에서 보통 Query Parameter로 명명한다.
+            예> https://naver.com/post?search=”test”&key=value
+   Body(바디)      JSON, XML, Multi Form(이미지, 파일 등) 등의 데이터 전달 방법
+            일반적으로 데이터가 노출되지 않지만 툴을 이용하면 확인 할 수 있다.
+
+Query vs Body
+Query   일반적으로 Get 요청시에 사용하며, 데이터가 노출되어도 관계 없을 경우 사용한다.
+Body   일반적으로 Post 요청시 사용하며, 데이터가 노출되지 않아야 할 경우 사용한다.
+
+또한 Query의 경우 주소줄에 최대 텍스트 제한이 있으므로 많은 양의 데이터 전달을 불가능하다.
+
+
+POST에서는 req.body를 이용해 데이터를 가져온다.
+GET에서는 req.query을 이용하여 데이터를 가져온다.
+	

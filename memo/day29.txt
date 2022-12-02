@@ -1,0 +1,116 @@
+프론트엔드 29일차 목차
+
+1. DOM 노드 탐색
+2. DOM 노드 추가/삭제
+3. 함수형 프로그래밍
+4. 프로젝트 개요
+
+------------------------------------------------------------------------------
+
+DOM 노드
+	브라우저의 문서에 객체(태그)를 의미한다.
+
+DOM 노드 관련 메소드(함수)
+노드 읽기 : 문서에 DOM 노드(객체)를 가져와 자바스크립트에서 읽거나 사용한다.
+	getElementById()			요소에 지정된 id를 통해 객체를 가져온다.
+	getElementsByTagName()		요소의 태그명을 통해 객체를 배열로 가져온다.
+	getElementsByName()		요소의 이름을 통해 객체를 배열로 가져온다.
+	getElementsByClassName()	요소의 지정된 클래스명을 통해 객체를 배열로 가져온다.
+	querySelector()			쿼리 지시어(. # >)를 이용해 가장 먼저 찾은 객체를 가져온다.
+	querySelectorAll()		쿼리 지시어(. # >)를 이용해 조건에 맞는 모든 객체를 가져온다.
+
+노드 탐색
+	document.body			<body> 요소에 대한 DOM 노드를 읽어온다.
+	document.head			<head> 요소에 대한 DOM 노드를 읽어온다.
+
+	childNodes				자식 노드들은 배열로 읽어온다.
+	firstChild				첫 번째 자식 노드를 읽어온다.
+	lastChild				마지막 자식 노드를 읽어온다.
+	parentNode				부모 노드를 읽어온다.
+	nextSibling				형제 노드에서 다음 노드를 읽어온다.
+	previousSibling			형제 노드에서 이전 노드를 읽어온다.
+
+노드 추가
+	createElement()			엘리먼트를 생성하여 노드 객체를 반환한다.
+	createTextNode()			텍스트 노드를 생성하여 텍스트 노드를 반환한다.
+	appendChild()			선택한 엘리먼트의 자식 엘리먼트의 마지막에 추가한다.
+	before()				선택한 노드의 앞에 추가한다.
+	after()				선택한 노드의 뒤에 추가한다.
+	prepend()				현재 엘리먼트의 자식 엘리먼트 첫 번째 앞에 추가한다.
+	append()				현재 엘리먼ㅌ의 자식 엘리먼트 마지막 뒤에 추가한다.
+
+	setAttribute()			현재 엘리먼트의 속성을 설정한다.
+	innerHTML				엘리먼트를 텍스트로 직접 입력하여 추가/변경 한다.
+
+노드 삭제
+	remove()				선택한 엘리먼트를 삭제
+	removeChild()			부모 노드에서 선택한 자식 엘리먼트 1개를 삭제
+
+
+함수형 프로그래밍
+	Simple is the best! 즉, 기능 동작을 위해 간단하고, 간결하고, 간소하게 작성하는 방법론!
+
+	함수형 프로그래밍은 객체지향 프로그래밍과 비교되는 방법론으로 객체지향 프로그래밍에 비해
+	더 간결하고, 더 예측 가능하고, 더 테스트하기 쉬운 경향이 있다.
+	단, 이 장점들이 단순히 함수형 프로그래밍이 객체지향 프로그래밍에 비해 더 쉽다는 것은 아니다.
+
+함수형 프로그래밍의 3대 개념
+	순수 함수(Pure function)
+	불변성(Immutable state)
+	1급 객체(First-class)
+
+순수 함수(Pure Function)
+	같은 입력 값이라면, 항상 같은 결과 값을 반환한다.
+
+	// 순수 함수 예
+	function func(a, b) {
+		return a + b;
+	}
+
+	// 순수하지 않은 함수 예 <- 외부 로직에 의해 내부 로직에 영향을 받는 경우
+	let c = 1;
+	function func(a, b) {
+		return a + b + c;
+	}
+
+불변성(Immutable state)
+	객체가 생성된 이후 그 상태를 변경할 수 없는 것을 의미한다.
+	즉, 객체를 생성 후 의도치 않은 동작에 의해 값을 변경하지 않도록 하는 것
+	값을 변경할 수 없다는 것과 재할당은 다른 것이다.
+
+	// 불변성이 유지되지 않는 예
+	var coke = {
+		name : 'coca',
+		price : 2980
+	}
+
+	var new_coke = coke;
+	coke.name = "pepsi";
+	console.log(coke.name, new_coke.name); // 'pepsi', 'pepsi'
+
+	// 불변성을 유지하는 예
+	var coke = {
+		name : 'coka',
+		price: 2980
+	}
+
+	var new_coke = {...coke}; // coke를 복사해서 clone 해주는 것
+	coke.name = "pepsi";
+	console.log(coke.name, new_coke.name); // 'pepsi', 'coke'
+
+일급 객체(First Class)
+	다른 객체들에 일반적으로 적용 가능한 연산을 모두 지원하는 객체를 가르킨다.
+
+프로젝트
+1. project > 02. css 폴더 아래에 내용을 03.js로 모두 복사
+	view 폴더 삭제, new 폴더를 view 폴더로 변경
+2. 03.js > js 폴더 생성, mockup 폴더 생성
+3. js: 자바스크립트 파일
+4. reauest.js : 가상의 서버 통신 RestAPI 기능 동작을 위해 json 데이터를 이용한다.
+
+
+
+
+
+
+

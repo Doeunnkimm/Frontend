@@ -1,0 +1,108 @@
+프론트엔드 25일차 목차
+
+1. 이벤트
+2. 객체
+
+--------------------------------------------------------------------------
+
+이벤트
+	웹 페이지에서 키보드, 마우스 클릭, 마우스 이동 등 동작의 사건을 발생시키는 것
+
+
+이벤트 핸들러(리스너)
+	웹 페이지에서 이벤트가 발생할 경우 호출되도록 등록하기 위한 함수
+	즉, 특정 함수를 이벤트에 등록하여 해당 함수(기능)을 하도록 한다.
+
+이벤트의 종류
+	마우스(Mouse)		마우스 클릭, 이동, 포커싱, 동작과 관련된 이벤트
+					click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseenter, mouseleave
+	키(Keyboard)		키보드의 키 업/다운 및 타이핑과 관련된 이벤트
+					keydown, keyup, keypress, keycode
+	폼(Form)			입력폼 요소에서 발생하는 이벤트
+					input(text), change(select, check, radio)
+	포커스(Focus)		돔(Dom) 요소(Element)에 포커싱과 관련된 이벤트
+					focus/focusin, blur/focusout
+	UI(User Interface)	화면 로딩, 스크롤, 사이즈 변경 등에 관련된 이벤트
+					load, unload, error, resize, scroll, select
+
+이벤트 연결 방법
+	인라인(inline)
+		돔(HTML Tag : DOM)의 이벤트에 함수를 바로 연결하는 방법
+		<input type="button" value="button" onclick="alert('Hello Wrold!);" />
+		<button onclick="myHandler1(); myHandler2();">Click me</button>
+		
+		<script>
+			function myHandler1() {
+				alert('myHandler1');
+			}
+			function myHandler2() {
+				alert('myHandler2');
+			}
+		</script>
+
+	프로퍼티(Property)
+		document 객체의 onclick에 함수를 바로 연결하는 방식
+
+		<button class="btn">Click me</button>
+		<script>
+			var btn = documment.quetySelector('.btn');
+
+			// 이벤트 핸들러 프로퍼티 방식은 이벤트에 하나의 이벤트 핸들러만을 바인딩 가능
+			// 마지막에 바인딩한 함수만 유효함!!!!
+			// 중복으로 바인딩 불가능
+
+			// 첫번재 바인딩 이벤트 핸들러
+			btn.onclick = function() {
+				alert('Button click 1');
+			}
+			// 두번째 바인딩 이벤트 핸들러
+		`	btn.onclick = function() {
+				alert('Button click 2');
+			}
+
+		</script>			
+
+	돔(Dom) addEventListener 메소드
+		요소(element)에 addEventListenListener() 함수(메소드)를 통해 등록하는 방식
+
+		<input type="button" id="target" value="button" />
+
+		<script>
+			var t = document.getElementById('target');
+
+			t.addEventListener('click', function(event) {
+				alert('Hello world, ' + event.target.value);
+			});
+		</script>
+
+객체
+	다양한 데이터를 가질 수 있는 key, value 형식의 property를 여러 개 가질 수 있는 데이터 집합
+	자바스크립트에서의 객체란 자바스크립트 그 자체라고 말해도 과언이 아니며,
+	객체란 개념을 정확히 알고 정확히 사용할 줄 안다면 자바스크립트는 다 배웠다고 할 수 있다.
+
+프로퍼티(Property)	key, value 한쌍으로 이루어지는 데이터
+키(Key)			데이터를 구분하기 위한 문자열 키
+값(Value)			문자, 숫자, 논리 등 모든 자료형의 데이터
+
+객체의 기본 & 구조
+	* 0개 이상의 프로퍼티(키 : 값)로 구성된 집합이다.
+		var 객체명 = { key: value, key: value, ... }
+
+	* 키는 기본적으로 문자열이므로 특수문자 또는 띄워쓰기 등 모든 문자가 가능하다.
+		var person = {
+			name: '홍길동',		// 문자
+			age: 20			// 숫자
+			's-type': '남'		// 키에 특수문자가 들어가면 ' or " 로 묶어준다.
+		}
+	
+	* 객체의 프로퍼티는 함수(Function), 배열(Array) 등 가능하다.
+	* 프로퍼티 값이 함수인 경우를 메소드라고 부른다.
+		var student =  {
+			score: [90,100, 80],
+			name: function(name) {
+				return `제 이름은 ${name} 입니다.`;
+			}
+		}
+
+
+

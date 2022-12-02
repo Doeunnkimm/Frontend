@@ -1,0 +1,85 @@
+입력 폼 태그
+	<form>		웹에서 사용자 정보를 입력 받기 위한 큰 틀을 제공
+	<input>		웹에서 텍스트 입력에 대한 가장 기본이 되는 태그
+	<label>		일반적으로 <input> 태그와 같이 사용되며 <input> 폼의 위/앞의 라벨 태그로 사용
+	<textarea>		여러 줄의 텍스트를 입력 받을 경우 사용되는 태그
+	<button>		버튼 형식의 입력 태그
+	<select>		여러 개의 항목 중 하나를 선택하는 콤보박스 형식 입력 태그
+	<option>		<select> 아래에 항목들에 대한 태그
+
+폼 태그
+<form
+	action="https://daum.net/search.jsp"
+	method="get"
+	name="person_info"
+	accept-charset="utf-8">
+	
+	<input></input>
+	<select></select>
+	.....
+</form>
+	
+	action			폼을 전송할 서버(백엔드) 쪽 스크립트 파일 지정
+	target			action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정
+	method		폼을 서버에 전송할 http 메소드를 지정(get or post)
+					- POST는 주로 데이터를 내부적으로 다루는 경우가 많음(보이지 않는 경우)
+						예) 로그인 창
+					- GET는 POST와 반대
+						예) 검색 창
+	accept-charset	폼 전송에 사용할 문자 인코딩을 지정
+	name			폼을 식별하기 위한 이름을 지정
+	
+태그 사용 예
+<form>
+   <input type="text" name="" id ="" placeholder="text 타입 입력">
+   <button type="button" name="" id ="">BUTTON</button>
+   <select>
+      <option>네이버</option>
+      <option>다음</option>
+   </select>
+   <textarea rows="10" cols="50"></textarea>
+   <div>
+      <label for="txt">아이디</label>
+      <input type="text" name="" id="txt">
+   </div>
+</form>
+
+
+이미지 태그
+	<img>	웹 문서에 이미지를 삽입할 때 사용
+
+사용 예
+	<img src="이미지 파일 경로" alt="대체용 텍스트(웹 접근성)">
+
+속성
+	src		표시하고자 하는 이미지의 경로를 지정
+	alt		웹 접근성(스크린 리더)을 위해 이미지 설명 첨부
+	width		이미지 넓이(넓이만 설정하면 높이는 비율로 조정)
+	height		이미지 높이(높이만 설정하면 높이는 비율로 조정)
+
+지원하는 이미지
+	jpg		사진을 표현하는 손실 압축 방식의 16만 색상 지원 이미지
+	gif		일반적으로 아이콘을 표시하며 비손실 압축으로 최대 256 색상 지원
+	png		비손실 압축 방식 투명 레이어를 지원하는 이미지
+
+
+
+오디오 태그(HTML5부터 지원)
+	<audo src="파일 위치 경로 or URL">
+
+사용 예
+	<audio src="sound.mp3"
+
+태그 속성
+	controls	컨트롤러 표시 유무
+	autoplay	자동 실행 설정(창 열자마자 실행할건지)
+	loop		무한 반복 설정
+	muted 	음소거 설정
+
+사용 예
+	<audio src="sound.mp3" controls autoplay loop>
+
+오디오 파일 포맷 지원
+	mp3	Chrome, Firefox, safari
+	ogg	Chrome, Firefox, Opera
+	wav	Chrome, Firefox, safari, Opera

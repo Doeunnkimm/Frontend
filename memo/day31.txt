@@ -1,0 +1,101 @@
+프론트엔드 31일차 목차
+
+1. React 개요
+2. Virtual DOM
+3. 리액트 설치
+4. create-react-app
+--------------------------------------------
+
+리액트(React)
+	React는 웹 브라우저의 UI를 구현하는 라이브러리(프레임워크)로 기본적으로 CSS, HTML, Javascript 개발언어를
+	이용한 컴포넌트 기반 프론트엔드 프레임워크이다.
+
+프레임워크 : 내가 개발할 때 환경에 종속되어서 개발하는 경우를 말함
+라이브러리 : 내가 개발하는 언어에 추가로 파일을 연결하여 개발하는 경우를 말함
+
+특징
+	선언형 프로그래밍이다.
+	컴포넌트 기반 프로그래밍이다.
+	컴포넌트의 확장성/재사용성이 높다.
+
+개요
+	2013년 페이스북 소프트웨어 엔지니어 Jordan Walke에 의해 탄생
+	React 컴포넌트 작성을 손쉽게 하는 XML 구분이 바로 JSX이다.
+	컴포넌트에 속성(props)을 전달하고 상태(state)를 관리하여 화면을 표현한다.
+	2015년 CS6 class 지원
+	2017년 React v16.0 업데이트
+	2019년 React Hooks 공개
+
+Virtual DOM
+DOM(Document Object Model)
+	DOM은 HTML과 자바스크립트를 이어주는 공간으로,
+	내가 작성한 HTML을 자바스크립트가 이해할 수 있도록 객체(object)로 반환
+
+React에서 Virtual DOM
+	React에서 Virtual DOM을 사용하는 큰 이유는 성능적으로 빠르다는 것
+	즉, 다시 말해 성능을 빠르게 하기 위하여 Virtual DOM을 사용했다.
+
+	정확히는 DOM 조작 자체가 성능이 느리거나 문제가 있는 것이 아니라
+	DOM 조작 이후 화면에 그려지기 전까지의 과정이 느리다는 것이다.
+	이를 해결하는 방법으로 React에서는 Virtual DOM 기술을 사용하였다.
+
+일반적인 과정
+	HTML 파싱 -> DOM 트리 생성 -> CSS 스타일 적용 -> Reader 트리 생성
+	-> 레이아웃 구성 -> 페이팅 -> 화면에 표시
+
+위의 일련의 과정에서 Virtual DOM에서 미리 해당 과정을 진행한다.
+	DOM 트리 생성 -> CSS 스타일 적용 -> Render 트리 생성 -> 레이아웃 구성
+
+설치 사전 준비
+	node.js 설치 및 버전 확인 : node -v(현재 기준 16.x.x 버전 이상 사용 권장
+
+	npm -v	패키지 관리		npm install -g create-react-app
+
+추천 방법
+	npm install npx -g
+	npm -v	확장된 패키지 관리 npx install -g create-react-app {my app name}
+
+window OS에서 bash 쉘 사용하기 위한 설치
+	https://git-scm.com/	bash(Git-2.37.0-64-bit.exe) 다운로드 및 설치
+
+리액트 공식 홈페이지
+	create-react-app.dev
+	ko.reactjs.org/docs/create-a-new-react-app.html
+
+설치 순서
+	1. 리액트를 설치할 폴더로 이동
+	2. 리액트 설치 시작
+	3. 리액트 실행
+	4. 불필요한 파일 삭제
+	5. App.js 내용 삭제
+	6. 실행 확인
+
+01. 리액트를 설치할 폴더로 이동
+02. 리액트 설치 시작
+	npm create-react-app {my project name}
+	
+	프로젝트 명(폴더명)을 넣어야 하지만 우리는 현재 폴더에 설치할 것이므로 ./
+03. 리액트 실행
+	npm run start
+
+	아래와 같이 출력되면 성공 그리고 웹브라우저에서 화면이 표시된다.
+	Complied suceessfully!
+
+	...
+04. 불필요한 파일 삭제
+	logo192.png
+	logo512.png
+	App.test.js
+	logo.svg
+	reportWebVitals.js
+	serviceWorker.js
+	setupTests.js
+
+
+
+
+
+
+
+
+

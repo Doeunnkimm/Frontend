@@ -1,0 +1,36 @@
+프론트엔드 38일차 목차
+
+1. tailwindcss
+2. index.js
+3. 로그인 화면
+4. 계정등록 화면
+
+-----------------------------------------------------------------------------------------
+
+tailwindcss
+	외부 라이버르리를 통해 보다 쉽고 빠르게 컴포넌트들을 디자인 하는 방법
+	미리 정해진 스타일의 클래스명을 통해 빠르게 디자인이 가능하다.
+	
+관련 패키지 설치
+	npm install -D tailwindcss postcss autoprefixer 
+
+tailwind.config.js 파일 생성
+/** @type {import('tailwindcss').Config} */ 
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+index.css 내용 추가
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+
+편의성을 위해 tailwindcss 관련 확장팩 설치
+   Tailwind CSS IntelliSense
+   Tailwind Docs

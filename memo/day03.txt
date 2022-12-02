@@ -1,0 +1,111 @@
+시맨틱(Semantic) 태그
+	Semantic(의미론적인, 의미있는) 의미론적인 이란 뜻으로 시맨틱 태그는
+	의미있는 태그 라는 의미를 갖는다.
+
+시맨틱 태그의 장점
+	시각장애가 있는 사용자에게 텍스트 판독기(스크린 리더)
+	내용을 전달하여 사용 가능하도록 제공(웹 표준, 웹 접근성)
+	태그를 기반으로 페이지 내 검색 키워드 우선 순위 판단
+
+시맨틱 태그 종류
+	<header>		페이지의 머리말을 의미하는 헤더 영역
+	<main>		사이트의 핵심 컨텐츠 표시하는 영역
+				<nav> <aside> <section> <article> 등 포함 가능
+	<nav>			일반적으로 메뉴(네비게이션 링크)를 포함하는 영역
+	<section>		주제별 문서의 콘텐츠를 표시하는 영역
+				하나 이상의 <article> 포함 가능	
+	<article>		섹션의 하위 항목으로 본문 이외의 개별 콘텐츠를 표시하는 영역
+				<section> 안에 여러 개의 <article>을 포함 가능
+	<aside>		좌/우측 사이드 영역으로 일반적으로 사이드바 라고 지칭
+	<footer>		일반적으로 화면의 제일 하단에 위치
+				회사 소개/저작권/약관 등을 표시
+	그 외 		<mark> <figure> <summary> <address> <iframe>
+
+참고 : https://sangyeon96.gitbooks.io/do-it-html5-css3/content/Chapter10-2.html
+
+2. html
+
+레이아웃 관련 태그
+	<div>			범위 구분(Division) 태그 - 블록으로 한 줄을 모두 차지
+	<span>		좁은 범위 구분(Span) 태그 - 인라인으로 영역만 차지
+
+텍스트 관련 태그
+	<h1> ~ <h6>	제목(Headline)을 나타내는 태그
+	<p>			텍스트의 단락(Paragragh)를 만드는 태그
+	<br>			텍스트의 줄바꿈<Break>를 만드는 태그
+	<String><b>	텍스트의 굵게 강조(String)하기 위한 태그
+	<em><i>		기울인 텍스트를 입력해주는 태그
+
+목록 태그
+	웹 문서의 목록은 어떤 항목을 나열할 때 뿐 아니라 네비게이션의 목록 또는
+	텍스트 콘텐츠 목록 등을 나열할 때 CCS와 자주 이용
+
+	<ol>	순서있는(Ordered List) 목록을 나열
+	<ul>	순서없는(Unordered List) 목록을 나열
+	<li>	목록(List)를 표시하며 ol/ul의 하위 목록으로 작성
+
+OL 목록 태그 속성
+	type	영문자나 로마 숫자 등으로 순서 속성 변경
+		type = "1"	숫자(기본값)
+		type = "a"	영문 소문자
+		type = "A"	영문 대문자
+		type = "i"	로마 숫자 소문자
+		type = "I"	로마 숫자 대문자
+	start 	1부터 시작되는 시작 번호를 임의의 숫자로 변경
+
+속성 사용 예
+	type = "1" start = "4" 숫자 4부터 시작
+	type = "A" start = "4" 영문 D부터 시작
+
+설명 목록 태그
+	설명목록(Description List)은 이름과 값(name&value) 형태로 된 목록
+	<dl>		설명목록은 한쌍의 <dt><dl> 태그를 갖음
+	<dt>		태그와 값 부분을 지정
+	<dd>		태그로 구성
+
+사용 예
+	<dl>
+		<dt>이름</dt>
+		<dd>값</dd>
+	</dl>
+
+테이블 태그
+	<table>		웹 문서에서 표 형식의 문서를 만들기 위한 태그
+	<caption>		table caption로 테이블 요약 설명을 표시
+	<tr>			table row의 약자로 표의 행 표시
+	<td>			table data의 약자로 표의 열 표시(<tr> 태그의 하위 태그)
+	<tbody>		table body로 표에서 본문 영역을 나타내기 위한 태그로 사용
+	<thead>		table head로 표에서 제목 줄을 가지고 있는 경우 제목 줄을 표시
+	<th>			table header의 약자로 표의 헤더를 표시(<td> 대신 사용)
+
+테이블 태그 사용 예(단순 사용)
+	<table>
+		<tr>
+			<td>색션 1</td>
+			<td>색션 2</td>
+		</tr>
+		<tr>
+			<td>색션 1</td>
+			<td>색션 2</td>
+		</tr>
+	</table>
+	
+테이블 태그 사용 예(thead, tbody 사용)
+	<table>
+		<thead>
+				<tr>
+					<th>학교</tr>
+					<th>창립년도</th>
+				</tr>
+		</thead>
+		<tbody>
+				<tr>
+					<td>서울대학교</td>
+					<td>1946</td>
+				</tr>
+				<tr>
+					<td>고려대학교</td>
+					<td>1905</td>
+				</tr>
+		</tbody>
+	</table>

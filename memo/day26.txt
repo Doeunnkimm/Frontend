@@ -1,0 +1,101 @@
+프론트엔드 26일차 목차
+
+0. 변수의 종류
+1. 객체 생성
+2. 객체 추가/삭제
+
+-----------------------------------------------------------------------
+변수의 종류
+var		자바스크립트의 기본 변수로 초기에 만들어진 변수(원조격)
+let		나중에 추가된 변수로 블록 범위 변수
+const		나중에 추가된 변수로 블록 범위이면서 상수
+
+var, let, const 차이점
+1. 중복선언 가능 여부
+2. 재할당 가능 여부
+3. 변수사용 범위(스코프 유효범위)
+
+var		변수 선언 및 사용 범위는 전역(함수) 범위이다.
+		재(중복) 선언 O, 재할당 O
+let		변수의 선언 및 사용 범위는 로컬(블록) 범위이다.
+		재(중복) 선언 X, 재할당 O
+const		변수의 선언 및 사용 범위는 로컬(블록) 범위이다.
+		재(중복) 선언 X, 재할당 X ---> 상수
+		즉, 자바스크립트에서 사용하는 상수 선언 방식이다.
+
+4. 변수 호이스팅 방식(스스로...)
+5. 전역객체 프로퍼티 여부(스스로...)
+
+
+객체 생성 방법
+방법1 객체 리터링 방식
+const person = {
+		name: '홍길동',
+		age: 23,
+		print: function() {
+			return `제 이름은 ${this.name}이고 나이는 ${this.age}살입니다.`;
+		}
+	}
+
+방법2 Object() 생성자 함수를 이용
+const person = new Object();
+
+	// person 객체의 프로퍼티 정의(할당)
+	person.name = '홍길동';
+	person.age = 27;
+	person.print = function() {
+			return `제 이름은 ${this.name}이고 나이는 ${this.age}살입니다.`;
+		}
+
+방법3 생성자 함수를 사용한 방식(객체지향 클래스 흉내내기)
+function Person(name, age) {
+	this.name = name;
+	this.age = age;
+	this.print = function() {
+		console.log(this.name + "선생님 입니다.");
+	}
+}
+
+객체에 프로퍼티를 추가/삭제하는 방법
+	const person = {
+		name: '홍길동';
+	}
+
+프로퍼티 추가
+	person['age'] = 10;
+	person['s-type'] = '여';
+	person.title = "안녕하세요";
+
+프로퍼티 삭제
+	delete person['age'];
+	delete person['s-type'];
+	delete person.title;
+
+Object 객체
+내장 객체
+	브라우저의 자바스크립트 엔진에서 내장하고 있는 객체
+	즉, 이전 시간 우리가 만든 객체가 사용자 정의 객체가 아닌 자바스크립트에서 미리 만들어 놓은 객체를 의미
+
+내장 객체 종류
+	Object	자바스크립트 최상위(베이스) 객체
+	Number	숫자 관련 객체
+	String	문자 관련 객체
+	Array		배열 관련 객체
+
+Object
+객체 생성
+	let object = {};
+	let object = new Object();
+
+주요 함수(메소드)	
+	constructor()			객체의 생성자 함수를 나타냄
+	hasOwnProperty(name)		객체가 name 속성을 가지고 있는지 확인
+	isPrototypeof(object)		객체가 object의 프로포타입인지 검사
+	propertyIsEnumerable(name)	반복문으로 열거 가능 여부 확인
+	toString()				객체를 문자열로 변경
+	valueOf()				객체의 값을 표시
+
+
+
+
+

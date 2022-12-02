@@ -1,0 +1,61 @@
+프론트엔드 14일차 목차
+
+1. 플렉시블 컨테이너
+2. 플렉시블 아이템
+3. 블로그 화면 구현 1
+
+---------------------------------------------------------------
+
+플렉서블 박스(Flexible Box)
+	Flex는 요소의 크기가 서로 다르거나 동적인 경우 효율적으로
+	요소를 정리하기 위해 고안된 레이아웃 방법 중 하나이다.
+
+Flex의 개념
+	container	Items를 감싸는 부모 요소 박스를 의미한다.
+	Items		각 요소를 의미하며, 반드시 Container 자식으로 존재해야 한다.
+
+Flex Container 요소의 속성
+	display		컨테이너를 수직/수평 방향으로 정렬
+	flex-direction	아이템들의 주축(main-axis) 정렬 방향(수직/수평)을 설정
+	flex-wrap		아이템들의 줄묶음(줄바꿈) 설정
+	justify-content	주축(main-axis)의 정렬 방법을 설정
+	align-content	교차 축(cross-axis)의 정렬 방법을 설정
+	align-items		교차 축(cross-axis)의 아이템의 정렬 방법을 설정
+
+display
+	flex			Block 특성으로 컨테이너가 수직 방향 정렬
+	inline-flex		Inline 특성으로 컨테이너가 수평 방향 정렬
+
+flex-direction
+	row			아이템을 수평축(왼쪽에서 오른쪽으로)으로 표시
+	row-reverse		아이템을 수평 반대축에서부터 표시
+	column		아이템을 수직축(위에서 아래로)으로 표시
+	column-reverse	아이템을 수평 반대축에서부터 표시
+
+flex-wrap
+	nowrap		모든 아이템을 여러 줄로 묶지 않음(한줄에 표시)
+	wrap			아아템을 여러 줄로 묶음(여러 줄로 표시)
+	wrap-reverse	아템을 wrap의 반대 방향으로 여러 줄로 묶음
+
+justify-content
+	flex-start		아이템을 시작점으로 정렬
+	flex-end		아이템을 끝점으로 정렬
+	center		아이템을 중앙 정렬
+	space-between	시작 아이템은 시작점, 마지막 아이템은 끝점 정렬, 나머지 아이템은 중간 사이에 고르게 정렬
+	space-around	아이템을 균등한 여백을 포함하여 정렬
+
+align-content
+	stretch		컨테이너의 교차 축을 채우기 위해 아이템을 늘림
+	flex-start		아이템을 시작점으로 정렬
+	flex-end		아이템을 끝점으로 정렬
+	center		아이템을 중앙 정렬
+	space-between	시작 아이템은 시작점에, 마지막 아이템은 끝점 정렬
+	space-around	아이템을 균등한 여백을 포함하여 정렬
+
+align-items
+	stretch		컨테이너의 교차 축을 채우기 위해 아이템을 늘린다.
+	flex-start		아이템을 각 줄의 시작점으로 정렬
+	flex-end		아이템을 각 줄의 끝점으로 정렬
+	center		아이템을 중앙 정렬
+	baseline		아이템을 문자 기준선 정렬
+	

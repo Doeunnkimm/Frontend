@@ -1,0 +1,97 @@
+프론트엔드 46일차
+
+1. 프로미스(Promise) 개요
+2. callback 지옥
+3. Promise
+4. Async & Await
+
+----------------------------------------------------------------------
+
+프로미스(Promise)
+	프로미스는 자바스크립트에서 동기 작업을 쉽게 할 수 없는 단점을 보완하여
+	동기 작업을 조금 편하게 처리할 수 있도록 ES6에 도입된 기능이다.
+
+
+기본 문법
+	const myPromise = new Promise((resolve, reject) => {
+		// 구현...
+
+		// '정상'적인 결과 반환은 resolve ---> then
+		// '오류'에 대한 결과 반환은 reject ---> catch
+	})
+
+프로미스의 예
+	실행 > 1초 뒤 실행 > 1초뒤 실행 > 1초 뒤 실행하는 함수를 생성해보자
+
+전통적인 콜백 방식
+	callback((a) => {
+		var b = a + 1
+		callback((b) => {
+			var c = b + 3;
+			callback((c) => {
+				var d = c + 5;
+			})
+		})
+	})
+
+프로미스 방식 문법
+	const myPromise = new Promise((resolve) => {
+		resolve(sum)
+	})
+
+	myPromise.then((result) => {
+		return myPromise()
+	})
+
+비동기 방식의 callback n개를 실행하는 경우
+	promise.then(() => {
+		return promise();
+	}).then(() => {
+		return promise();
+	}).then(() => {
+		return promise();
+	})
+
+async & await
+	프로미스를 사용할 때도 then을 사용하는 방식이 가독성이 떨어지고
+	여러 개를 사용할 경우에는 더욱 더 문법이 복잡한 문제가 있다.
+
+	이를 좀더 편리하게 해결하고자 생겨난 문법이 async/await이다.
+	즉,  async 및 await라는 문법을 통해 프로미스를 좀더 편하게 할 수 있다.
+
+	async function func() {
+		let value = await promise()
+	}
+
+	or
+	
+	async () => {
+		let value = await promise();
+	}
+
+여러 개의 프로미스를 사용할 경우
+	async () => {
+		let value1 = await promise();
+		let value2 = await promise();
+		let value3 = await promise();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

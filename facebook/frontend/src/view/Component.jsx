@@ -24,6 +24,10 @@ export const Title = (props) => {
   return <h1 className="my-title">{props.text}</h1>;
 };
 
+export const Subtitle = (props) => {
+  return <div className="my-subtitle">{props.text}</div>;
+};
+
 export const Linebar = (props) => {
   return <div className="my-line"></div>;
 };

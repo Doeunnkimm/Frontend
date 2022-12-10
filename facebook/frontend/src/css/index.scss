@@ -108,4 +108,97 @@ body {
       text-decoration: underline;
     }
   }
-}  
+}
+
+.regist-layer {
+  /* 컨테이너 중앙 정령 */
+  width: 420px;
+  margin: 0 auto;
+
+  /* 로고 이미지 */
+  .logo {
+    text-align: center;
+    margin-top: 10px;
+
+    .my-image > img {
+      height: 100px;
+      display: inline-block;
+    }
+  }
+
+  /* 카드 배경 및 그림자 설정 */
+  .card {
+    position: relative;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    box-sizing: border-box;
+    
+    /* 카드 헤더 */
+    .header {
+      padding: 10px;
+      margin-top: 10px;
+
+      & > .my-title {
+        font-size: 25px;
+        line-height: 32px;
+        text-align: center;
+      }
+
+      & > .my-subtitle {
+        color: #606770;
+        font-size: 15px;
+        line-height: 24px;
+        text-align: center;
+      }
+    }
+    
+    /* 카드 바디 */
+    .body {
+      padding: 20px;
+
+      input {
+        margin: 5px 2px;
+        padding: 10px;
+      }
+
+      .in-name > .my-input {
+        width: calc(50% - 4px);
+        display: inline-block;
+      }
+    }
+
+    .in-age select,
+    .in-type .my-radio {
+      width: calc(100% / 3 - 4px);
+      display: inline-block;
+      height: 36px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
+    
+    /* 라디오 버튼 텍스트 */
+    .my-subtitle {
+      line-height: 20px;
+      margin-top: 10px;
+    }
+    
+    /* 하단의 설명 */
+    .guide {
+      color: #777;
+      font-size: 11px;
+    }
+
+    /* 가입하기 버튼 */
+    .regist {
+      width: 200px;
+      margin: 20px auto;
+    }
+
+    /* 가입하고 버튼 및 로그인 레이아웃 */
+    .login {
+      text-align: center;
+    }
+  }
+}

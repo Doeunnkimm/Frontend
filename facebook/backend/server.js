@@ -11,6 +11,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+// 바디파서 미들웨어 설정
+const bodyparser = require("body-parser");
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+
+const api = require("./src/api/index");
+app.use("/api", api);
+
 const http = require("http").createServer(app);
 http.listen(8080, () => {
   console.log("server listen start: 8080");

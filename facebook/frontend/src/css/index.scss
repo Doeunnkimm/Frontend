@@ -390,8 +390,8 @@ header {
     list-style: none;
   }
 
-  .li {
-    margin: 10px 0;
+  li {
+    margin: 20px 0;
   }
 
   .card {
@@ -416,13 +416,13 @@ header {
     position: relative;
     margin-left: 10px;
   }
-  .head .more {
+  .head .more img {
     height: 20px;
     padding: 10px;
     border-radius: 30px;
     float: right;
   }
-  .head .more:hover {
+  .head .more img:hover {
     background-color: rgb(240, 240, 240);
   }
   .head .text {

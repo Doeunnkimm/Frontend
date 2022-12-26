@@ -1,0 +1,59 @@
+### 원격 저장소 관리 방법론
+(개발) thrunk-based
+- main
+    - git checkout -b style/button
+    - …
+    - add - commit - push
+    - github - pr
+    - pr - conflict - approve - main
+    - style/button github / local 삭제
+    - git branch -D 브랜치명
+    
+
+(배포) github flow 
+- main / master
+- develop
+    - git checkout -b style/button
+    - …
+    - add - commit - merge(push) - conflict
+- develop - main (pr)
+
+
+
+### 깃허브 커밋 컨벤션
+
+🌈 style (레이아웃 변경 시)
+
+🎉 feat (기능추가)
+
+🛠 fix (버그 수정) 
+
+🔥 hotfix (긴급 상황)
+
+📋 docs (문서 수정)
+
+🔝 refactor (리펙토링)
+
+
+
+### 코드 컨벤션
+
+- 작명
+    - 변수,  함수는 `카멜케이스`로 작명
+    - 상수는 대문자를 활용한 `스네이크` 표기로 작명
+    - 이벤트 핸들러는 `on...` 으로 작명 (클릭, 체인지 등등)
+    - 배열 네이밍은 `복수형`으로 작명
+- 선언
+    - 변수는 `상단`에 선언
+    - `const 예약어`는 `let 예약어`보다 `상단`에 선언
+    - 변수는 구조분해할당으로 선언(단, 길어지면 하지 않는다)
+    - 모든 함수는 `화살표 함수`로 선언
+    - 모든 컴포넌트는 `일반 함수` 로 선언
+    
+- 비동기 처리
+    - 비동기 처리 함수는 try catch 문법을 사용한다.
+    
+- 기타
+    - 문장 종료는 `세미콜론`으로 마친다.
+    - 조건 확인은 `동등 연산자`를 사용하지 않는다. `일치 연산자`만을 사용한다.
+    - 문자열은 `따옴표` 를 사용한다.

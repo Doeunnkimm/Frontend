@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <style>
+            .content {
+                width: 1024px;
+            }
+
+            .disp {
+                height: 200px;
+                border: 1px solid black;
+            }
+
+            .tab_host {
+                display: flex;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .tab:hover {
+                cursor: pointer;
+            }
+
+            .tab {
+                width: 200px;
+                border: 1px solid #ededed;
+            }
+
+            #list {
+                border: 1px solid #ededed;
+            }
+
+            #te_input {
+                width: 600;
+            }
+            .active {
+                background-color: red;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="disp" id="display">
+                <form>
+                    <p>1.페이지가 로딩 될 때 이곳의 글씨를 변경하시오.</p>
+                </form>
+            </div>
+
+            <p>2.탭을 선택하면 선택한 탭의 배경과 글자의색이 바뀌도록 하시오</p>
+            <div class="tab_host">
+                <div class="tab">탭1</div>
+                <div class="tab">탭2</div>
+                <div class="tab">탭3</div>
+                <div class="tab">탭4</div>
+                <div class="tab">탭5</div>
+            </div>
+
+            <p>3. 위의 탭 클릭시 아래의 컨텐츠중 탭과 숫자가 같은 것만 보이게 하시오.</p>
+            <div class="tab_body">
+                <div class="block">탭1 컨텐츠</div>
+                <div class="block">탭3 컨텐츠</div>
+                <div class="block">탭2 컨텐츠</div>
+                <div class="block">탭5 컨텐츠</div>
+                <div class="block">탭4 컨텐츠</div>
+            </div>
+            <p>
+                4. 아래의 입력창에 숫자가 입력되지 않도록 하고 길이 제한은 10자로 하시오.
+                <br />숫자가 입력된다면 숫자가 입력되었다고 alert로 알려주시오
+            </p>
+            <input type="text" id="te_input" maxlength="9" placeholder="글자만 입력하세요." />
+
+            <p>
+                5.아래의 입력창에 입력 후 저장 버튼을 누르거나 엔터키를 누르면 입력한 내용이 아래의
+                list에 추가 되도록 하시오. <br />초기화 버튼을 누르면 list안의 모든 내용이 지워져야
+                함
+            </p>
+            <h5>6.추가된 내용을 수정할 수 있게 변경하시오.</h5>
+            <form id="form">
+                <input type="text" value="" width="600" id="list_data" name="content" />
+                <button type="submit" id="send" value="show_view">저장</button>
+                <button onclick="reset_list()" type="reset">초기화</button>
+                <p>리스트</p>
+                <ul id="list">
+                    <li class="liclass">list</li>
+                    <li class="liclass">list</li>
+                </ul>
+            </form>
+        </div>
+        <script>
+            // 1번
+            // 페이지가 열렸을 때 안에 텍스트를 바꿔주는 것
+            window.onload = function() {
+                // 페이지가 로딩되고 난 후 실행할 명령문
+                document.querySelector(".disp > form > p").innerText = "변경이 완료되었습니다.";
+            };
+
+            // 2번
+            const $tabs = document.getElementsByClassName('tab');
+            // console.log($tabs);
+            for (const tab of $tabs) {
+                // console.log(tab);
+                tab.addEventListener("click", function(e) {
+
+                    // 클릭했을 때 나머지 요소가 active 클래스를 가지고 있다면 지워주자
+                    for (const tab of $tabs) {
+                        if (tab.classList.contains("active")) {
+                            tab.classList.remove("active");
+                        }
+                    }
+
+                    // 클릭되었을 때 클릭한 탭의 색상을 바꾸려고 함
+                    // 따라서 클릭 했을 때의 탭이 필요
+                    const { target } = e;
+                    target.classList.add("active");
+
+                    const activeText = target.innerText;
+                    activeHidden(activeText);
+                })
+            }
+
+            // 3번
+            // 내가 클릭했을 때 클릭한 tab의 text 값
+            const $tablist = document.getElementsByClassName("block");
+            function activeHidden(activeText) {
+                for (const list of $tablist) {
+                    if (list.innerHTML.includes(activeText)) {
+                        list.style.visibility = "visible";
+                    } else {
+                        list.style.visibility = "hidden";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

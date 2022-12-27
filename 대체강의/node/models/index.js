@@ -1,37 +1,31 @@
-'use strict';
+// 테이블에 대한 정보와 config에 대한 정보를 모아서
+// sequelize라는 객체를 만드는데 이 객체를 app.js에 가져가서
+// 쓸 예정
 
-const fs = require('fs');
-const path = require('path');
 const Sequelize = require('sequelize');
-const process = require('process');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require('../config/config');
+const env = 'development'; // cross-env를 활용하여 배포용일 때는 production으로 적용
+// cross-env : 명령어에 따라 달라지게 .env를 등록해줌
+const dbconfig = config[env]; // config.js의 development 설정 = 개발용 데베 가져왔다
+// dbconfig에는 confing.js에서 development의 정보들이 들어있음
+
+// 만든 user 테이블 정보 가져오기
+const user = require('./user');
+
+const sequelize = new Sequelize(
+    dbconfig.database,
+    dbconfig.username,
+    dbconfig.password,
+    dbconfig
+);
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
-
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+db.User = user;
+Object.keys(db).forEach(name => {
+    db[name].init(sequelize);
 });
 
+// 객체 값 채워주기
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

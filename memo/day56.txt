@@ -1,0 +1,75 @@
+프론트엔드 56일차 목차
+
+1. Mysql(Maria) DB
+2. 데이터베이스
+3. HeidiSQL
+4. 테이블 기본
+5. Mysql 모듈 설치
+6. 로그인 연동
+
+--------------------------------------------------------------------------------------------
+
+mariadb
+	mysql과 동일한 소스코드를 기반으로 한 오픈소스 RDBMS(관계형 데이터 베이스 관리 시스템)이다.
+
+	다운로드: https://mariadb.org
+
+	root password: 1234 로 임시로 통일
+
+사용자 환경 설정
+	root 계정에 대한 비밀번호를 설정 : 1234
+
+Mysql 모듈 설치
+	npm install mysql;
+
+Mysql 모듈 설치 연동
+const mysql = require('mysql');
+
+// mysql 접속 설정 정보
+const conn = {
+	host: '127.0.0.1',
+	port: '3306',
+	user: 'root',
+	password: '1234',
+	database: 'facebook',
+};
+
+Mysql 모듈 기본 사용법
+// 1. DB 커넥션 생성
+let connection = mysql.createConnection(conn);
+
+// 2. DB 접속 시작
+connection.connect();
+
+// 3. DB 쿼리 작성(추가, 수정, 삭제 등)
+connection.query();
+
+// 4. DB 접속 종료
+connection.end();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

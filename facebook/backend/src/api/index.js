@@ -3,16 +3,16 @@ const router = express.Router();
 const mysql = require('./mysql');
 
 // /api/login POST 데이터를 전달 받는다.
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   // POST -> body !!!!!!
   console.log(req.body);
   const { userid, password } = req.body;
 
-  mysql.selectUsers('', (result) => {
-    console.log(result);
-  });
+  const results = await mysql.findUser(req.body);
+  console.log(results);
 
-  if (userid === 'doeunn' && password === '1234') {
+  if (results && results.length > 0) {
+    // 입력한 정보가 DB에 있다면
     res.send({ result: 'success' });
   } else {
     res.send({ result: 'fail' });
@@ -20,15 +20,25 @@ router.post('/login', (req, res) => {
 });
 
 // /api/regist POST 데이터를 전달 받는다.
-router.post('/regist', (req, res) => {
+router.post('/regist', async (req, res) => {
   console.log(req.body);
 
-  const { name, userid, password, year, month, day, gender } = req.body;
-
-  if (name && userid && password && month && day && gender) {
-    res.send({ result: 'success' });
+  // 사용자 아이디 중복 체크(=DB에 이미 있는 아이디로 회원가입을 시도하려할 때)
+  const user = await mysql.checkUser(req.body);
+  console.log(user);
+  if (user) {
+    // 중복 O
+    res.send({ result: 'dup-userid' });
   } else {
-    res.send({ result: 'fail' });
+    // 중복 X
+    const result = await mysql.insertUser(req.body);
+    console.log(result);
+
+    if (result) {
+      res.send({ result: 'success' });
+    } else {
+      res.send({ result: 'fail' });
+    }
   }
 });
 

@@ -38,4 +38,75 @@ Maria.selectUsers = (param, callback) => {
   });
 };
 
+Maria.findUser = (params) => {
+  return new Promise((resolve, reject) => {
+    // 1. DB 커넥션 생성
+    const connection = mysql.createConnection(conn);
+
+    // 2. DB접속 시작
+    connection.connect();
+
+    // 3. DB 쿼리(사용자 검색)
+    const { userid, password } = params;
+    const sql =
+      ' select * from users where ' +
+      ` userid = "${userid}" and password="${password}"; `;
+    console.log(sql);
+
+    connection.query(sql, (err, result) => {
+      if (err) {
+        console.trace(err);
+        reject();
+      } else {
+        // 4. DB 연결 종료
+        connection.end();
+        resolve(result);
+      }
+    });
+  });
+};
+
+Maria.insertUser = (params) => {
+  return new Promise((resolve, reject) => {
+    const connection = mysql.createConnection(conn);
+    connection.connect();
+
+    const { userid, password, email, year, month, day, gender } = params;
+    const birthday = year + month + day;
+    const sql = `insert into users (userid, password, email, birthday, gender, updatetime, createtime) values ('${userid}', '${password}', '${email}', '${birthday}', '${gender}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`;
+
+    console.log(sql);
+
+    connection.query(sql, (err, results) => {
+      if (err) {
+        console.trace(err);
+        reject(err);
+      } else {
+        connection.end();
+        resolve(results);
+      }
+    });
+  });
+};
+
+Maria.checkUser = (params) => {
+  return new Promise((resolve, reject) => {
+    const connection = mysql.createConnection(conn);
+    connection.connect();
+
+    const { userid } = params;
+    const sql = `select * from users where userid='${userid}';`;
+
+    connection.query(sql, (err, results) => {
+      if (err) {
+        console.trace(err);
+        reject(err);
+      } else {
+        connection.end();
+        resolve(results);
+      }
+    });
+  });
+};
+
 module.exports = Maria;

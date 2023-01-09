@@ -1,13 +1,13 @@
-import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Link } from 'react-router-dom';
 
-import Login from "./view/Login";
-import Home from "./view/Home";
-import Regist from "./view/Regist";
-import Identify from "./view/Identify";
-import DeleteUser from "./view/DeleteUser";
-import Video from "./view/Video";
-import People from "./view/People";
-import Game from "./view/Game";
+import Login from './view/Login';
+import Home from './view/Home';
+import Regist from './view/Regist';
+import Identify from './view/Identify';
+import DeleteUser from './view/DeleteUser';
+import Video from './view/Video';
+import People from './view/People';
+import Game from './view/Game';
 
 function App() {
   return (

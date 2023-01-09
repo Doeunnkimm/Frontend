@@ -1,3 +1,8 @@
+.my-title {
+  font-size: 32px;
+  color: #303030;
+}
+
 .my-input {
   width: calc(100%);
   height: 48px;
@@ -5,10 +10,9 @@
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 16px;
-  margin-bottom: 10px;
   padding: 0 10px;
 
-  &:focus {
+	&:focus {
     outline: none !important;
     border-color: #1877f2;
     box-shadow: 0 0 0 2px #e7f3ff;
@@ -16,45 +20,65 @@
   }
 }
 
-.my-title {
-  font-size: 28px;
-  color: #303030;
-}
-
 .my-button {
   width: 100%;
-  height: 42px;
+  height: 48px;
   border: none;
+  border-radius: 6px;
   box-sizing: border-box;
-  font-size: 18px;
-  color: #303030;
+  font-size: 20px;
+  color: #fff;
   font-weight: bold;
   cursor: pointer;
-  background-color: rgb(240, 240, 240);
-  border-radius: 4px;
+	background-color: transparent;
 
-  &.primary {
-    background-color: #1877f2;
-    color: white;
-  }
+	&.primary {
+		background-color: #1877f2;		
+	}
 
-  &.secondary {
-    background-color: #42b72a;
-    color: white;
-  }
+	&.secondary {
+		background-color: #42b72a;
+	}
 }
 
-.my-subtitle {
+.my-line {
+  border-bottom: 1px solid #dadde1;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.my-textlink {
   font-size: 14px;
-  color: gray;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-// .my-image {
-//   width: 100%;
-//   height: 100%;
 
-//   img {
-//     width: 100%;
-//     height: 100%;
-//   }
-// }
+// 2차 
+.my-select {
+  color: #1c1e21;
+  border: 1px solid #ccd0d5;
+  border-radius: 5px;
+  margin: 5px 2px;
+  font-size: 15px;
+  line-height: 16px;
+  padding: 10px;
+  outline: none !important;
+}
+
+.my-radio {
+  color: #1c1e21;
+  border: 1px solid #ccd0d5;
+  border-radius: 5px;
+  margin: 5px 2px;
+  font-size: 15px;
+  line-height: 16px;
+  padding: 10px;
+  outline: none !important;
+}

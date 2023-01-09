@@ -3,15 +3,11 @@ import Header from './Header.jsx';
 
 import EDU_ICON from '../images/edu_icon.png';
 import MORE_ICON from '../images/more.png';
-import MAIN_IMAGE_1 from '../images/game-1.jpg';
-import MAIN_IMAGE_2 from '../images/game-2.jpg';
-import MAIN_IMAGE_3 from '../images/game-3.jpg';
 import HOME_ICON from '../images/home.png';
 import YOUTUBE_ICON from '../images/youtube.png';
 import PEOPLE_ICON from '../images/people.png';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
 
 export default function Home(props) {
   const [array, setArray] = useState([]);
@@ -25,7 +21,6 @@ export default function Home(props) {
 
   const onRefreshHome = () => {
     console.log('onrefresh call');
-    // 리프레시 되면 다시한번 데이터를 가져오자
     axios.get('/api/home').then((res) => {
       console.log(res.data);
       setArray(res.data.result);
@@ -38,11 +33,9 @@ export default function Home(props) {
 
       <section className="home-layer">
         <ul className="list">
-          {/* null 값으로 들어오는 경우를 대비해서 */}
           {array &&
             array.map((item, index) => {
-              // console.log(item);
-              // console.log(index);
+              //console.log(item);
               return (
                 <CardBox
                   key={item.homeid}
@@ -58,18 +51,42 @@ export default function Home(props) {
 }
 
 const CardBox = (props) => {
-  console.log(props);
   const { homeid, likecount, title, subtitle, tags, url, text, image } =
     props.value;
+  const [show, setShow] = useState(false);
+  const [comment, setComment] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('/api/home/comment', { params: { homeid: homeid } })
+      .then((res) => {
+        console.log(res.data);
+        setComment(res.data.result);
+      });
+  }, []);
+
   const onClickLike = () => {
-    console.log(props.value);
+    // console.log(props.value)
     axios
       .put('/api/home/like', { homeid: homeid, likecount: likecount })
       .then((res) => {
         props.onRefresh(); // props의 자식으로 가지고 있는 화면들을 리프레시
       });
   };
-  const onClickComment = () => {};
+
+  const onClickComment = () => {
+    console.log('show comment box ====> ' + show);
+    setShow(!show); //true => false, false => true
+  };
+
+  const onRefresh = () => {
+    axios
+      .get('/api/home/comment', { params: { homeid: homeid } })
+      .then((res) => {
+        setComment(res.data.result);
+      });
+  };
+
   return (
     <li>
       <div className="card">
@@ -120,7 +137,106 @@ const CardBox = (props) => {
             </div>
           </div>
         </div>
+        {show === true && (
+          <CommentBox homeid={homeid} onRefresh={onRefresh} list={comment} />
+        )}
       </div>
     </li>
+  );
+};
+
+const CommentBox = (props) => {
+  const [text, setText] = useState('');
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const onChangeText = (event) => {
+    setText(event.target.value);
+  };
+
+  const onClickSave = () => {
+    axios
+      .post('/api/home/comment', { homeid: props.homeid, text: text })
+      .then((res) => {
+        console.log(res);
+        setText('');
+        props.onRefresh && props.onRefresh();
+      });
+  };
+
+  const onClickRemove = (cmtid) => {
+    axios
+      .delete('/api/home/comment', { params: { cmtid: cmtid } })
+      .then((res) => {
+        props.onRefresh && props.onRefresh();
+      });
+  };
+
+  const onClickEdit = (item) => {
+    setSelectedItem(item);
+  };
+
+  const onChangeEdit = (event) => {
+    console.log(event.target.value);
+    const item = { ...selectedItem };
+    item.text = event.target.value;
+    setSelectedItem(item);
+  };
+
+  const onClickUpdate = () => {
+    axios
+      .put('/api/home/comment', {
+        cmtid: selectedItem.cmtid,
+        text: selectedItem.text,
+      })
+      .then((res) => {
+        setSelectedItem(null);
+        props.onRefresh && props.onRefresh();
+      });
+  };
+
+  return (
+    <div className="comment-box">
+      <ul>
+        {props.list &&
+          props.list.map((item) => {
+            return (
+              <li key={item.cmtid}>
+                {item.text}
+                <div className="buttons">
+                  <Button
+                    type="primary"
+                    onClick={() => onClickEdit(item)}
+                    text="편집"
+                  ></Button>
+                  <Button
+                    type="secondary"
+                    onClick={() => onClickRemove(item.cmtid)}
+                    text="삭제"
+                  ></Button>
+                </div>
+              </li>
+            );
+          })}
+      </ul>
+      <div className="input-box">
+        {selectedItem ? (
+          <>
+            {/* 편집을 위한 화면 */}
+            <textarea onChange={onChangeEdit} value={selectedItem.text} />
+            <Button type="secondary" onClick={onClickUpdate} text="저장" />
+          </>
+        ) : (
+          <>
+            {/* 삽입을 위한 화면 */}
+            <textarea
+              placeholder="여기에 내용을 입력하세요"
+              onChange={onChangeText}
+              value={text}
+            />
+            <Button type="primary" onClick={onClickSave} text="저장" />
+          </>
+        )}
+      </div>
+    </div>
   );
 };

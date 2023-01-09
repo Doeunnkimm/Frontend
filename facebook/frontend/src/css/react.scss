@@ -1,0 +1,57 @@
+@media (max-width: 800px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: white;
+  }
+
+  .login {
+    max-width: 100vw;
+    margin-top: 100px;
+
+    .logo-box,
+    .login-box {
+      display: block;
+      text-align: center;
+      max-width: 100%;
+      box-shadow: none;
+    }
+
+    .logo-box {
+      height: 200px;
+      width: 100%;
+
+      & > img {
+        width: 240px;
+        margin: 0px;
+        display: inline-block;
+      }
+
+      & > h2 {
+        font-size: 20px;
+        width: 100%;
+        padding: 0 40px;
+        box-sizing: border-box;
+        /* max-width: calc(100% - 40px); */
+      }
+    }
+
+    .login-box {
+      margin: 10px auto;
+    }
+  }
+
+  .regist {
+    .card {
+      box-shadow: none;
+    }
+
+    .card > .header {
+      border-bottom: 0;
+    }
+  }
+}

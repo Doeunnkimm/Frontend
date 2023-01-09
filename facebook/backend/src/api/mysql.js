@@ -133,4 +133,49 @@ Maria.findHome = (params) => {
   });
 };
 
+// 댓글 목록 조회
+Maria.selectComment = (params) => {
+  return new Promise(async (resolve) => {
+    const { homeid } = params;
+    const sql = `select * from comment where homeid=${homeid};`;
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+// 댓글 삽입
+Maria.insertComment = (params) => {
+  return new Promise(async (resolve) => {
+    const { homeid, text } = params;
+
+    const sql = `insert into comment (homeid, text) values(${homeid}, '${text}');`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+// 댓글 삭제
+Maria.deleteComment = (params) => {
+  return new Promise(async (resolve) => {
+    const { cmtid } = params;
+
+    const sql = `delete from comment where cmtid=${cmtid};`;
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+// 댓글 갱신
+Maria.updateComment = (params) => {
+  return new Promise(async (resolve) => {
+    const { cmtid, text } = params;
+
+    const sql = `update comment set text='${text}' where cmtid=${cmtid};`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
 module.exports = Maria;

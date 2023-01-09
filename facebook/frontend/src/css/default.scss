@@ -3,234 +3,27 @@
   padding: 0;
 }
 
+header {
+  height: 60px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
+  box-sizing: border-box;
+
+  & > a {
+    padding: 5px 30px;
+    text-decoration: none;
+  }
+
+  & > a:hover {
+    color: blue;
+    text-decoration: underline;
+  }
+}
+
 body {
   background: #f0f2f5;
-}
-
-header {
-  margin: 10px;
-  position: absolute;
-  right: 0;
-  top: 0;
-
-  a {
-    margin: 10px;
-    font-size: 20px;
-  }
-}
-
-.login-layer {
-  width: 960px;
-  margin: 0 auto;
-  margin-top: 140px;
-
-  .logo-box {
-    display: inline-block;
-    width: 560px;
-    height: 360px;
-    vertical-align: top;
-
-    img {
-      width: 300px;
-      margin-left: -26px;
-      margin-top: 44px;
-    }
-
-    h2 {
-      margin: 0;
-      padding: 0;
-      font-size: 28px;
-      font-weight: normal;
-      line-height: 32px;
-      width: 500px;
-    }
-  }
-
-  .login-box {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 400px;
-    height: fit-content;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 0 2px #e7f3ff;
-    text-align: center;
-    background: white;
-
-		.login-pass {
-			margin-top: 10px;
-		}
-	
-		.login-button {
-			margin: 30px 0 10px 0;
-		}
-	
-		.regist-button {
-			width: 200px;
-			margin: 0 auto;
-		}
-	
-		.new-page {
-			margin-top: 40px;
-			font-size: 14px;
-
-			.text {
-				margin-right: 10px;
-			}
-		}
-
-		.mata-cop {
-			margin-top: 10px;
-		}
-  }
-}
-
-.regist-layer {
-  /* 컨테이너 중앙 정령 */
-  width: 420px;
-  margin: 0 auto;
-
-  /* 로고 이미지 */
-  .logo {
-    text-align: center;
-    margin-top: 10px;
-
-    .my-image > img {
-      height: 100px;
-      display: inline-block;
-    }
-  }
-
-  /* 카드 배경 및 그림자 설정 */
-  .card {
-    position: relative;
-    align-items: center;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 0 2px #e7f3ff;
-    box-sizing: border-box;
-    
-    /* 카드 헤더 */
-    .header {
-      padding: 10px;
-      margin-top: 10px;
-
-      & > .my-title {
-        font-size: 25px;
-        line-height: 32px;
-        text-align: center;
-      }
-
-      & > .my-subtitle {
-        color: #606770;
-        font-size: 15px;
-        line-height: 24px;
-        text-align: center;
-      }
-    }
-    
-    /* 카드 바디 */
-    .body {
-      padding: 20px;
-
-      input {
-        margin: 5px 2px;
-        padding: 10px;
-      }
-    }
-
-    .in-age select,
-    .in-type .my-radio {
-      width: calc(100% / 3 - 4px);
-      display: inline-block;
-      height: 36px;
-      padding: 5px 10px;
-      box-sizing: border-box;
-    }
-    
-    /* 라디오 버튼 텍스트 */
-    .my-subtitle {
-      line-height: 20px;
-      margin-top: 10px;
-    }
-    
-    /* 하단의 설명 */
-    .guide {
-      color: #777;
-      font-size: 11px;
-    }
-
-    /* 가입하기 버튼 */
-    .regist {
-      width: 200px;
-      margin: 20px auto;
-    }
-
-    /* 가입하고 버튼 및 로그인 레이아웃 */
-    .login {
-      text-align: center;
-    }
-  }
-}
-
-.identify-layer {
-  .logo-box {
-    background-color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-
-    img {
-      height: 50px;
-    }
-  }
-
-  
-  .card-box {
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-    margin: auto;
-    width: 500px;
-    background: white;
-    margin-top: 90px;
-    
-    .head {
-      border-bottom: 1px solid rgba(0, 0, 0, .1);
-      padding-bottom: 0;
-      height: 60px;
-
-      .my-title {
-        font-size: 20px;
-        line-height: 60px;
-        padding-left: 20px;
-      }
-    }
-    
-    .body {
-      padding: 20px;
-
-      .my-subtitle {
-        margin-bottom: 20px;
-      }
-    }
-    
-    .foot {
-      text-align: right;
-      padding: 20px;
-      border-top: 1px solid rgba(0, 0, 0, .1);
-      box-sizing: border-box;
-      
-      .my-button {
-        display: inline-block;
-        width: 100px;
-        height: 40px;
-      }
-
-      .my-button.primary {
-        margin-left: 20px;
-      }
-    }
-  }
 }
 
 .header {
@@ -258,64 +51,58 @@ header {
   }
   .head-logo {
     left: 0;
-
-    img {
-      height: 40px;
-      margin-left: 10px;
-    }
-    input {
-      width: 200px;
-      line-height: 40px;
-      margin-left: 10px;
-      padding: 0 20px;
-      border-radius: 30px;
-      border: none;
-      outline: none;
-      background-color: rgb(240, 240, 240);
-      font-size: 16px;
-    }
+  }
+  .head-logo > img {
+    height: 40px;
+    margin-left: 10px;
+  }
+  .head-logo > input {
+    width: 200px;
+    line-height: 40px;
+    margin-left: 10px;
+    padding: 0 20px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background-color: rgb(240, 240, 240);
+    font-size: 16px;
   }
 
   .head-nav {
     display: block;
     text-align: center;
-
-    nav {
-      display: flex;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .btn-box {
-      width: 140px;
-      /* border: 1px solid;  */
-      height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 4px;
-      border-radius: 5px;
-      position: relative;
-    }
-    
-    .btn-box:hover {
-      background-color: rgb(240, 240, 240);
-      cursor: pointer;
-    }
-    
-    .btn-line {
-      background-color: #1b74e4;
-      width: 100%;
-      height: 5px;
-      position: absolute;
-      bottom: -8px;
-      display: none;
-    }
-    
-    .btn-box.active > .btn-line {
-      display: block;
-    }
+  }
+  .head-nav nav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .head-nav .btn-box {
+    width: 140px;
+    /* border: 1px solid;  */
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px;
+    border-radius: 5px;
+    position: relative;
+  }
+  .head-nav .btn-box:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+  }
+  .head-nav .btn-line {
+    background-color: #1b74e4;
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    bottom: -8px;
+    display: none;
+  }
+  .head-nav .btn-box.active > .btn-line {
+    display: block;
   }
 
   .head-side {
@@ -324,25 +111,242 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .head-side .btn-box {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+    border-radius: 30px;
+  }
+  .head-side .btn-box:hover {
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+  }
+  .head-side img {
+    height: 20px;
+  }
+}
 
-    .btn-box {
-      width: 40px;
-      height: 40px;
-      margin: 0 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgb(240, 240, 240);
-      border-radius: 30px;
+.login-layer {
+  width: 960px;
+  margin: 0 auto;
+  margin-top: 140px;
+
+  .logo-box {
+    display: inline-block;
+    width: 560px;
+    height: 360px;
+    vertical-align: top;
+
+    & > img {
+      width: 300px;
+      margin-left: -26px;
+      margin-top: 44px;
     }
-    
-    .btn-box:hover {
-      background-color: rgb(220, 220, 220);
-      cursor: pointer;
+
+    & > h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 28px;
+      font-weight: normal;
+      line-height: 32px;
+      width: 500px;
     }
-    
+  }
+
+  .login-box {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 400px;
+    height: 360px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    text-align: center;
+    background: white;
+  }
+
+  .div-line {
+    border-bottom: 1px solid #dadde1;
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  a {
+    margin-top: 12px;
+    display: block;
+    color: #1877f2;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .regist {
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .new-page {
+    margin-top: 60px;
+    font-size: 14px;
+
+    & > a {
+      font-size: 14px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+      color: inherit;
+    }
+    & > a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.regist-layer {
+  /* 컨테이너 중앙 정령 */
+  width: 420px;
+  margin: 0 auto;
+
+  /* 로고 이미지 */
+  .logo {
+    text-align: center;
+    margin-top: 10px;
+
     img {
-      height: 20px;
+      height: 100px;
+      display: inline-block;
+    }
+  }
+  /* 카드 배경 및 그림자 설정 */
+  .card {
+    position: relative;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    box-sizing: border-box;
+  }
+  /* 입력 폼의 기본 설정 */
+  input,
+  select,
+  .in-rdo {
+    color: #1c1e21;
+    border: 1px solid #ccd0d5;
+    border-radius: 5px;
+    margin: 5px 2px;
+    font-size: 15px;
+    line-height: 16px;
+    padding: 10px;
+    outline: none !important;
+  }
+  /* 카드 헤더 */
+  .header {
+    border-bottom: 1px #ccd0d5 solid;
+    padding: 10px;
+    margin-top: 10px;
+
+    & > .title {
+      font-size: 25px;
+      line-height: 32px;
+      text-align: center;
+    }
+    & > .subject {
+      color: #606770;
+      font-size: 15px;
+      line-height: 24px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+  }
+  /* 카드 바디 */
+  .body {
+    padding: 20px;
+  }
+  .in-name {
+    & > div {
+      width: calc(50% - 4px);
+      margin-left: 2px;
+      margin-right: 2px;
+      display: inline-block;
+    }
+  }
+  .in-info {
+    & > div {
+      width: calc(100% - 4px);
+      display: block;
+    }
+  }
+  .in-name,
+  .in-info {
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  .in-age select,
+  .in-type .in-rdo {
+    width: calc(100% / 3 - 4px);
+    display: inline-block;
+    height: 36px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+  .in-age option {
+    font-size: 14px;
+  }
+  /* 라디오 버튼 텍스트 */
+  .text {
+    color: #606770;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+  /* 라디오 버튼 텍스트 */
+  .in-rdo > label {
+    font-size: 16px;
+  }
+  /* 하단의 설명 */
+  .guide {
+    color: #777;
+    font-size: 11px;
+  }
+  /* 가입하고 버튼 및 로그인 레이아웃 */
+  .regist,
+  .login {
+    text-align: center;
+    margin: 15px 0;
+  }
+  /* 가입하기 버튼 */
+  button {
+    background: #00a400;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    height: 36px;
+    padding: 0 32px;
+    margin-top: 20px;
+    width: 200px;
+  }
+  /* 로그인 바로기기 */
+  .login {
+    span {
+      font-size: 16px;
+      color: #1877f2;
+      text-decoration: unset;
+      cursor: pointer;
     }
   }
 }
@@ -364,7 +368,7 @@ header {
   .card {
     border-radius: 8px;
     background-color: white;
-    margin-bottom: 20px;
+    /* border: 1px solid #eee;  */
     box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
   }
 
@@ -372,69 +376,59 @@ header {
     padding: 10px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     position: relative;
-
-    .logo {
-      height: 40px;
-      border-radius: 50px;
-      display: inline-block;
-    }
-    .title {
-      font-weight: bold;
-      position: relative;
-      margin-left: 10px;
-    }
-    .more img {
-      height: 20px;
-      padding: 10px;
-      border-radius: 30px;
-      float: right;
-      cursor: pointer;
-    }
-    .more img:hover {
-      background-color: rgb(240, 240, 240);
-    }
-    .text {
-      padding-top: 10px;
-      white-space: pre-line;
-    }
+  }
+  .head .logo {
+    height: 40px;
+    border-radius: 50px;
+    display: inline-block;
+  }
+  .head .title {
+    font-weight: bold;
+    position: relative;
+    margin-left: 10px;
+  }
+  .head .more {
+    height: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    float: right;
+  }
+  .head .more:hover {
+    background-color: rgb(240, 240, 240);
+  }
+  .head .text {
+    padding-top: 10px;
+    white-space: pre-line;
   }
 
   .body {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .body .image {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .body .text {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    white-space: pre-line;
+  }
 
-    .image {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-      .my-image {
-        min-width: 600px; 
-        min-height: 320px;
-      }
-    }
-    .text {
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      white-space: pre-line;
-    }
-  
-    button {
-      height: 40px;
-      padding: 8px 12px;
-      font-weight: bold;
-      font-size: 16px;
-      border: none;
-      margin-top: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    
-    button:hover {
-      background-color: rgb(220, 220, 220);
-    }
-  
+  .body button {
+    height: 40px;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .body button:hover {
+    background-color: rgb(220, 220, 220);
   }
 
   p.blue {
@@ -456,81 +450,31 @@ header {
     font-size: 0px;
     display: flex;
     flex-direction: row;
-
-    img {
-      height: 20px;
-    }
-    .btn-box {
-      display: flex;
-      flex-grow: 1;
-      font-size: 16px;
-      flex-direction: row;
-      align-items: center;
-      margin: 2px 0;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    
-    .btn-box:hover {
-      background-color: rgb(240, 240, 240);
-    }
-    
-    .btn-box > div {
-      margin: 0 auto;
-      display: flex;
-    }
-    
-    .btn-box img {
-      margin-right: 10px;
-    }
   }
-
-  .comment-box {
-    ul {
-      padding: 20px;
-    }
-
-    li {
-      list-style: none;
-      padding: 10px;
-      border-top: 1px solid gray;
-      font-size: 12px;
-      white-space: pre-line;
-
-      .buttons {
-        text-align: right;
-        .my-button {
-          display: inline-block;
-          margin-left: 10px;
-          font-size: 12px;
-          width: 50px;
-          height: 20px;
-          border-radius: 4px;
-        }
-      }
-    }
-    
-    .input-box {
-      padding: 20px;
-    }
-
-    textarea {
-      padding: 10px;
-      width: 100%;
-      height: 100px;
-      box-sizing: border-box;
-    }
-
-    .my-button {
-      display: block;
-      width: 60px;
-      height: 30px;
-      font-size: 16px;
-      margin-left: auto;
-    }
+  .foot img {
+    height: 20px;
+  }
+  .foot .btn-box {
+    display: flex;
+    flex-grow: 1;
+    font-size: 16px;
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 0;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .foot .btn-box:hover {
+    background-color: rgb(240, 240, 240);
+  }
+  .foot .btn-box > div {
+    margin: 0 auto;
+    display: flex;
+  }
+  .foot .btn-box img {
+    margin-right: 10px;
   }
 }
-
 
 .video-layer {
   .list .card .head .text {

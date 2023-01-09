@@ -127,4 +127,31 @@ router.put('/home/like', async (req, res) => {
   res.send({ result: item });
 });
 
+// 댓글 목록 가져오기
+router.get('/home/comment', async (req, res) => {
+  console.log(req.query);
+
+  const array = await mysql.selectComment(req.query);
+  res.send({ result: array });
+});
+
+// 댓글 추가하기
+router.post('/home/comment', async (req, res) => {
+  console.log(req.body);
+
+  await mysql.insertComment(req.body);
+  res.send({ result: 'success' });
+});
+
+// 댓글 삭제
+router.delete('/home/comment', async (req, res) => {
+  await mysql.deleteComment(req.query);
+  res.send({ result: 'success' });
+});
+
+// 댓글 편집
+router.put('/home/comment', async (req, res) => {
+  await mysql.updateComment(req.body);
+  res.send({ result: 'success' });
+});
 module.exports = router;

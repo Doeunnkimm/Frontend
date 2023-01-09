@@ -12,70 +12,10 @@ const conn = {
 
 const Maria = {};
 
-Maria.selectUsers = (param, callback) => {
-  // 1. DB 커넥션 생성
-  const connection = mysql.createConnection(conn);
-
-  // 2. DB 접속 시작
-  connection.connect();
-
-  // 3. DB 쿼리(사용자 정보 가져오기)
-  const sql = 'select * from users';
-  console.log(sql);
-
-  connection.query(sql, (err, result, fields) => {
-    if (err) {
-      console.trace(err);
-    } else {
-      console.log(result);
-
-      // 4. 결과 반환
-      callback(result);
-
-      // 5. 종료
-      connection.end();
-    }
-  });
-};
-
-Maria.findUser = (params) => {
-  return new Promise((resolve, reject) => {
-    // 1. DB 커넥션 생성
-    const connection = mysql.createConnection(conn);
-
-    // 2. DB접속 시작
-    connection.connect();
-
-    // 3. DB 쿼리(사용자 검색)
-    const { userid, password } = params;
-    const sql =
-      ' select * from users where ' +
-      ` userid = "${userid}" and password="${password}"; `;
-    console.log(sql);
-
-    connection.query(sql, (err, result) => {
-      if (err) {
-        console.trace(err);
-        reject();
-      } else {
-        // 4. DB 연결 종료
-        connection.end();
-        resolve(result);
-      }
-    });
-  });
-};
-
-Maria.insertUser = (params) => {
+const queryFunc = (sql) => {
   return new Promise((resolve, reject) => {
     const connection = mysql.createConnection(conn);
     connection.connect();
-
-    const { userid, password, email, year, month, day, gender } = params;
-    const birthday = year + month + day;
-    const sql = `insert into users (userid, password, email, birthday, gender, updatetime, createtime) values ('${userid}', '${password}', '${email}', '${birthday}', '${gender}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`;
-
-    console.log(sql);
 
     connection.query(sql, (err, results) => {
       if (err) {
@@ -86,26 +26,110 @@ Maria.insertUser = (params) => {
         resolve(results);
       }
     });
+  });
+};
+
+Maria.findAccountid = (params) => {
+  return new Promise(async (resolve, reject) => {
+    const connection = mysql.createConnection(conn);
+    connection.connect();
+
+    const { email } = params;
+    const sql = `select * from users where email='${email}';`;
+
+    const result = await queryFunc(sql);
+    resolve(result && result[0] ? result[0] : null);
+  });
+
+  // results라는 값이 있고 0번째 값이
+  // 있다면 그 0번째를 넘기고
+  // 없다면 null을 넘길거야
+  // 배열이 아닌 object를 넘기게 됨 -> 키값으로 바로 값을 사용 가능해짐
+  // resolve(results && results[0] ? results[0] : null);
+};
+
+Maria.deleteUser = (params) => {
+  return new Promise(async (resolve) => {
+    const connection = mysql.createConnection(conn);
+    connection.connect();
+
+    const { email, userid } = params;
+    const sql = `delete from users where userid='${userid}' and email='${email}';`;
+
+    const result = await queryFunc(sql);
+    resolve(result && result.affectedRows === 1 ? true : false);
+
+    // resolve(results && results.affectedRows === 1 ? true : false);
   });
 };
 
 Maria.checkUser = (params) => {
-  return new Promise((resolve, reject) => {
-    const connection = mysql.createConnection(conn);
-    connection.connect();
-
+  return new Promise(async (resolve, reject) => {
     const { userid } = params;
     const sql = `select * from users where userid='${userid}';`;
 
-    connection.query(sql, (err, results) => {
-      if (err) {
-        console.trace(err);
-        reject(err);
-      } else {
-        connection.end();
-        resolve(results);
-      }
-    });
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+Maria.insertUser = (params) => {
+  return new Promise(async (resolve) => {
+    const { userid, password, email, year, month, day, gender } = params;
+    const birthday = year + month + day;
+    const sql = `insert into users (userid, password, email, birthday, gender, updatetime, createtime) values ('${userid}', '${password}', '${email}', '${birthday}', '${gender}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`;
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+Maria.selectUsers = (param, callback) => {
+  return new Promise(async (resolve) => {
+    const sql = 'select * from users;';
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+Maria.findUser = (params) => {
+  return new Promise(async (resolve) => {
+    const { userid, password } = params;
+    const sql =
+      ' select * from users where ' +
+      ` userid = "${userid}" and password="${password}"; `;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+Maria.selectHome = (params) => {
+  return new Promise(async (resolve) => {
+    const sql = `select * from home;`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+Maria.updateLike = (params) => {
+  return new Promise(async (resolve) => {
+    const { likecount, homeid } = params;
+
+    const sql = `update home set likecount=${
+      likecount + 1
+    } where homeid=${homeid};`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+Maria.findHome = (params) => {
+  return new Promise(async (resolve) => {
+    const { homeid } = params;
+
+    const sql = `select * from home where homeid=${homeid};`;
+    const result = await queryFunc(sql);
+    resolve(result);
   });
 };
 

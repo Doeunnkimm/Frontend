@@ -1,32 +1,32 @@
-import { Image, Title, Subtitle, Button, Input } from "./Component";
-import Header from "./Header.jsx";
+import { Image, Title, Subtitle, Button, Input } from './Component';
+import Header from './Header.jsx';
 
-import EDU_ICON from "../images/edu_icon.png";
-import MORE_ICON from "../images/more.png";
-import MAIN_IMAGE_1 from "../images/game-1.jpg";
-import MAIN_IMAGE_2 from "../images/game-2.jpg";
-import MAIN_IMAGE_3 from "../images/game-3.jpg";
-import HOME_ICON from "../images/home.png";
-import YOUTUBE_ICON from "../images/youtube.png";
-import PEOPLE_ICON from "../images/people.png";
-import { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
+import EDU_ICON from '../images/edu_icon.png';
+import MORE_ICON from '../images/more.png';
+import MAIN_IMAGE_1 from '../images/game-1.jpg';
+import MAIN_IMAGE_2 from '../images/game-2.jpg';
+import MAIN_IMAGE_3 from '../images/game-3.jpg';
+import HOME_ICON from '../images/home.png';
+import YOUTUBE_ICON from '../images/youtube.png';
+import PEOPLE_ICON from '../images/people.png';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function Home(props) {
   const [array, setArray] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/home").then((res) => {
+    axios.get('/api/home').then((res) => {
       console.log(res.data);
       setArray(res.data.result);
     });
   }, []);
 
   const onRefreshHome = () => {
-    console.log("onrefresh call");
+    console.log('onrefresh call');
     // 리프레시 되면 다시한번 데이터를 가져오자
-    axios.get("/api/home").then((res) => {
+    axios.get('/api/home').then((res) => {
       console.log(res.data);
       setArray(res.data.result);
     });
@@ -44,7 +44,11 @@ export default function Home(props) {
               // console.log(item);
               // console.log(index);
               return (
-                <CardBox key={item.no} value={item} onRefresh={onRefreshHome} />
+                <CardBox
+                  key={item.homeid}
+                  value={item}
+                  onRefresh={onRefreshHome}
+                />
               );
             })}
         </ul>
@@ -54,13 +58,16 @@ export default function Home(props) {
 }
 
 const CardBox = (props) => {
-  const { no, likecount, title, subtitle, tags, url, text, image } =
+  console.log(props);
+  const { homeid, likecount, title, subtitle, tags, url, text, image } =
     props.value;
   const onClickLike = () => {
     console.log(props.value);
-    axios.put("/api/home/like", { no, like: 1 }).then((res) => {
-      props.onRefresh(); // props의 자식으로 가지고 있는 화면들을 리프레시
-    });
+    axios
+      .put('/api/home/like', { homeid: homeid, likecount: likecount })
+      .then((res) => {
+        props.onRefresh(); // props의 자식으로 가지고 있는 화면들을 리프레시
+      });
   };
   const onClickComment = () => {};
   return (

@@ -154,4 +154,35 @@ router.put('/home/comment', async (req, res) => {
   await mysql.updateComment(req.body);
   res.send({ result: 'success' });
 });
+
+// 게시판 목록 조회
+router.get('/board', async (req, res) => {
+  const array = await mysql.selectBoard(req.query);
+  res.send({ result: array });
+});
+
+// 게시판 상세 조회
+router.get('/board/item', async (req, res) => {
+  const item = await mysql.selectBoard(req.query);
+  res.send({ result: item });
+});
+
+// 게시판 항목 편집
+router.put('/board/item', async (req, res) => {
+  await mysql.updateBoard(req.body);
+  res.send({ result: 'success' });
+});
+
+// 게시판 항목 삭제
+router.delete('/board/item', async (req, res) => {
+  await mysql.deleteBoard(req.query);
+  res.send({ result: 'success' });
+});
+
+// 게시판 항목 삽입
+router.post('/board/item', async (req, res) => {
+  await mysql.insertBoard(req.body);
+  res.send({ result: 'success' });
+});
+
 module.exports = router;

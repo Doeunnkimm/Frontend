@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const { connect } = require('.');
+const moment = require('moment');
 
 const conn = {
   // 연결 설정 정보
@@ -178,4 +178,54 @@ Maria.updateComment = (params) => {
   });
 };
 
+// 게시판 목록 조회
+Maria.selectBoard = (params) => {
+  return new Promise(async (resolve) => {
+    const sql = `select * from board;`;
+    const result = await queryFunc(sql);
+    console.log(result);
+    resolve(result);
+  });
+};
+
+// 게시판 항목 조회
+Maria.selectBoardItem = (params) => {
+  return new Promise(async (resolve) => {
+    const { boardid } = params;
+    const sql = `select * from board where boardid=${boardid}`;
+    const result = queryFunc(sql);
+    resolve(result && result[0]);
+  });
+};
+
+// 게시판 항목 삽입
+Maria.insertBoard = (params) => {
+  return new Promise(async (resolve) => {
+    const { title, text } = params;
+    const today = moment().format('yyyy-MM-DD');
+    const sql = `insert into board (title, text, regdate) values ('${title}', '${text}', '${today}');`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+// 게시판 항목 삭제
+Maria.deleteBoard = (params) => {
+  return new Promise(async (resolve) => {
+    const { boardid } = params;
+    const sql = `delete from board where boardid=${boardid};`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+// 게시판 항목 편집
+Maria.updateBoard = (params) => {
+  return new Promise(async (resolve) => {
+    const { boardid, text, title } = params;
+    const sql = `update board set text='${text}', title='${title}' where boardid=${boardid};`;
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
 module.exports = Maria;

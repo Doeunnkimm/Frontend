@@ -8,6 +8,7 @@ import DeleteUser from './view/DeleteUser';
 import Video from './view/Video';
 import People from './view/People';
 import Game from './view/Game';
+import Board from './view/Board';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Link to="/regist">사용자 등록</Link>
         <Link to="/identify">사용자 찾기</Link>
         <Link to="/deleteuser">회원탈퇴</Link>
+        <Link to="/board">게시판</Link>
       </header>
       <main>
         <Routes>
@@ -29,6 +31,7 @@ function App() {
           <Route path="/regist" element={<Regist />}></Route>
           <Route path="/identify" element={<Identify />}></Route>
           <Route path="/deleteuser" element={<DeleteUser />}></Route>
+          <Route path="/board" element={<Board />} />
         </Routes>
       </main>
     </BrowserRouter>

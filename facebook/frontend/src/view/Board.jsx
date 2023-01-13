@@ -15,11 +15,11 @@ export default function Board(props) {
   return (
     <div>
       <Header name="board" />
-      <div>
+      {/* <div>
         <button onClick={() => setMode('list')}>목록</button>
         <button onClick={() => setMode('view')}>조회</button>
         <button onClick={() => setMode('edit')}>편집</button>
-      </div>
+      </div> */}
       <section className="board-layer">
         {/* mode일 때 별로 보여줄 컴포넌트를 설정 */}
         {mode === 'list' && <BoardList onEvent={onEvent} />}
@@ -121,7 +121,7 @@ const BoardEdit = (props) => {
   const onClickCancel = () => {
     console.log('onClickCancel');
 
-    props.onEvent('view', props.item); // 삭제하면 view 화면으로 넘어가도록
+    props.onEvent('list');
   };
 
   const onClickSave = () => {

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import IMG_LOGO from "../images/facebook-logo.svg";
-import { Input, Title, Image, Button, Linebar } from "./Component.jsx";
-import axios from "axios";
+import { useState } from 'react';
+import IMG_LOGO from '../images/facebook-logo.svg';
+import { Input, Title, Image, Button, Linebar } from './Component.jsx';
+import axios from 'axios';
 
 export default function Login(props) {
-  const [userid, setUserid] = useState("");
-  const [password, setPassword] = useState("");
+  const [userid, setUserid] = useState('');
+  const [password, setPassword] = useState('');
 
   const onChangeUserid = (e) => {
     // console.log(e.target.value)
@@ -18,28 +18,25 @@ export default function Login(props) {
   };
 
   const onClickLogin = () => {
-    console.log(userid, password);
-
     if (!userid) {
-      alert("사용자 계정(이메일)은 반드시 입력해야 합니다.");
+      alert('사용자 계정(이메일)은 반드시 입력해야 합니다.');
       return;
     }
 
     if (!password) {
-      alert("사용자 비밀번호는 반드시 입력해야 합니다.");
+      alert('사용자 비밀번호는 반드시 입력해야 합니다.');
       return;
     }
 
     axios
-      .post("/api/login", { userid: userid, password: password })
+      .post('/api/login', { userid: userid, password: password })
       .then((res) => {
-        console.log(res.data);
         const { result } = res.data;
-        if (result === "success") {
+        if (result === 'success') {
           // alert("로그인 성공");
-          window.location.href = "/home";
+          window.location.href = '/home';
         } else {
-          alert("로그인 실패");
+          alert('로그인 실패');
         }
       });
   };
@@ -66,19 +63,19 @@ export default function Login(props) {
           />
 
           <Button
-            type={"primary"}
+            type={'primary'}
             className="login-button"
             onClick={onClickLogin}
-            text={"로그인"}
+            text={'로그인'}
           />
-          <a onClick={() => (window.location.href = "/identify")}>
+          <a onClick={() => (window.location.href = '/identify')}>
             비밀번호를 잊으셨나요?
           </a>
           <Linebar />
           <div className="regist">
             <Button
-              type={"secondary"}
-              onClick={() => (window.location.href = "/regist")}
+              type={'secondary'}
+              onClick={() => (window.location.href = '/regist')}
               text="새 계정 만들기"
             />
           </div>

@@ -21,52 +21,34 @@ export default function Regist(props) {
   const [gender, setGender] = useState('');
 
   const onChangeUserid = (event) => {
-    console.log(event.target.value);
     setUserid(event.target.value);
   };
 
   const onChangeEmail = (event) => {
-    console.log(event.target.value);
     setEmail(event.target.value);
   };
 
   const onChangePassword = (event) => {
-    console.log(event.target.value);
     setPassword(event.target.value);
   };
 
   const onChangePasswordCheck = (event) => {
-    console.log(event.target.value);
     setPasswordCheck(event.target.value);
   };
 
   const onChangeYear = (event) => {
-    console.log(event.target.value);
     setYear(event.target.value);
   };
 
   const onChangeMonth = (event) => {
-    console.log(event.target.value);
     setMonth(event.target.value);
   };
 
   const onChangeDay = (event) => {
-    console.log(event.target.value);
     setDay(event.target.value);
   };
 
   const onClickRegist = () => {
-    console.log(
-      userid,
-      email,
-      password,
-      passwordCheck,
-      year,
-      month,
-      day,
-      gender
-    );
-
     if (!userid) return alert('사용자아이디는 필수 입력사항 입니다.');
     if (!email) return alert('이메일은 필수 입력사항 입니다.');
     if (!password) return alert('비밀번호 확인은 필수 입력사항 입니다.');
@@ -93,7 +75,6 @@ export default function Regist(props) {
 
     axios.post('/api/regist', params).then((res) => {
       const { result } = res.data;
-      console.log(result);
       if (result === 'success') {
         alert('회원가입에 성공하였습니다. 로그인 페이지로 이동합니다.');
         window.location.href = '/';

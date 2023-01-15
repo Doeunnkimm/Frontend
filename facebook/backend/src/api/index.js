@@ -26,7 +26,7 @@ router.post('/regist', async (req, res) => {
   // 사용자 아이디 중복 체크(=DB에 이미 있는 아이디로 회원가입을 시도하려할 때)
   const user = await mysql.checkUser(req.body);
   console.log(user);
-  if (user) {
+  if (user.length > 0) {
     // 중복 O
     res.send({ result: 'dup-userid' });
   } else {

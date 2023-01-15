@@ -14,15 +14,12 @@ export default function Home(props) {
 
   useEffect(() => {
     axios.get('/api/home').then((res) => {
-      console.log(res.data);
       setArray(res.data.result);
     });
   }, []);
 
   const onRefreshHome = () => {
-    console.log('onrefresh call');
     axios.get('/api/home').then((res) => {
-      console.log(res.data);
       setArray(res.data.result);
     });
   };

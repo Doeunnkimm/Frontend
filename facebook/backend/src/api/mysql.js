@@ -57,6 +57,7 @@ Maria.deleteUser = (params) => {
     const sql = `delete from users where userid='${userid}' and email='${email}';`;
 
     const result = await queryFunc(sql);
+    console.log(result);
     resolve(result && result.affectedRows === 1 ? true : false);
 
     // resolve(results && results.affectedRows === 1 ? true : false);

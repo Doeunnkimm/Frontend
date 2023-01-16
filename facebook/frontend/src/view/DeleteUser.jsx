@@ -1,11 +1,11 @@
-import { Image, Title, Subtitle, Button, Input } from "./Component";
-import IMG_LOGO from "../images/facebook-logo.svg";
-import { useState } from "react";
-import axios from "axios";
+import { Image, Title, Subtitle, Button, Input } from './Component';
+import IMG_LOGO from '../images/facebook-logo.svg';
+import { useState } from 'react';
+import axios from 'axios';
 
-export default function Identify(props) {
-  const [userid, setUserid] = useState("");
-  const [email, setEmail] = useState("");
+export default function DeleteUser(props) {
+  const [userid, setUserid] = useState('');
+  const [email, setEmail] = useState('');
 
   const onChangeUserid = (event) => {
     console.log(event.target.value);
@@ -18,32 +18,29 @@ export default function Identify(props) {
   };
 
   const onClickCancel = () => {
-    window.location.href = "/";
+    window.location.href = '/';
   };
 
   const onClickOk = () => {
     // validation 체크
-    if (!userid) return alert("계정 아이디를 입력하세요");
+    if (!userid) return alert('계정 아이디를 입력하세요');
 
-    let check = email.indexOf("@");
-    if (check < 0) return alert("이메일 형식에는 @ 이 들어가야 합니다.");
+    let check = email.indexOf('@');
+    if (check < 0) return alert('이메일 형식에는 @ 이 들어가야 합니다.');
 
-    check = email.indexOf(".");
-    if (check < 0) return alert("이메일 형식에는 . 이 들어가야 합니다.");
+    check = email.indexOf('.');
+    if (check < 0) return alert('이메일 형식에는 . 이 들어가야 합니다.');
 
     axios
-      .delete("/api/user", { params: { email: email, userid: userid } })
+      .delete('/api/user', { params: { email: email, userid: userid } })
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
-
         const { result } = res.data;
 
-        if (result === "success") {
-          alert("회원탈퇴가 정상적으로 처리되었습니다.");
-          window.location.href = "/";
+        if (result === 'success') {
+          alert('회원탈퇴가 정상적으로 처리되었습니다.');
+          window.location.href = '/';
         } else {
-          alert("회원탈퇴가 처리되지 못했습니다. 잠시후 다시 이용해주세요");
+          alert('회원탈퇴가 처리되지 못했습니다. 잠시후 다시 이용해주세요');
         }
       });
   };

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-// import App from './App';
+// import './index.css';
+import App from './App';
 // import Day02A1 from './day02/Day02A1';
 // import Day02A2 from './day02/Day02A2';
 // import Day02A3 from './dnpay02/Day02A3';
@@ -18,13 +18,13 @@ import './index.css';
 // import Day05A3 from './day05/Day05A3';
 // import Day05A4 from './day05/Day05A4';
 // import Day06 from './day06';
-import Day07 from './day07';
+// import Day07 from './day07';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // html 파일에서 root를 찾아가서
   // 그 안에 <App /> = App.js를 작성해주겠다는 말!
-  // <App />
+  <App />
   // <Day02A1 />
   // <Day02A2 />
   // <Day02A3 />
@@ -41,6 +41,5 @@ root.render(
   // <Day05A3 value="1"/>
   // <Day05A4 />
   // <Day06 />
-  <Day07 />
-  
+  // <Day07 />
 );

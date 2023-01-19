@@ -57,7 +57,6 @@ const CardBox = (props) => {
     axios
       .get('/api/home/comment', { params: { homeid: homeid } })
       .then((res) => {
-        console.log(res.data);
         setComment(res.data.result);
       });
   }, []);
@@ -72,7 +71,6 @@ const CardBox = (props) => {
   };
 
   const onClickComment = () => {
-    console.log('show comment box ====> ' + show);
     setShow(!show); //true => false, false => true
   };
 
@@ -154,7 +152,6 @@ const CommentBox = (props) => {
     axios
       .post('/api/home/comment', { homeid: props.homeid, text: text })
       .then((res) => {
-        console.log(res);
         setText('');
         props.onRefresh && props.onRefresh();
       });
@@ -173,7 +170,6 @@ const CommentBox = (props) => {
   };
 
   const onChangeEdit = (event) => {
-    console.log(event.target.value);
     const item = { ...selectedItem };
     item.text = event.target.value;
     setSelectedItem(item);

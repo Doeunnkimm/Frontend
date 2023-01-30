@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer type="module" src="./level4.js"></script>
+    <style>
+      .nav_list {
+        float: none;
+        width: 100%;
+        overflow: hidden;
+        margin: 30px auto;
+        text-align: center;
+      }
+      .nav_list a {
+        float: left;
+        text-decoration: none;
+      }
+      .nav_list .nav_page {
+        display: inline-block;
+        float: none;
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+        line-height: 36px;
+        margin-right: 5px;
+        transition: 0.3s;
+        text-align: center;
+        color: #666;
+        border: 1px solid #ddd;
+        background: #f8f8f8;
+      }
+      .nav_list .nav_page.on,
+      .nav_list .nav_page:hover,
+      .nav_list .nav_page:focus {
+        color: #fff;
+        border: 1px solid #b2b2b2;
+        background: #c5c5c5;
+      }
+      .nav_list .btn_nav {
+        display: inline-block;
+        float: none;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        top: 7px;
+        margin-right: 5px;
+      }
+      .nav_list .btn_nav.pre {
+        background: url(http://image.news1.kr/system/resource/news1_etc/bio/images/btn_nav.gif)
+          no-repeat;
+      }
+      .nav_list .btn_nav.next {
+        background: url(http://image.news1.kr/system/resource/news1_etc/bio/images/btn_nav.gif)
+          0 -24px no-repeat;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="nav_list">
+      <a class="btn_nav pre ir"></a>
+      <span class="page_list"> </span>
+      <a class="btn_nav next ir"></a>
+    </div>
+  </body>
+</html>

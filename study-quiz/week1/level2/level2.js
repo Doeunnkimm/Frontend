@@ -11,7 +11,8 @@ const nameInput = document.querySelector('input[name="user-name"]');
 const phoneInput = document.querySelector('input[name="user-phone"]');
 const reservationNumText = document.querySelector('#reservation-number');
 
-document.addEventListener('click', () => {
+document.addEventListener('submit', (e) => {
+  e.preventDefault();
   for (let info of RESERVATION_LIST) {
     if (info.name === nameInput.value && info.phone === phoneInput.value) {
       reservationNumText.innerText = info.number;

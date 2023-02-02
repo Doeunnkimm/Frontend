@@ -1,3 +1,5 @@
+import TodoList from '../Home/components/List/TodoList';
+
 export const print = () => {
   console.log('반갑습니다.');
 };
@@ -5,7 +7,13 @@ export const print = () => {
 export function TodoPage() {
   return (
     <div>
-      <p>투두페이지</p>
+      <div>List</div>
+      <div>
+        <TodoList />
+      </div>
+      <div>
+        <button>추가</button>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexCenter } from '../../styles/common';
-import LoginForm from './components/Form/Login';
-import SignUpForm from './components/Form/Signup';
+import LoginForm from './components/Form/Login/Login';
+import SignUpForm from './components/Form/Signup/Signup';
 
 function HomePage() {
   let form = 'login';
@@ -14,17 +14,21 @@ function HomePage() {
   };
 
   return (
-    <Wrapper>
-      <Header>
-        <div onClick={onFormChange}>LOGIN</div>
-        <div onClick={onFormChange}>SIGN</div>
-      </Header>
+    <S.Wrapper>
+      <S.Header>
+        <S.LoginSelector mode={form} onClick={onFormChange}>
+          LOGIN
+        </S.LoginSelector>
+        <S.SignSelector mode={form} onClick={onFormChange}>
+          SIGN
+        </S.SignSelector>
+      </S.Header>
       {form === 'login' ? <LoginForm /> : <SignUpForm />}
       {/* a태그로 페이지를 이동하면 페이지값을 새로 다시 요청과 응답 */}
-      <a href="/todo">투두페이지로 이동</a>
-      {/* Link태그를 사용하면 새로 요청X, 이미 캐싱되어 있는 걸로 */}
-      <Link to="/todo">라우터로 투두페이지 이동</Link>
-    </Wrapper>
+      {/* <a href="/todo">투두페이지로 이동</a>
+      Link태그를 사용하면 새로 요청X, 이미 캐싱되어 있는 걸로
+      <Link to="/todo">라우터로 투두페이지 이동</Link> */}
+    </S.Wrapper>
   );
 }
 
@@ -56,3 +60,21 @@ const Header = styled.header`
     }
   }
 `;
+
+const LoginSelector = styled.div`
+  background-color: ${({ mode }) => (mode === 'login' ? '#e0e0e0' : '#f5f5f5')};
+`;
+const SignSelector = styled.div`
+  background-color: ${({ mode }) =>
+    mode === 'signup' ? '#e0e0e0' : '#f5f5f5'};
+`;
+
+// 만든 스타일 컴포넌트를 객체화
+// 사용할 때 S. 으로 접근 및 표시하여
+// 일반 컴포넌트와 스타일 컴포넌트를 명확하게 차이를 둠
+const S = {
+  Wrapper,
+  Header,
+  LoginSelector,
+  SignSelector,
+};

@@ -1,8 +1,9 @@
 // import React, { useState, useEffect } from 'react';
 // import InputSample from './useRef/InputSample';
 import User from './useRef/User';
-import {RouterProvider} from 'react-router-dom';
+import {BrowserRouter, Route, RouterProvider, Routes} from 'react-router-dom';
 import router from './routing/routing';
+import HomePage from './styled-components-props/Home';
 
 const App = () => {
   // const [count, setCount] = useState(0); // useState로 number를 0으로 초기화
@@ -16,7 +17,12 @@ const App = () => {
   // const nameChanger = () => setName('jun');
 
   return (
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
+    // <RouterProvider router={router} />
     // <InputSample />
     // <User />
     // <div>

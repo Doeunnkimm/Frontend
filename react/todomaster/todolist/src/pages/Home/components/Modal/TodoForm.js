@@ -1,7 +1,12 @@
 import styled from 'styled-components';
-import { flexCenter, flextAlignCenter, ModalBackground } from 'styles/common';
+import {flexCenter, flexAlignCenter, ModalBackground} from 'styles/common';
 
-function TodoFormModal() {
+function TodoFormModal({showToastMessage}) {
+  const onClickAddtodoBtn = (e) => {
+    e.preventDefault();
+    showToastMessage();
+  };
+
   return (
     <S.Wrapper>
       <S.Form>
@@ -13,7 +18,7 @@ function TodoFormModal() {
           <input placeholder="제목을 입력해주세요"></input>
           <textarea placeholder="할 일 내용을 입력해주세요"></textarea>
         </S.Content>
-        <S.Button>ADD</S.Button>
+        <S.Button onClick={onClickAddtodoBtn}>ADD</S.Button>
       </S.Form>
     </S.Wrapper>
   );
@@ -31,7 +36,7 @@ const Form = styled.form`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.PALETTE.white};
+  background-color: ${({theme}) => theme.PALETTE.white};
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 32px;
@@ -39,7 +44,7 @@ const Form = styled.form`
 
 const Title = styled.div`
   font-size: 24px;
-  ${flextAlignCenter};
+  ${flexAlignCenter};
   justify-content: space-between;
 
   & > button {
@@ -82,13 +87,13 @@ const Button = styled.button`
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.PALETTE.primary[300]};
-  color: ${({ theme }) => theme.PALETTE.fontColor};
+  background-color: ${({theme}) => theme.PALETTE.primary[300]};
+  color: ${({theme}) => theme.PALETTE.fontColor};
   margin: 0 auto;
   cursor: pointer;
   :hover {
     background-color: transparent;
-    color: ${({ theme }) => theme.PALETTE.primary[300]};
+    color: ${({theme}) => theme.PALETTE.primary[300]};
   }
 `;
 

@@ -283,7 +283,7 @@ babel
         index.js -----  최상위 컴포넌트의 index.html의 root에 App.js를 전달(렌더링)
 
 
-        repoertWebVitals.js --- 프론트엔드 성능 체크X (-> 라이트하우스 체크가 더 좋은 방식)
+        reportWebVitals.js --- 프론트엔드 성능 체크X (-> 라이트하우스 체크가 더 좋은 방식)
 
 
         setupTests.js ---- test 라이브러리 및 전역 참조 설정
@@ -305,7 +305,7 @@ MPA
 bundler
     : 모듈들 묶어주는 것
 
-babel
+babel 
     : 트랜스파일러
 
 ------------------------------------------------------------

@@ -1,17 +1,32 @@
 import Button from 'components/Button/Button';
 import TodoFormModal from 'pages/Home/components/Modal/TodoForm';
 import styled from 'styled-components';
-import { flexCenter, flextAlignCenter } from 'styles/common';
+import {flexCenter, flexAlignCenter} from 'styles/common';
 import TodoList from '../Home/components/List/TodoList';
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from 'react-toastify';
 
 export const print = () => {
   console.log('반갑습니다.');
 };
 
 function TodoPage() {
+  const onAddTodo = new Promise((resolve) => {
+    // 3초 뒤에 무조건 성공시키도록
+    setTimeout(() => resolve('todo'), 3000);
+  });
+
+  const showToastMessage = (e) => {
+    toast.promise(onAddTodo, {
+      pending: 'TODO LOADING', // 대기중일 때 메시지
+      success: 'TODO SUCCESS', // 성공했을 때 메세지
+      error: 'TODO ERROR', // 실패했을 때 메세지
+    });
+  };
+
   return (
     <>
-      <TodoFormModal />
+      <TodoFormModal showToastMessage={showToastMessage} />
       <S.Wrapper>
         <S.Container>
           <S.Title>List</S.Title>
@@ -24,6 +39,7 @@ function TodoPage() {
             </Button>
           </S.ButtonBox>
         </S.Container>
+        <ToastContainer autoClose={2000} theme="colored" />
       </S.Wrapper>
     </>
   );
@@ -43,18 +59,18 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 420px;
   height: 100%;
-  background-color: ${({ theme }) => theme.PALETTE.white};
+  background-color: ${({theme}) => theme.PALETTE.white};
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   position: relative;
 `;
 
 const Title = styled.h1`
-  background-color: ${({ theme }) => theme.PALETTE.primary[300]};
-  color: ${({ theme }) => theme.PALETTE.fontColor};
+  background-color: ${({theme}) => theme.PALETTE.primary[300]};
+  color: ${({theme}) => theme.PALETTE.fontColor};
   padding-left: 32px;
   height: 32px;
-  ${flextAlignCenter};
+  ${flexAlignCenter};
 `;
 
 const Content = styled.div`

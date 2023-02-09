@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 import reset from 'styled-reset';
 
 /*
@@ -17,6 +17,10 @@ const GlobalStyles = createGlobalStyle`
     }
     button {
         border: none;
+    }
+
+    ul > li {
+        list-style: none;
     }
 `;
 

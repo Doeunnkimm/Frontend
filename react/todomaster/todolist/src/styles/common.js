@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import {css} from 'styled-components';
 
 export const ModalBackground = css`
   position: fixed;
@@ -15,7 +15,7 @@ export const flexCenter = css`
   align-items: center;
 `;
 
-export const flextAlignCenter = css`
+export const flexAlignCenter = css`
   display: flex;
   align-items: center;
 `;

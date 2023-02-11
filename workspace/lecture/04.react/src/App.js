@@ -5,6 +5,7 @@ import {BrowserRouter, Route, RouterProvider, Routes} from 'react-router-dom';
 import router from './Outlet-Layout/Routes/routing';
 import HomePage from './styled-components-props/Home';
 import Home from './spread-operator/Home';
+import Object from './state/Object';
 
 const App = () => {
   // const [count, setCount] = useState(0); // useState로 number를 0으로 초기화
@@ -18,7 +19,8 @@ const App = () => {
   // const nameChanger = () => setName('jun');
 
   return (
-    <RouterProvider router={router} />
+    <Object />
+    // <RouterProvider router={router} />
     // <BrowserRouter>
     //   <Routes>
     //     <Route path="/" element={<Home />} />

@@ -6,6 +6,9 @@ import router from './Outlet-Layout/Routes/routing';
 import HomePage from './styled-components-props/Home';
 import Home from './spread-operator/Home';
 import Object from './state/Object';
+import Component from './useMemo/example1';
+import Calculator from './useMemo/example2';
+import SmartHome from './useCallback/SmartHome';
 
 const App = () => {
   // const [count, setCount] = useState(0); // useState로 number를 0으로 초기화
@@ -19,7 +22,10 @@ const App = () => {
   // const nameChanger = () => setName('jun');
 
   return (
-    <Object />
+    <SmartHome />
+    // <Calculator />
+    // <Component />
+    // <Object />
     // <RouterProvider router={router} />
     // <BrowserRouter>
     //   <Routes>

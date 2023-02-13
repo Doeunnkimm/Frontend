@@ -7,10 +7,14 @@ import Object from './state/Object';
 import Component from './useMemo/example1';
 import Calculator from './useMemo/example2';
 import SmartHome from './useCallback/SmartHome';
+import Main from './custom-hook/Main';
+import Main2 from './custom-hook/Main2';
 
 function App() {
   return (
-    <SmartHome />
+    <Main2 />
+    // <Main />
+    // <SmartHome />
     // <Calculator />
     // <Component />
     // <Object />

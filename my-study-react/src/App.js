@@ -9,10 +9,12 @@ import Calculator from './useMemo/example2';
 import SmartHome from './useCallback/SmartHome';
 import Main from './custom-hook/Main';
 import Main2 from './custom-hook/Main2';
+import ObjectExample from './symbol/Object';
 
 function App() {
   return (
-    <Main2 />
+    <ObjectExample />
+    // <Main2 />
     // <Main />
     // <SmartHome />
     // <Calculator />

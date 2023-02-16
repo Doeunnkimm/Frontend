@@ -2,7 +2,7 @@ import Button from 'components/Button/Button';
 import TodoFormModal from 'pages/Home/components/Modal/TodoForm';
 import styled from 'styled-components';
 import {flexCenter, flexAlignCenter} from 'styles/common';
-import TodoList from '../Home/components/List/TodoList';
+import TodoList from 'pages/Home/components/List/TodoList';
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer, toast} from 'react-toastify';
 

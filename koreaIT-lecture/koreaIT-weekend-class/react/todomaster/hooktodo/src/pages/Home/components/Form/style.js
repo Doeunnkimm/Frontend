@@ -1,9 +1,9 @@
-const { default: styled } = require('styled-components');
-const { flexCenter } = require('styles/common');
+const {default: styled} = require('styled-components');
+const {flexCenter} = require('styles/common');
 
 export const Form = styled.form`
   width: 360px;
-  background-color: ${({ theme }) => theme.PALETTE.white};
+  background-color: ${({theme}) => theme.PALETTE.white};
   ${flexCenter};
   flex-direction: column;
   padding: 32px 0 0 0;
@@ -28,9 +28,16 @@ export const InputBox = styled.div`
     position: absolute;
     left: 15px;
     top: -5px;
-    font-size: ${({ theme }) => theme.FONT_SIZE.small};
-    background-color: ${({ theme }) => theme.PALETTE.white};
+    font-size: ${({theme}) => theme.FONT_SIZE.small};
+    background-color: ${({theme}) => theme.PALETTE.white};
     z-index: 1;
     padding: 0 5px;
   }
+`;
+
+export const Error = styled.p`
+  color: ${({theme}) => theme.PALETTE.error};
+  font-size: ${({theme}) => theme.FONT_SIZE.small};
+  margin-bottom: 16px;
+  visibility: ${({visible}) => (visible ? 'visible' : 'hidden')};
 `;

@@ -1,40 +1,110 @@
 import Button from 'components/Button/Button';
-import TodoFormModal from 'pages/Home/components/Modal/TodoForm';
+import TodoFormModal from 'pages/Todo/components/Modal/TodoForm';
 import styled from 'styled-components';
 import {flexCenter, flexAlignCenter} from 'styles/common';
-import TodoList from '../Home/components/List/TodoList';
+import TodoList from './components/List/TodoList';
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer, toast} from 'react-toastify';
+import {useState} from 'react';
 
 export const print = () => {
   console.log('반갑습니다.');
 };
 
 function TodoPage() {
-  const onAddTodo = new Promise((resolve) => {
-    // 3초 뒤에 무조건 성공시키도록
-    setTimeout(() => resolve('todo'), 3000);
-  });
+  // state
+  const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
+  const [todoList, setTodoList] = useState([
+    {
+      id: 1,
+      title: 'example1',
+      content: 'content1',
+      state: false,
+    },
+    {
+      id: 2,
+      title: 'example2',
+      content: 'content2',
+      state: false,
+    },
+    {
+      id: 3,
+      title: 'example3',
+      content: 'content3',
+      state: true,
+    },
+    {
+      id: 4,
+      title: 'example4',
+      content: 'content4',
+      state: false,
+    },
+  ]);
 
-  const showToastMessage = (e) => {
-    toast.promise(onAddTodo, {
-      pending: 'TODO LOADING', // 대기중일 때 메시지
-      success: 'TODO SUCCESS', // 성공했을 때 메세지
-      error: 'TODO ERROR', // 실패했을 때 메세지
+  // toast
+  const handleAddTodo = (title, content) => {
+    return new Promise((resolve, reject) => {
+      if (!title || !content) {
+        reject('내용을 모두 입력해주세요');
+      } else {
+        setTimeout(() => {
+          const newTodo = {
+            id: Math.floor(Math.random() * 100000),
+            title,
+            content,
+            state: false,
+          };
+          resolve(newTodo);
+        }, 1000);
+      }
     });
+  };
+
+  const showAddTodoToastMessage = (title, content) => {
+    toast.promise(
+      handleAddTodo(title, content).then((res) => {
+        console.log(todoList);
+        setTodoList([res, ...todoList]); // state 불변성을 지키자
+        setIsOpenAddTodoModal(false);
+      }),
+      // .catch((err) => alert(err)),
+      {
+        pending: 'TODO LOADING', // 대기중일 때 메시지
+        success: 'TODO SUCCESS', // 성공했을 때 메세지
+        error: 'TODO ERROR', // 실패했을 때 메세지
+      }
+    );
+  };
+
+  // handle
+  const handleOpenTodoAddModal = () => {
+    setIsOpenAddTodoModal(true);
+  };
+
+  const handleCloseTodoAddModal = () => {
+    setIsOpenAddTodoModal(false);
   };
 
   return (
     <>
-      <TodoFormModal showToastMessage={showToastMessage} />
+      {isOpenAddTodoModal && (
+        <TodoFormModal
+          showAddTodoToastMessage={showAddTodoToastMessage}
+          onClose={handleCloseTodoAddModal}
+        />
+      )}
       <S.Wrapper>
         <S.Container>
           <S.Title>List</S.Title>
           <S.Content>
-            <TodoList />
+            <TodoList todoList={todoList} setTodoList={setTodoList} />
           </S.Content>
           <S.ButtonBox>
-            <Button variant={'primary'} size={'full'}>
+            <Button
+              variant={'primary'}
+              size={'full'}
+              onClick={handleOpenTodoAddModal}
+            >
               추가
             </Button>
           </S.ButtonBox>

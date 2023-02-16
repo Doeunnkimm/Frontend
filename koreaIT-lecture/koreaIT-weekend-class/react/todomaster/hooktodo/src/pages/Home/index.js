@@ -23,7 +23,7 @@ function HomePage() {
           SIGN
         </S.SignSelector>
       </S.Header>
-      {form === 'login' ? <LoginForm /> : <SignUpForm />}
+      {form === 'login' ? <LoginForm /> : <SignUpForm setForm={setForm} />}
       {/* a태그로 페이지를 이동하면 페이지값을 새로 다시 요청과 응답 */}
       {/* <a href="/todo">투두페이지로 이동</a>
       Link태그를 사용하면 새로 요청X, 이미 캐싱되어 있는 걸로

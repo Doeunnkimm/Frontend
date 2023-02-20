@@ -2,7 +2,7 @@ import User from './useRef/User';
 import {BrowserRouter, Route, RouterProvider, Routes} from 'react-router-dom';
 import router from './Outlet-Layout/Routes/routing';
 import HomePage from './styled-components-props/Home';
-import Home from './spread-operator/Home';
+// import Home from './spread-operator/Home';
 import Object from './state/Object';
 import Component from './useMemo/example1';
 import Calculator from './useMemo/example2';
@@ -13,10 +13,14 @@ import ObjectExample from './symbol/Object';
 import Bank from './useReducer/Bank/Bank';
 import Simple from './useReducer/simple';
 import Attendance from './useReducer/Attendance/Attendance';
+import Home from './useContext/Home';
+
+import './useContext/Styles/index.css';
 
 function App() {
   return (
-    <Attendance />
+    <Home />
+    // <Attendance />
     // <Bank />
     // <Simple />
     // <ObjectExample />

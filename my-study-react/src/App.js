@@ -10,10 +10,16 @@ import SmartHome from './useCallback/SmartHome';
 import Main from './custom-hook/Main';
 import Main2 from './custom-hook/Main2';
 import ObjectExample from './symbol/Object';
+import Bank from './useReducer/Bank/Bank';
+import Simple from './useReducer/simple';
+import Attendance from './useReducer/Attendance/Attendance';
 
 function App() {
   return (
-    <ObjectExample />
+    <Attendance />
+    // <Bank />
+    // <Simple />
+    // <ObjectExample />
     // <Main2 />
     // <Main />
     // <SmartHome />

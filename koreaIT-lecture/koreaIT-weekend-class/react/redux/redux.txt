@@ -1,0 +1,16 @@
+redux (리덕스)
+
+    useReducer 
+    useContext 기반으로 만들어진 전역 상태 관리 라이브러리
+
+    dev-tools, logger middle ware --> 편의성 증대
+
+    - 리덕스의 치명적인 단점?
+        길어지는 보일러 코드 (기본 코드)
+
+        단점을 보완하기 위하여 mobx recoil 등이 출현
+        
+        RTK(Redux Tool kit) ==> 리덕스의 보일러코드 단점을 보완 최신판
+
+    설치
+        npm i redux react-redux

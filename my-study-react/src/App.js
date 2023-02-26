@@ -15,11 +15,13 @@ import Simple from './useReducer/simple';
 import Attendance from './useReducer/Attendance/Attendance';
 import Home from './useContext/Home';
 
-import './useContext/Styles/index.css';
+// import './useContext/Styles/index.css';
+import SignupPage from './react-hook-form/components/Signup';
 
 function App() {
   return (
-    <Home />
+    <SignupPage />
+    // <Home />
     // <Attendance />
     // <Bank />
     // <Simple />

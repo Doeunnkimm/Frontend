@@ -1,19 +1,18 @@
 import passport from 'passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import {ExtractJwt, Strategy} from 'passport-jwt';
 import User from '../models/user/user.js';
-import { FailureData } from '../util/resultData.js';
+import {FailureData} from '../util/resultData.js';
 
 const JwtStrategy = Strategy;
 
 const JwtConfing = {
-  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
   secretOrKey: process.env.SECRET_JWT_TOKEN_KEY,
 };
 
 const JwtVerify = async (jwtPayload, done) => {
   try {
-    const id = jwtPayload.split(' ')[1];
-    const user = await User.findOne({ where: { id: jwtPayload.id } });
+    const user = await User.findOne({where: {id: jwtPayload.id}});
     if (user) {
       return done(null, user);
     } else {

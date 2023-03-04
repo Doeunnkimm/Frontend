@@ -1,3 +1,4 @@
+import AuthApi from 'apis/authApi';
 import axios from 'axios';
 import {Button} from 'components/Button/style';
 import useInput from 'hooks/useInput';
@@ -32,22 +33,13 @@ function LoginForm() {
   const onLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        process.env.REACT_APP_BACKEND_URL + '/user/login',
-        {
-          email,
-          password,
-        }
-      );
-
-      const {data} = res.data;
-
+      const {data} = await AuthApi.login(email, password);
       localStorage.setItem('access_token', data.token);
       if (localStorage.getItem('access_token')) {
         navigate('/todo');
       }
     } catch (err) {
-      console.err(err);
+      console.error(err);
       alert('아이디와 비밀번호를 확인해주세요');
     }
   };

@@ -5,7 +5,8 @@ import {flexCenter, flexAlignCenter} from 'styles/common';
 import TodoList from './components/List/TodoList';
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer, toast} from 'react-toastify';
-import {useState} from 'react';
+import {Suspense, useEffect, useState} from 'react';
+import todoApi from 'apis/todoApi';
 
 export const print = () => {
   console.log('반갑습니다.');
@@ -14,28 +15,34 @@ export const print = () => {
 function TodoPage() {
   // state
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
-  const todoList = [];
+  const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    // useEffect 안에서는 async-await 쓸 수 없음
+    // 그래서 함수를 하나 만들어서 async-await를 사용
+    const getTodoList = async () => {
+      const res = await todoApi.getTodo();
+      setTodoList(res.data.data);
+    };
+
+    getTodoList();
+  }, []);
 
   // toast
   const handleAddTodo = (title, content) => {
-    return new Promise((resolve, reject) => {
-      if (!title || !content) {
-        reject('내용을 모두 입력해주세요');
-      }
+    if (!title || !content) return alert('빈칸을 채워주세요');
 
-      setTimeout(() => {
-        const newTodo = {
-          id: Math.floor(Math.random() * 100000),
-          state: false,
-          title,
-          content,
-        };
-        resolve(newTodo);
-      }, 1000);
-    }).then((res) => {
-      // res에는 새로 추가할 데이터가 담겨있음
-      setIsOpenAddTodoModal(false);
-    });
+    return todoApi
+      .addTodo({title, content})
+      .then((res) => {
+        if (res.status === 200) {
+          setTodoList([res.data.data, ...todoList]);
+        }
+        setIsOpenAddTodoModal(false);
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
   };
 
   const showAddTodoToastMessage = (title, content) => {
@@ -67,7 +74,7 @@ function TodoPage() {
         <S.Container>
           <S.Title>List</S.Title>
           <S.Content>
-            <TodoList todoList={todoList} />
+            <TodoList todoList={todoList} setTodoList={setTodoList} />
           </S.Content>
           <S.ButtonBox>
             <Button

@@ -1,29 +1,53 @@
+import todoApi from 'apis/todoApi';
+import {Suspense} from 'react';
 import TodoCard from './Card/Card';
 
-function TodoList({todoList}) {
-  const onUpdateTodo = (id, content, state) => {};
+function TodoList({todoList, setTodoList}) {
+  const onUpdateTodo = async (id, content, state) => {
+    const res = await todoApi.updateTodo(id, {content, state});
+    const data = res.data.data;
+    if (data.id !== id || data.content !== content)
+      return alert('잠시후 다시 시도해주세요');
 
-  const onDeleteTodo = (id) => {
+    const newTodo = [...todoList];
+    const index = newTodo.findIndex((todo) => todo.id === id);
+    newTodo[index].content = content;
+    setTodoList(newTodo);
+  };
+
+  const onDeleteTodo = async (id) => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
-      // const deleteTodoList = todoList.filter((todo) => todo.id !== id);
-      /* 새로운 배열을 반환하는 메소드는 이미 불변성을 지키고 있기 때문에 불변성을 지킬 필요가 없다*/
+      const res = await todoApi.deleteTodo(id);
+
+      if (res.status === 200) {
+        setTodoList(todoList.filter((todo) => todo.id !== id));
+      }
     }
   };
 
   return (
-    <div>
-      {/* 컴포넌트를 리턴 형태로 하면 중간에 디버깅도 가능 */}
-      {todoList.map((todo) => {
-        console.log(todo);
-        return (
-          <TodoCard todo={todo} onEdit={onUpdateTodo} onDelete={onDeleteTodo} />
-        );
-      })}
-      {/* 
+    // Suspense는 프로미스 형태를 리턴
+    // todoList가 백엔드에서 받은 데이터가 없다면 로딩중을 보여주게 됨
+    // 즉, 백엔드로부터 데이터 받아오는 시간 동안 보여주게 될 화면
+    <Suspense fallback={<div>LOADING...</div>}>
+      <div>
+        {/* 컴포넌트를 리턴 형태로 하면 중간에 디버깅도 가능 */}
+        {todoList &&
+          todoList.map((todo) => {
+            return (
+              <TodoCard
+                todo={todo}
+                onEdit={onUpdateTodo}
+                onDelete={onDeleteTodo}
+              />
+            );
+          })}
+        {/* 
         상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달하기 위해
         props(속성)을/를 이용하여 데이터를 전달
       */}
-    </div>
+      </div>
+    </Suspense>
   );
 }
 export default TodoList;

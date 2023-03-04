@@ -1,4 +1,4 @@
-import axios from 'axios';
+import AuthApi from 'apis/authApi';
 import Button from 'components/Button/Button';
 import useInputs from 'hooks/useInputs';
 import {useEffect, useState} from 'react';
@@ -27,14 +27,12 @@ function SignUpForm({setForm}) {
       return alert('비밀번호 확인이 일치하지 않습니다');
 
     try {
-      const res = await axios.post('http://localhost:9000/user/sign', {
-        email,
-        password,
-      });
+      const {data} = await AuthApi.signup(email, password);
       // 위 axios 코드에서 에러가 나면 아래 코드들은 실행하지 않고 바로 catch문으로 넘어가버림
       // 즉, 이 아래 코드들은 axios 코드가 성공적으로 실행되었을 때만 실행됨
-      if (!alert(res.data.data)) {
-        setForm('login');
+      if (!alert(data.data)) {
+        // alert창 확인 눌러서 alert 창 없어지면
+        setForm('login'); // form 넘어가도록
       }
     } catch (err) {
       setError(err.response.data.error);

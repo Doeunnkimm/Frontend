@@ -1,4 +1,4 @@
-import {Axios} from './core';
+import { Axios } from './core';
 
 // apis 폴더에는 axios와 관련된 기능만 가지고 있음
 // 관심사 분리를 한 것
@@ -10,7 +10,7 @@ const AuthApi = {
     // 필요한 데이터만 넘기고 싶어서
     // res를 받아서 여기서 res.data만 넘기고 있는데
     // 지금 res에는 값이 비어 있으니까 여기에서도 async-await를 작성해줘야 함
-    const res = await Axios.post(PATH + '/login', {email, password});
+    const res = await Axios.post(PATH + '/login', { email, password });
     return res.data;
     // 여기랑 login 함수 사용하는 곳 둘다 async-await를 쓰지 않으면 undefined나 이상하게 찍힘
   },
@@ -19,7 +19,7 @@ const AuthApi = {
     // 여기서는 값을 받아서 리턴하는 방식이 아니라
     // signup함수가 실행되면 그때 axios를 실행해서 값(res 전부다)을 리턴하는 것이기 때문에
     // async-await가 필요없음
-    return Axios.post(PATH + '/sign', {email, password});
+    return Axios.post(PATH + '/sign', { email, password });
   },
 };
 

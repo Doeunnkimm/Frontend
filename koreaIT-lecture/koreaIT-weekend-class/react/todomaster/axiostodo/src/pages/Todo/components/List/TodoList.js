@@ -7,9 +7,11 @@ function TodoList({ todoList, setTodoList }) {
     try {
       // status === 200
       const { data } = await todoApi.updateTodo(id, { content, state });
+      console.log(data.data.state);
       const newTodoList = [...todoList];
       const index = newTodoList.findIndex((todo) => todo.id === data.data.id);
       newTodoList[index].content = data.data.content;
+      newTodoList[index].state = data.data.state === 0 ? false : true;
       setTodoList(newTodoList);
     } catch (err) {
       console.log(err);

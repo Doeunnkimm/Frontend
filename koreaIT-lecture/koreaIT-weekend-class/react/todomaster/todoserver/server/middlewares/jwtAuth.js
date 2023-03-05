@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { FailureData } from '../util/resultData.js';
+import jwt from 'jsonwebtoken';
 
 export const jwtAuth = (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user) => {
@@ -21,7 +22,10 @@ export const jwtAuth = (req, res, next) => {
 
     // jwt o refresh x
     // refresh o
-    const refresh = jwt.sign({ token: user.token }, process.env.SECRET_REFRESH_TOKEN_KEY);
+    const refresh = jwt.sign(
+      { token: user.token },
+      process.env.SECRET_REFRESH_TOKEN_KEY
+    );
     res.cookie('refresh', refresh, {
       maxAge: 14 * 24 * 60 * 60000,
       httpOnly: true,

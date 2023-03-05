@@ -1,11 +1,11 @@
 import express from 'express';
-
-import {TodoService} from '../services/todoService.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { TodoService } from '../services/todoService.js';
 const router = express.Router();
 
-router.post('/', TodoService.create);
-router.get('/', TodoService.read);
-router.put('/:todoId', TodoService.update);
-router.delete('/:todoId', TodoService.delete);
+router.post('/', jwtAuth, TodoService.create);
+router.get('/', jwtAuth, TodoService.read);
+router.put('/:todoId', jwtAuth, TodoService.update);
+router.delete('/:todoId', jwtAuth, TodoService.delete);
 
 export default router;

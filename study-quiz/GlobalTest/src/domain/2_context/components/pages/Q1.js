@@ -1,7 +1,8 @@
-import { useState } from "react";
-import NavigateButton from "../../../../components/NavigateButton";
-import ContextQ1Detail from "../atom/Q1/Detail";
-import ContextQ1Modal from "../atom/Q1/Modal";
+import { useEffect, useState } from 'react';
+import NavigateButton from '../../../../components/NavigateButton';
+import { IsModalContext } from '../../../../store/2_context';
+import ContextQ1Detail from '../atom/Q1/Detail';
+import ContextQ1Modal from '../atom/Q1/Modal';
 
 const ContextQ1Page = () => {
   /* 
@@ -23,12 +24,13 @@ const ContextQ1Page = () => {
   // 위의 상태를 전역으로 관리하여 ContextQ1Detail, ContextQ1Detail2 두 컴포넌트의 보이기 버튼이 눌려도 모달창이 열릴 수 있도록 해주세요 :)
 
   return (
-    <div>
+    // value는 꼭 객체로 넘겨주도록 하자
+    <IsModalContext.Provider value={{ setIsModalOpen }}>
       {isModalOpen && <ContextQ1Modal />}
       <h2>문제 2 - 1</h2>
       <ContextQ1Detail />
-      <NavigateButton to={"/2_context/q2"} />
-    </div>
+      <NavigateButton to={'/2_context/q2'} />
+    </IsModalContext.Provider>
   );
 };
 export default ContextQ1Page;

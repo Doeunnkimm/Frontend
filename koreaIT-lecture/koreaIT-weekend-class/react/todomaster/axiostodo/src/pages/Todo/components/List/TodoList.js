@@ -1,26 +1,28 @@
 import todoApi from 'apis/todoApi';
-import {Suspense} from 'react';
+import { Suspense } from 'react';
 import TodoCard from './Card/Card';
 
-function TodoList({todoList, setTodoList}) {
+function TodoList({ todoList, setTodoList }) {
   const onUpdateTodo = async (id, content, state) => {
-    const res = await todoApi.updateTodo(id, {content, state});
-    const data = res.data.data;
-    if (data.id !== id || data.content !== content)
-      return alert('잠시후 다시 시도해주세요');
-
-    const newTodo = [...todoList];
-    const index = newTodo.findIndex((todo) => todo.id === id);
-    newTodo[index].content = content;
-    setTodoList(newTodo);
+    try {
+      // status === 200
+      const { data } = await todoApi.updateTodo(id, { content, state });
+      const newTodoList = [...todoList];
+      const index = newTodoList.findIndex((todo) => todo.id === data.data.id);
+      newTodoList[index].content = data.data.content;
+      setTodoList(newTodoList);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onDeleteTodo = async (id) => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
-      const res = await todoApi.deleteTodo(id);
-
-      if (res.status === 200) {
-        setTodoList(todoList.filter((todo) => todo.id !== id));
+      const { data } = await todoApi.deleteTodo(id);
+      try {
+        setTodoList(todoList.filter((todo) => todo.id !== data.data));
+      } catch (err) {
+        console.log(err);
       }
     }
   };

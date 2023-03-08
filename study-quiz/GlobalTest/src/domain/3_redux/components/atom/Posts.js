@@ -1,6 +1,10 @@
-import Post from "./Post/Post";
+import { useSelector } from 'react-redux';
+import Post from './Post/Post';
 
-const AllPosts = ({ posts }) => {
+const AllPosts = () => {
+  const posts = useSelector((state) => state.postReducer);
+  console.log(posts);
+
   return (
     <div>
       {posts.map((post) => (

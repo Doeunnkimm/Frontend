@@ -1,6 +1,7 @@
 import AuthApi from 'apis/authApi';
 import axios from 'axios';
 import { Button } from 'components/Button/style';
+import { useAuth } from 'contexts/auth';
 import useInput from 'hooks/useInput';
 import useInputs from 'hooks/useInputs';
 import { useRef, useState } from 'react';
@@ -10,6 +11,7 @@ import * as S from '../style';
 
 function LoginForm() {
   const navigate = useNavigate();
+  const auth = useAuth();
 
   const [{ email, password }, onChangeForm] = useInputs({
     email: '',
@@ -20,6 +22,8 @@ function LoginForm() {
     e.preventDefault();
     try {
       const { data } = await AuthApi.login(email, password);
+      auth.login(data.token);
+
       if (TokenService.getToken()) navigate('/todo');
 
       // token == access_token

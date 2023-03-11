@@ -1,5 +1,6 @@
 import Layout from 'components/Layout';
-import {createBrowserRouter} from 'react-router-dom';
+import NotFoundPage from 'pages/404';
+import { createBrowserRouter } from 'react-router-dom';
 import HomePage from '../pages/Home';
 import TodoPage from '../pages/Todo';
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <TodoPage />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);
 

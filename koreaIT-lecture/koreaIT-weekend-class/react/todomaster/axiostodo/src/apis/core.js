@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useAuth } from 'contexts/auth';
 import TokenService from 'repository/TokenService';
 
 export const Axios = axios.create({
@@ -51,13 +50,22 @@ Axios.interceptors.response.use(
 
   // 에러가 생기면 <- 즉 토큰이 만료되었다고 왔다면
   // 전역에서 token을 관리하면서 에러가 오면 alert 창 띄우고 전역 로그인 로직에서 logout 시키고 이런 것들도 가능
-  (error) => {
+  async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response.status === 403 && !originalRequest._retry) {
       // 재요청일 경우에도 에러가 나오면 다시 또 요청을 보내지 않음
       // 401 에러이고  _retry라는 옵션이 false이면
       originalRequest._retry = true; // 재요청 보낸다는 의미
 
+      // refresh 토큰으로 토큰을 재발급 받는 api에 post 요청
+      const res = await Axios.post(`/user/jwt`);
+      if (res.status === 200) {
+        // 토큰을 다시 세팅
+        const token = res.data.data;
+        TokenService.setToken(token);
+        Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        return Axios(originalRequest); // 재요청 보내는 것
+      }
       /*
       * refresh 토큰을 보내서 일반 token을 재발급
       const res = 백엔드에서 refresh token으로 access_token을 응답받는 주소

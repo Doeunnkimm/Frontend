@@ -57,7 +57,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 // body parser
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // cockie parser
 app.use(CookieParser());
@@ -68,11 +68,6 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.SESSION_SECRET_KEY,
-    cookie: {
-      sameSite: 'none',
-      httpOnly: true,
-      secure: true,
-    },
   })
 );
 

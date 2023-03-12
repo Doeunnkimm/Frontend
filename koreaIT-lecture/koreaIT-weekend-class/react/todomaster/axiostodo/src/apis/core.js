@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuth } from 'contexts/auth';
 import TokenService from 'repository/TokenService';
 import AuthApi from './authApi';
 

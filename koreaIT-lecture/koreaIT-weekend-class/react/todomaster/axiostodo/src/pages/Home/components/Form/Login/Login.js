@@ -4,14 +4,15 @@ import { Button } from 'components/Button/style';
 import { useAuth } from 'contexts/auth';
 import useInput from 'hooks/useInput';
 import useInputs from 'hooks/useInputs';
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TokenService from 'repository/TokenService';
 import * as S from '../style';
 
 function LoginForm() {
   const navigate = useNavigate();
   const auth = useAuth();
+  const { state } = useLocation();
 
   const [{ email, password }, onChangeForm] = useInputs({
     email: '',
@@ -23,9 +24,6 @@ function LoginForm() {
     try {
       const { data } = await AuthApi.login(email, password);
       auth.login(data.token);
-
-      if (TokenService.getToken()) navigate('/todo');
-
       // token == access_token
       // token 값을 저장할 것, token 값이 있다면 로그인이 된 것
       // 프론트엔드의 로그인 유무 판단
@@ -51,6 +49,27 @@ function LoginForm() {
       alert('아이디와 비밀번호를 확인해주세요');
     }
   };
+
+  /* access_token이 있다면 페이지 접근을 막고 메인 페이지로 이동 */
+  useEffect(() => {
+    // 로그인하거나 로그아웃 했을 때
+
+    // auth는 전역에서 관리되고 있기 때문에
+    // 혹시 어디에선가 token이 없어지게 되더라도
+    // 로그인이 풀렸다는 말이므로
+    // 아래 코드를 실행시키지 않는다
+    if (!auth.accessToken) return;
+
+    // 로그인이 된 이후
+    if (!state) return navigate('/todo'); // 이전 페이지가 없다면 로그인 하면 그냥 '/todo'로 보낸다
+    navigate(state.from);
+  }, [auth]);
+
+  useEffect(() => {
+    // 이미 access_token이 있는 로그인 페이지로 온다면
+    // 그냥 '/todo' 페이지로 보냄
+    if (auth.access_token) return navigate('/todo');
+  }, []);
 
   return (
     <S.Form>

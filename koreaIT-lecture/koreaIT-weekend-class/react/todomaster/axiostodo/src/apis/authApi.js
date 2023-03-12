@@ -21,6 +21,12 @@ const AuthApi = {
     // async-await가 필요없음
     return Axios.post(PATH + '/sign', { email, password });
   },
+
+  async logout() {
+    // session까지 지워주는 api
+    const res = await Axios.post(PATH + '/logout');
+    return res.data;
+  },
 };
 
 /*

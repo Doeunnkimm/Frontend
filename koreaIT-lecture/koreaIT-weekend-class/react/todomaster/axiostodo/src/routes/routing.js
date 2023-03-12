@@ -3,6 +3,7 @@ import NotFoundPage from 'pages/404';
 import { createBrowserRouter } from 'react-router-dom';
 import HomePage from '../pages/Home';
 import TodoPage from '../pages/Todo';
+import PrivateRoute from './private';
 
 const router = createBrowserRouter([
   {
@@ -20,8 +21,15 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: 'todo',
-        element: <TodoPage />,
+        // 하나의 검사를 하는 레이어라고 생각하자
+        element: <PrivateRoute />,
+        children: [
+          // 여기에는 로그인을 해야만 접근할 수 있는 라우터들을 적는다
+          {
+            path: 'todo',
+            element: <TodoPage />, // 여기에서 access_token이 없으면 메인 페이지로 감
+          },
+        ],
       },
     ],
   },

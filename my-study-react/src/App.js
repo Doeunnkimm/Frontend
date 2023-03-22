@@ -19,15 +19,19 @@ import Home from './useNavigate-useLocation/Home';
 // import './useContext/Styles/index.css';
 import SignupPage from './react-hook-form/components/Signup';
 import Order from './useNavigate-useLocation/Order';
+import ErrorBoundaryIndex from './react-error-boundary';
+import QueryErrorHandlingIndex from './react-query-error-handling';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/submit" element={<Order />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryErrorHandlingIndex />
+    // <ErrorBoundaryIndex />
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<Home />} />
+    //     <Route path="/submit" element={<Order />} />
+    //   </Routes>
+    // </BrowserRouter>
     // <SignupPage />
     // <Home />
     // <Attendance />

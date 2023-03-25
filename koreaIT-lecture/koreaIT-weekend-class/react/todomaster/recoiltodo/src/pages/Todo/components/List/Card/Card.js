@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faBan, faPen} from '@fortawesome/free-solid-svg-icons';
-import {flexCenter, flexAlignCenter} from 'styles/common';
-import {useState} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faBan, faPen } from '@fortawesome/free-solid-svg-icons';
+import { flexCenter, flexAlignCenter } from 'styles/common';
+import { useState } from 'react';
 import useInput from 'hooks/useInput';
 import TodoList from '../TodoList';
 
-function TodoCard({todo, onEdit, onDelete}) {
+function TodoCard({ todo, onEdit, onDelete }) {
   // props의 데이터가 적을 때는 매개변수에 구조분해 할당
   // props의 데이터가 많다면 컴포넌트 안에서 구조분해 할당 변수/상수 선언
   // const {onEdit} = props;
-  const {id, state, title, content} = todo;
+  const { id, state, title, content } = todo;
 
   const [isTodoEdit, setIsTodoEdit] = useState(false);
   const [editcontent, onChangeEditContent] = useInput(content);
@@ -64,12 +64,12 @@ export default TodoCard;
 
 const Wrapper = styled.li`
   width: 100%;
-  background-color: ${({theme}) => theme.PALETTE.white};
+  background-color: ${({ theme }) => theme.PALETTE.white};
   border: 1px solid #999;
   margin: 16px 0;
   border-radius: 8px;
   list-style: none;
-  background-color: ${({state, theme}) =>
+  background-color: ${({ state, theme }) =>
     state ? theme.PALETTE.gray[200] : theme.PALETTE.white};
 `;
 
@@ -84,8 +84,8 @@ const Title = styled.h1`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-weight: ${({theme}) => theme.FONT_WEIGHT.bold};
-  text-decoration: ${({state}) => (state ? 'line-through' : 'none')};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+  text-decoration: ${({ state }) => (state ? 'line-through' : 'none')};
   & svg {
     cursor: pointer;
     margin-left: 16px;
@@ -101,7 +101,7 @@ const StateBox = styled.div`
   border-radius: 50%;
   margin-right: 8px;
   ${flexCenter};
-  color: ${({state}) => (state ? '#3CB371' : '#999')};
+  color: ${({ state }) => (state ? '#3CB371' : '#999')};
   cursor: pointer;
   :hover {
     transform: scale(1.2);
@@ -110,7 +110,7 @@ const StateBox = styled.div`
 
 const Content = styled.div`
   padding: 16px;
-  text-decoration: ${({state}) => (state ? 'line-through' : 'none')};
+  text-decoration: ${({ state }) => (state ? 'line-through' : 'none')};
   & textarea {
     width: 100%;
     height: 100%;

@@ -20,12 +20,11 @@ function TodoPage() {
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] =
     useRecoilState(addModalAtom);
 
-  const { data: todoList, status, isLoading } = useGetTodo();
   const { mutate } = useAddTodo();
 
   // status는 api 요청의 성공 여부
   // isLoading은 로딩중인지
-  console.log(status, isLoading);
+  // console.log(status, isLoading);
 
   // toast
   const handleAddTodo = async (title, content) => {
@@ -59,9 +58,6 @@ function TodoPage() {
   const handleCloseTodoAddModal = () => {
     setIsOpenAddTodoModal(false);
   };
-
-  // if (!todoList) return;
-  if (isLoading) return <div>로딩중...</div>;
   return (
     <>
       {isOpenAddTodoModal && (
@@ -74,7 +70,10 @@ function TodoPage() {
         <S.Container>
           <S.Title>List</S.Title>
           <S.Content>
-            <TodoList todoList={todoList?.data.data} />
+            {/* Suspense를 TodoList 위에만 감쌌음 */}
+            <Suspense fallback={<div>로딩중</div>}>
+              <TodoList />
+            </Suspense>
           </S.Content>
           <S.ButtonBox>
             <Button

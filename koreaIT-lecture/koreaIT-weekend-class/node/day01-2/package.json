@@ -1,0 +1,16 @@
+{
+  "name": "day01-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http.js",
+  "scripts": {
+    "start": "nodemon express",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  }
+}

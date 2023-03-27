@@ -7,7 +7,7 @@ import Object from './state/Object';
 import Component from './useMemo/example1';
 import Calculator from './useMemo/example2';
 import SmartHome from './useCallback/SmartHome';
-import Main from './custom-hook/Main';
+// import Main from './custom-hook/Main';
 import Main2 from './custom-hook/Main2';
 import ObjectExample from './symbol/Object';
 import Bank from './useReducer/Bank/Bank';
@@ -22,9 +22,12 @@ import Order from './useNavigate-useLocation/Order';
 import ErrorBoundaryIndex from './react-error-boundary';
 import QueryErrorHandlingIndex from './react-query-error-handling';
 
+import Main from './suspense/useEffect/Main';
+
 function App() {
   return (
-    <QueryErrorHandlingIndex />
+    <Main />
+    // <QueryErrorHandlingIndex />
     // <ErrorBoundaryIndex />
     // <BrowserRouter>
     //   <Routes>

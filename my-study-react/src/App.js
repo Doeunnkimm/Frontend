@@ -23,10 +23,16 @@ import ErrorBoundaryIndex from './react-error-boundary';
 import QueryErrorHandlingIndex from './react-query-error-handling';
 
 import Main from './suspense/useEffect/Main';
+import ListPage from './react-query-useInfiniteQuery/List';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <Main />
+    <QueryClientProvider client={queryClient}>
+      <ListPage />
+    </QueryClientProvider>
+    // <Main />
     // <QueryErrorHandlingIndex />
     // <ErrorBoundaryIndex />
     // <BrowserRouter>

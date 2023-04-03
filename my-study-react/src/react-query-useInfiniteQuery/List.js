@@ -19,12 +19,11 @@ function ListPage() {
       ['infinity_popular_list'],
       ({ pageParam = 1 }) => getList(pageParam),
       {
-        getNextPageParam: (lastPage, allPages) => {
+        getNextPageParam: allPages => {
           // lastPage : 스크롤하는 순간 받아오는 데이터
           // allPages : 무한 스크롤링 하면서 누적하고 있는 데이터 리스트 [Array(20), Array(20) , ...]
-          console.log(lastPage, allPages);
           const nextPage = allPages.length + 1;
-          return nextPage.length !== 0 ? nextPage : undefined;
+          return nextPage;
         },
       }
     );

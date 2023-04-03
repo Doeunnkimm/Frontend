@@ -1,8 +1,16 @@
-# Frontend
+<h1 align="middle">Frontend</h1>
 
-👩‍💻프론트엔드를 공부하면서 작성한 코드들을 모았습니다👩‍💻
-<br /><br />
-**🕒 기간** | 2022.07 ~
-:---|:---
-**🛠️ 주요 STACK** | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png" width="80px" style="margin-right: 40px"/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png" width="58px" style="margin-right: 80px;" /><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Javascript_badge.svg/1200px-Javascript_badge.svg.png" width="76px" /><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="86px"/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" width="80px"/><img src="https://kasterra.github.io/images/thumbnails/express.png" width="130px"/>
-**📚 라이브러리** | <img src="https://i.ibb.co/ydkG6cv/img.png" width="80px"/><img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" width="80px"/><img src="https://camo.githubusercontent.com/48d099290b4cb2d7937bcd96e8497cf1845b54a810a6432c70cf944b60b40c77/68747470733a2f2f7261776769742e636f6d2f676f72616e67616a69632f72656163742d69636f6e732f6d61737465722f72656163742d69636f6e732e737667" width="90px"/><br /><img src="https://velog.velcdn.com/images/devyoung/post/54eb73ab-5d6e-490e-96b9-a9cf2b66c2c3/image.png" width="100px"/><img src="https://images.velog.io/images/devstone/post/06e9736a-c9d1-4f7e-b9a6-7fea39c6f0fd/react-router2.png" width="120px"/><img src="https://images.velog.io/images/sonofhuman20/post/7c171f4f-2b5c-45b8-928c-21ba4618c769/redux.png" width="110px"/><img src="https://avatars.githubusercontent.com/u/64637271?s=280&v=4" width="90px"/><img src="https://images.velog.io/images/rjsdnql123/post/efeffb05-ffea-4592-a238-a7e3905d28b1/logo.png" width="130px"/><br /><img src="https://seeklogo.com/images/R/recoil-logo-6D0128B9E2-seeklogo.com.png" width="130px" /><img src="https://tech.kakao.com/wp-content/uploads/2022/06/01.png" width="180px"/><br /><span>react-intersection-observer, </span><span>slick-carousel</span>
+<br>
+
+## ⭐ 설명
+* 프론트엔드를 공부하면서 작성한 코드들을 모았습니다 :)
+
+<br>
+
+## 🕒 기간
+* 2022.07 ~
+
+<br>
+
+## 공부한 주요 스텍 및 라이브러리
+<img src="https://user-images.githubusercontent.com/112946860/229355218-7aeb0d69-23b6-4c4a-917a-6f8952705a59.png" width="70%"/>

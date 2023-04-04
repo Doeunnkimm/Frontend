@@ -25,7 +25,11 @@ Axios.interceptors.request.use(
   // 요청이 서버에 도착하기 전에
 
   // 에러가 없다면
-  (config) => {
+  config => {
+    // 왜 여기서 access token을 채우냐면
+    // create 안에 처음부터 넣게 되면 access token이 null인 순간이 있을 텐데
+    // 웹 스토리지 값은 state가 아니기 때문에 새로고침을 해야만 다시 값이 채워졌음
+    // 따라서 요청을 가로채서, null이 아니라면 값을 여기서 채워서 요청을 보내는 것 -> 새로고침 따로 필요 없음 !
     const access_token = TokenService.getToken();
     if (access_token) {
       config.headers.Authorization = `Bearer ${access_token}`;
@@ -35,7 +39,7 @@ Axios.interceptors.request.use(
   },
 
   // 에러가 생기면
-  (error) => {
+  error => {
     return Promise.reject(error);
   }
 );
@@ -45,24 +49,24 @@ Axios.interceptors.request.use(
 */
 Axios.interceptors.response.use(
   // 에러가 없다면
-  (res) => {
+  res => {
     // 성공했으면 그냥 그대로 통과
     return res;
   },
 
   // 에러가 생기면 <- 즉 토큰이 만료되었다고 왔다면
   // 전역에서 token을 관리하면서 에러가 오면 alert 창 띄우고 전역 로그인 로직에서 logout 시키고 이런 것들도 가능
-  async (error) => {
+  async error => {
     const auth = useAuth();
     if (error.response.status === 401) {
       await AuthApi.logout();
       auth.logout();
     }
-    const originalRequest = error.config;
+    const originalRequest = error.config; // 에러로 온 객체를 상수에 담은 것
     if (error.response.status === 403 && !originalRequest._retry) {
       // 재요청일 경우에도 에러가 나오면 다시 또 요청을 보내지 않음
       // 401 에러이고  _retry라는 옵션이 false이면
-      originalRequest._retry = true; // 재요청 보낸다는 의미
+      originalRequest._retry = true; // 재요청 보낸다는 의미 -> 실패했던 요청을 다시 요청
 
       // refresh 토큰으로 토큰을 재발급 받는 api에 post 요청
       const res = await Axios.post(`/user/jwt`);

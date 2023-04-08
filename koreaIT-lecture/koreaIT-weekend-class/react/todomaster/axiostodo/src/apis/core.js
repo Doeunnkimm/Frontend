@@ -22,10 +22,9 @@ export const Axios = axios.create({
 */
 
 Axios.interceptors.request.use(
-  // 요청이 서버에 도착하기 전에
+  // 요청을 하기 전에
 
-  // 에러가 없다면
-  (config) => {
+  config => {
     const access_token = TokenService.getToken();
     if (access_token) {
       config.headers.Authorization = `Bearer ${access_token}`;
@@ -35,7 +34,7 @@ Axios.interceptors.request.use(
   },
 
   // 에러가 생기면
-  (error) => {
+  error => {
     return Promise.reject(error);
   }
 );
@@ -45,14 +44,14 @@ Axios.interceptors.request.use(
 */
 Axios.interceptors.response.use(
   // 에러가 없다면
-  (res) => {
+  res => {
     // 성공했으면 그냥 그대로 통과
     return res;
   },
 
   // 에러가 생기면 <- 즉 토큰이 만료되었다고 왔다면
   // 전역에서 token을 관리하면서 에러가 오면 alert 창 띄우고 전역 로그인 로직에서 logout 시키고 이런 것들도 가능
-  async (error) => {
+  async error => {
     const auth = useAuth();
     if (error.response.status === 401) {
       await AuthApi.logout();

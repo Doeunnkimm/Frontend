@@ -32,6 +32,10 @@
     Success: 'Success',
     Failure: 'Failure',
   } as const;
+
+  // 객체 타입의 키를 타입으로
+  // 이떄 해당 객체의 키와 값이 동일해야 함 ex) Idle: "Idle"
+  type StateObjType = keyof typeof StateObj;
   // as const readonly 타입이 됨. 객체라고 하더라도 수정이 불가능
   // COLORS와 같은 수정이 되지 않은 상수의 객체는 as const를 활용하여 readonly 상태를 만들고
   // 그 값을 타입으로써 사용이 가능

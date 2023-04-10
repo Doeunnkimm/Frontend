@@ -1,16 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
-import HomePage from './Home';
-import TodoPage from './Todo';
+import Main from '../Pages/Main';
+import Sub from '../Pages/Sub';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <Main />,
   },
   {
-    path: '/todo',
-    element: <TodoPage />,
+    path: '/sub',
+    element: <Sub />,
   },
 ]);
-
 export default router;

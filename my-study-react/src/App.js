@@ -1,6 +1,6 @@
 import User from './useRef/User';
 import { BrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
-import router from './Outlet-Layout/Routes/routing';
+// import router from './Outlet-Layout/Routes/routing';
 import HomePage from './styled-components-props/Home';
 // import Home from './spread-operator/Home';
 import Object from './state/Object';
@@ -25,13 +25,18 @@ import QueryErrorHandlingIndex from './react-query-error-handling';
 import Main from './suspense/useEffect/Main';
 import ListPage from './react-query-useInfiniteQuery/List';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import router from './practice-components/Routes/routing';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
-  const queryClient = new QueryClient();
+  // const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient}>
-      <ListPage />
-    </QueryClientProvider>
+    <AnimatePresence>
+      <RouterProvider router={router} />
+    </AnimatePresence>
+    // <QueryClientProvider client={queryClient}>
+    //   <ListPage />
+    // </QueryClientProvider>
     // <Main />
     // <QueryErrorHandlingIndex />
     // <ErrorBoundaryIndex />

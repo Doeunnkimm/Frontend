@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import styled from 'styled-components';
 import useCurrentLocation from '../../../../Hooks/useCurrentPosition';
@@ -12,10 +12,11 @@ function PostCode() {
   const [isOpenModal, setIsOpenModal] = useRecoilState(isOpenModalAtom);
   const [type, setType] = useState('');
   const [post, setPost] = useState('');
-  const recentPostList =
+  const [recentPostList, setRecentPostList] = useState(
     JSON.parse(localStorage.getItem('recentPosts')) === null
       ? []
-      : [...JSON.parse(localStorage.getItem('recentPosts'))];
+      : [...JSON.parse(localStorage.getItem('recentPosts'))]
+  );
 
   const geolocationOptions = {
     enableHighAccuracy: true,
@@ -25,6 +26,17 @@ function PostCode() {
 
   const { location: currentLocation, error: currentError } =
     useCurrentLocation(geolocationOptions);
+
+  const onAddRecentPost = post => {
+    localStorage.setItem(
+      'recentPosts',
+      JSON.stringify(
+        recentPostList === null
+          ? [post]
+          : [...new Set([post, ...recentPostList])].splice(0, 5)
+      )
+    );
+  };
 
   const onClickGetCurrentLocation = async () => {
     await axios
@@ -40,18 +52,14 @@ function PostCode() {
         const { address } = res.data.documents[0];
         const recentPost = `${address.region_1depth_name} ${address.region_2depth_name} ${address.region_3depth_name}`;
         setPost(recentPost);
-        localStorage.setItem(
-          'recentPosts',
-          JSON.stringify(
-            recentPostList !== null
-              ? [recentPost]
-              : [recentPost, ...recentPostList]
-          )
-        );
+        onAddRecentPost(recentPost);
       });
   };
 
-  console.log(recentPostList);
+  useEffect(() => {
+    setRecentPostList(JSON.parse(localStorage.getItem('recentPosts')));
+  }, [post]);
+
   const onClickNoPost = () => setPost('지역설정안함');
 
   const onShowModal = () => {
@@ -77,7 +85,11 @@ function PostCode() {
       <Button onClick={onClickNoPost}>지역설정안함</Button>
       <PostTextBox>{post}</PostTextBox>
       {isOpenModal && type === 'recent' && (
-        <RecentPostModal list={recentPostList} setPost={setPost} />
+        <RecentPostModal
+          list={recentPostList}
+          setPost={setPost}
+          onAddRecentPost={onAddRecentPost}
+        />
       )}
       {isOpenModal && type === 'postSearch' && <PostSearchModal />}
     </Wrapper>

@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
-import { slide_image_url } from '../../Consts/slide-image';
+import { slide_image_url } from '../../../../Consts/slide-image';
 import MoveBtn from './MoveBtn';
 import { useNavigate } from 'react-router-dom';
 

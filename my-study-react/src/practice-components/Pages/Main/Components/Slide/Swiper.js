@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { slide_image_url } from '../../Consts/slide-image';
+import { slide_image_url } from '../../../../Consts/slide-image';
 import styled from 'styled-components';
 
 function SwiperBox() {

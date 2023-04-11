@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { pageMountAnimation } from '../Routes/routing.style';
-import ReactSlick from '../Components/Slide/ReactSlick';
+import { pageMountAnimation } from '../../Routes/routing.style';
+import ReactSlick from '../../Components/Slide/ReactSlick';
 import styled from 'styled-components';
-import SwiperBox from '../Components/Slide/Swiper';
+import SwiperBox from '../../Components/Slide/Swiper';
+import PostCode from './Components/postCode/PostCodeModal';
 
 function Main() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function Main() {
       </section>
       <section>
         <h2>3. 주소</h2>
+        <PostCode />
       </section>
     </motion.div>
   );

@@ -27,13 +27,16 @@ import ListPage from './react-query-useInfiniteQuery/List';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import router from './practice-components/Routes/routing';
 import { AnimatePresence } from 'framer-motion';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   // const queryClient = new QueryClient();
   return (
-    <AnimatePresence>
-      <RouterProvider router={router} />
-    </AnimatePresence>
+    <RecoilRoot>
+      <AnimatePresence>
+        <RouterProvider router={router} />
+      </AnimatePresence>
+    </RecoilRoot>
     // <QueryClientProvider client={queryClient}>
     //   <ListPage />
     // </QueryClientProvider>

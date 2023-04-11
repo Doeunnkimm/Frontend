@@ -12,5 +12,5 @@
 
 <br>
 
-## 공부한 주요 스텍 및 라이브러리
+## 📌 공부한 주요 스텍 및 라이브러리
 <img src="https://user-images.githubusercontent.com/112946860/229355218-7aeb0d69-23b6-4c4a-917a-6f8952705a59.png" width="70%"/>

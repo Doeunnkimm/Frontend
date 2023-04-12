@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import DaumPostcode from 'react-daum-postcode';
 import styled from 'styled-components';
 import useCurrentLocation from '../../../../Hooks/useCurrentPosition';
 import axios from 'axios';

@@ -4,19 +4,19 @@ const sizeCSS = {
   small: css`
     width: 30vw;
     min-width: 433px;
-    height: 30px;
+    height: 200px;
     padding: 12px;
   `,
   medium: css`
     width: 30vw;
     min-width: 433px;
-    height: 50px;
+    height: 300px;
     padding: 12px;
   `,
   large: css`
     width: 30vw;
     min-width: 433px;
-    height: 200px;
+    height: 400px;
     padding: 12px;
   `,
 };

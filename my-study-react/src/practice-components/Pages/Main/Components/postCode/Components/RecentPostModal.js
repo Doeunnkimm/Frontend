@@ -13,8 +13,9 @@ function RecentPostModal({ list, setPost, onAddRecentPost }) {
     setIsOpenModal(false);
     document.body.style.overflow = 'auto';
   };
+
   return (
-    <Modal size={'large'}>
+    <Modal size={'small'}>
       <ModalTitle>최근 지역</ModalTitle>
       {list.map(post => (
         <Text onClick={() => onClickRecentPost(post)}>{post}</Text>

@@ -10,13 +10,13 @@ const sizeCSS = {
   medium: css`
     width: 30vw;
     min-width: 433px;
-    height: 300px;
+    height: 280px;
     padding: 12px;
   `,
   large: css`
     width: 30vw;
     min-width: 433px;
-    height: 400px;
+    height: 450px;
     padding: 12px;
   `,
 };

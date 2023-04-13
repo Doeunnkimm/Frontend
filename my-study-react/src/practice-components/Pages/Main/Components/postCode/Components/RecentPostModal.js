@@ -15,7 +15,7 @@ function RecentPostModal({ list, setPost, onAddRecentPost }) {
   };
 
   return (
-    <Modal size={'small'}>
+    <Modal size={'medium'}>
       <ModalTitle>최근 지역</ModalTitle>
       {list.map(post => (
         <Text onClick={() => onClickRecentPost(post)}>{post}</Text>

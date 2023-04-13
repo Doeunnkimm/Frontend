@@ -34,6 +34,18 @@ function Main() {
       </section>
       <section>
         <h2>3. 주소</h2>
+        <p>☀️ 구현 사항</p>
+        <ul>
+          <li>현재 내 위치 표시</li>
+          <li>DaumPostcode으로 주소 검색 시 지번 주소 중 행정구역까지 표시</li>
+          <li>지역 설정 안 하는 옵션도 추가</li>
+          <li>
+            내 위치, 주소 검색 시 최근 지역에 5개까지 저장(웹 스토리지 이용)
+          </li>
+          <li>
+            행정구역으로 검색 시 지도에 행정구역 Polygon 표시는 개발중입니다..
+          </li>
+        </ul>
         <PostCode />
       </section>
     </motion.div>

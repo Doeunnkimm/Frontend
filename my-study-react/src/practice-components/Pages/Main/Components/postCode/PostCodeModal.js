@@ -90,7 +90,9 @@ function PostCode() {
           onAddRecentPost={onAddRecentPost}
         />
       )}
-      {isOpenModal && type === 'postSearch' && <PostSearchModal />}
+      {isOpenModal && type === 'postSearch' && (
+        <PostSearchModal setPost={setPost} onAddRecentPost={onAddRecentPost} />
+      )}
     </Wrapper>
   );
 }

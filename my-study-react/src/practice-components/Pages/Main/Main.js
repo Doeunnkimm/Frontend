@@ -5,6 +5,7 @@ import ReactSlick from './Components/Slide/ReactSlick';
 import styled from 'styled-components';
 import SwiperBox from './Components/Slide/Swiper';
 import PostCode from './Components/postCode/PostCodeModal';
+import Drag from './Components/drag-slide/Drag';
 
 function Main() {
   const navigate = useNavigate();
@@ -47,6 +48,10 @@ function Main() {
           </li>
         </ul>
         <PostCode />
+      </section>
+      <section>
+        <h2>4. 드레그 슬라이드</h2>
+        <Drag />
       </section>
     </motion.div>
   );

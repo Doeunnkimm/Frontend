@@ -28,15 +28,21 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import router from './practice-components/Routes/routing';
 import { AnimatePresence } from 'framer-motion';
 import { RecoilRoot } from 'recoil';
+import TestMSW from './msw';
+import { worker } from './msw/__mock__/browser';
 
 function App() {
+  worker.start();
   // const queryClient = new QueryClient();
   return (
     <RecoilRoot>
-      <AnimatePresence>
-        <RouterProvider router={router} />
-      </AnimatePresence>
+      <TestMSW />
     </RecoilRoot>
+    // <RecoilRoot>
+    //   <AnimatePresence>
+    //     <RouterProvider router={router} />
+    //   </AnimatePresence>
+    // </RecoilRoot>
     // <QueryClientProvider client={queryClient}>
     //   <ListPage />
     // </QueryClientProvider>

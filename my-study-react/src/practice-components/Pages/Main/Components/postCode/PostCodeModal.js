@@ -7,7 +7,7 @@ import { isOpenModalAtom } from '../../../../Atoms/modal.atom';
 import RecentPostModal from './Components/RecentPostModal';
 import PostSearchModal from './Components/PostSearchModal';
 
-function PostCode() {
+function PostCode({ setFormData }) {
   const [isOpenModal, setIsOpenModal] = useRecoilState(isOpenModalAtom);
   const [type, setType] = useState('');
   const [post, setPost] = useState('');
@@ -16,6 +16,8 @@ function PostCode() {
       ? []
       : [...JSON.parse(localStorage.getItem('recentPosts'))]
   );
+
+  useEffect(() => setFormData(prev => ({ ...prev, region: post })), [post]);
 
   const geolocationOptions = {
     enableHighAccuracy: true,
@@ -78,10 +80,15 @@ function PostCode() {
 
   return (
     <Wrapper>
-      <Button onClick={onClickGetCurrentLocation}>내 위치</Button>
-      <Button onClick={onClickRecentPosts}>최근 지역</Button>
-      <Button onClick={onClickPostSearch}>주소 검색</Button>
-      <Button onClick={onClickNoPost}>지역설정안함</Button>
+      <Button type="button" onClick={onClickGetCurrentLocation}>
+        내 위치
+      </Button>
+      <Button type="button" onClick={onClickRecentPosts}>
+        최근 지역
+      </Button>
+      <Button type="button" onClick={onClickPostSearch}>
+        주소 검색
+      </Button>
       <PostTextBox>{post}</PostTextBox>
       {isOpenModal && type === 'recent' && (
         <RecentPostModal
@@ -99,17 +106,24 @@ function PostCode() {
 export default PostCode;
 
 const Wrapper = styled.div`
-  width: 60%;
+  width: 100%;
+  margin-top: 10px;
 `;
 
 const Button = styled.button`
+  border: 1px solid rgb(220, 220, 220);
+  outline: none;
+  margin-right: 5px;
+  border-radius: 4px;
   padding: 10px;
+  height: 100%;
+  box-sizing: border-box;
 `;
 
 const PostTextBox = styled.div`
-  width: 60%;
-  height: 30px;
-  background-color: rgba(210, 210, 210, 0.5);
-  border: 1px solid rgb(120, 120, 120);
-  margin-top: 18px;
+  flex-grow: 1;
+  padding: 10px;
+  height: 23px;
+  border: 1px solid rgb(180, 180, 180);
+  margin-top: 8px;
 `;

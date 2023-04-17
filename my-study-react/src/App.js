@@ -28,7 +28,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import router from './practice-components/Routes/routing';
 import { AnimatePresence } from 'framer-motion';
 import { RecoilRoot } from 'recoil';
-import TestMSW from './msw';
+import TestMSW from './msw/Pages/product-registration';
 import { worker } from './msw/__mock__/browser';
 
 function App() {

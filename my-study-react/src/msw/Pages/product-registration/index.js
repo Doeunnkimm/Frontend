@@ -1,11 +1,8 @@
 import axios from 'axios';
-import { worker } from './__mock__/browser';
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
-import PostSearchModal from '../practice-components/Pages/Main/Components/postCode/Components/PostSearchModal';
-import { RecoilRoot, useRecoilState } from 'recoil';
-import { isOpenModalAtom } from '../practice-components/Atoms/modal.atom';
-import PostCode from '../practice-components/Pages/Main/Components/postCode/PostCodeModal';
+import PostCode from '../../../practice-components/Pages/Main/Components/postCode/PostCodeModal';
+import Images from './Components/upload-image/Images';
 
 const CATEGORY = ['무료상품', '중고거래'];
 
@@ -21,7 +18,7 @@ function TestMSW() {
     images: [],
   });
 
-  console.log(formData);
+  const [detailImages, setDetailImages] = useState([]);
 
   const [recentPostList, setRecentPostList] = useState(
     JSON.parse(localStorage.getItem('recentPosts')) === null
@@ -39,6 +36,26 @@ function TestMSW() {
     checkboxes.forEach((box, i) => {
       if (i !== checkIdx) box.checked = false;
     });
+  };
+
+  const onUploadFile = e => {
+    const fileArr = e.target.files; // 사용자가 선택한 파일들
+    setFormData(prev => ({ ...prev, images: fileArr }));
+    const fileURLs = [];
+    const filesLength = fileArr.length > 4 ? 4 : fileArr.length; // 최대 4개
+
+    console.log(fileArr);
+
+    // 프리뷰
+    for (let i = 0; i < filesLength; i++) {
+      const file = fileArr[i];
+      const reader = new FileReader();
+      reader.onload = () => {
+        fileURLs[i] = reader.result;
+        setDetailImages([...fileURLs]);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const onAddRecentPost = post => {
@@ -66,20 +83,26 @@ function TestMSW() {
   return (
     <Wrapper>
       <Title>상품 등록</Title>
+
       <form onSubmit={onAddProduct}>
-        <h3>상품 이미지*</h3>
-        <input
-          type="file"
-          ref={input}
-          name="images"
-          value={formData.images}
-          onChange={onChangeForm}
-          style={{ display: 'none' }}
-        />
-        <ImageInput onClick={() => input.current.click()}>
-          <div></div>
-          <div>이미지 등록</div>
-        </ImageInput>
+        <Line>
+          <h3>상품 이미지*</h3>
+          <input
+            type="file"
+            multiple
+            ref={input}
+            name="images"
+            onChange={onUploadFile}
+            style={{ display: 'none' }}
+          />
+          <ItemBox>
+            <ImageInput onClick={() => input.current.click()}>
+              <div></div>
+              <div>이미지 등록</div>
+            </ImageInput>
+            <Images detailImages={detailImages} />
+          </ItemBox>
+        </Line>
         <Line>
           <h3>상품명*</h3>
           <ItemBox>
@@ -216,8 +239,8 @@ const CheckBoxWrapper = styled.div`
 `;
 
 const ImageInput = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   background-color: rgb(230, 230, 230);
   display: flex;
   flex-direction: column;
@@ -235,6 +258,14 @@ const ImageInput = styled.div`
   & > div:last-child {
     font-weight: bold;
   }
+`;
+
+const ImageView = styled.div`
+  width: 180px;
+  height: 180px;
+  background-image: ${({ imageURL }) => `url(${imageURL})`};
+  background-repeat: no-repeat;
+  background-size: 100%;
 `;
 
 const SubmitButton = styled.button`

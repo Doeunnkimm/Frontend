@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 function ImageInputs({ setFormData }) {
   const input = useRef();
@@ -14,6 +15,19 @@ function ImageInputs({ setFormData }) {
     reader.onloadend = () => {
       setDetailImages([...detailImages, reader.result].slice(0, 4));
     };
+  };
+
+  const onDrag = result => {
+    if (!result.destination) return;
+    const items = [...detailImages];
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setDetailImages(items);
+  };
+
+  const onDeleteItem = index => {
+    const newImages = detailImages.filter((image, i) => i !== index);
+    setDetailImages(newImages);
   };
 
   useEffect(
@@ -36,11 +50,41 @@ function ImageInputs({ setFormData }) {
           <div></div>
           <div>이미지 등록</div>
         </ImageInput>
-        {detailImages.map((url, i) => (
-          <ImageView imageURL={url}>
-            <MarkImageTag first={i === 0}>대표 이미지</MarkImageTag>
-          </ImageView>
-        ))}
+        <DragDropContext onDragEnd={onDrag}>
+          <Droppable droppableId="imageList" direction="horizontal">
+            {provided => (
+              <ul
+                className="imageList"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {detailImages.map((url, i) => {
+                  return (
+                    <Draggable draggableId={url} index={i} key={url}>
+                      {provided => (
+                        <li
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <ImageView imageURL={url}>
+                            <DeleteBtn onClick={() => onDeleteItem(i)}>
+                              X
+                            </DeleteBtn>
+                            <MarkImageTag first={i === 0}>
+                              대표 이미지
+                            </MarkImageTag>
+                          </ImageView>
+                        </li>
+                      )}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </ItemBox>
     </>
   );
@@ -74,6 +118,11 @@ const ItemBox = styled.div`
   margin-left: auto;
   display: flex;
   align-items: center;
+
+  & > ul > li {
+    float: left;
+    list-style: none;
+  }
 `;
 
 const ImageView = styled.div`
@@ -85,6 +134,7 @@ const ImageView = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  position: relative;
 `;
 
 const MarkImageTag = styled.span`
@@ -93,4 +143,19 @@ const MarkImageTag = styled.span`
   margin: 5px;
   padding: 3px 5px;
   border-radius: 8px;
+`;
+
+const DeleteBtn = styled.span`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  top: 0;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid rgb(180, 180, 180);
 `;

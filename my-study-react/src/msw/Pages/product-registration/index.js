@@ -2,12 +2,12 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
 import PostCode from '../../../practice-components/Pages/Main/Components/postCode/PostCodeModal';
-import Images from './Components/upload-image/Images';
+import ImageInputs from './Components/upload-image/ImageInputs';
+import Tag from './Components/tag/Tag';
 
 const CATEGORY = ['무료상품', '중고거래'];
 
 function TestMSW() {
-  const input = useRef();
   const [formData, setFormData] = useState({
     title: '',
     price: null,
@@ -18,7 +18,7 @@ function TestMSW() {
     images: [],
   });
 
-  const [detailImages, setDetailImages] = useState([]);
+  console.log(formData);
 
   const [recentPostList, setRecentPostList] = useState(
     JSON.parse(localStorage.getItem('recentPosts')) === null
@@ -38,37 +38,6 @@ function TestMSW() {
     });
   };
 
-  const onUploadFile = e => {
-    const fileArr = e.target.files; // 사용자가 선택한 파일들
-    setFormData(prev => ({ ...prev, images: fileArr }));
-    const fileURLs = [];
-    const filesLength = fileArr.length > 4 ? 4 : fileArr.length; // 최대 4개
-
-    console.log(fileArr);
-
-    // 프리뷰
-    for (let i = 0; i < filesLength; i++) {
-      const file = fileArr[i];
-      const reader = new FileReader();
-      reader.onload = () => {
-        fileURLs[i] = reader.result;
-        setDetailImages([...fileURLs]);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const onAddRecentPost = post => {
-    localStorage.setItem(
-      'recentPosts',
-      JSON.stringify(
-        recentPostList === null
-          ? [post]
-          : [...new Set([post, ...recentPostList])].splice(0, 5)
-      )
-    );
-  };
-
   const onAddProduct = async e => {
     e.preventDefault();
 
@@ -83,25 +52,10 @@ function TestMSW() {
   return (
     <Wrapper>
       <Title>상품 등록</Title>
-
       <form onSubmit={onAddProduct}>
         <Line>
           <h3>상품 이미지*</h3>
-          <input
-            type="file"
-            multiple
-            ref={input}
-            name="images"
-            onChange={onUploadFile}
-            style={{ display: 'none' }}
-          />
-          <ItemBox>
-            <ImageInput onClick={() => input.current.click()}>
-              <div></div>
-              <div>이미지 등록</div>
-            </ImageInput>
-            <Images detailImages={detailImages} />
-          </ItemBox>
+          <ImageInputs setFormData={setFormData} />
         </Line>
         <Line>
           <h3>상품명*</h3>
@@ -155,6 +109,12 @@ function TestMSW() {
               value={formData.description}
               onChange={onChangeForm}
             />
+          </ItemBox>
+        </Line>
+        <Line state={'start'}>
+          <h3>태그</h3>
+          <ItemBox>
+            <Tag setFormData={setFormData} />
           </ItemBox>
         </Line>
         <Line state={'start'}>
@@ -236,36 +196,6 @@ const CheckBoxWrapper = styled.div`
     background-repeat: no-repeat;
     background-color: rgb(150, 150, 150);
   }
-`;
-
-const ImageInput = styled.div`
-  width: 180px;
-  height: 180px;
-  background-color: rgb(230, 230, 230);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  & > div:first-child {
-    width: 30px;
-    height: 30px;
-    background-image: url('https://cdn-icons-png.flaticon.com/512/1829/1829371.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin-bottom: 5px;
-  }
-  & > div:last-child {
-    font-weight: bold;
-  }
-`;
-
-const ImageView = styled.div`
-  width: 180px;
-  height: 180px;
-  background-image: ${({ imageURL }) => `url(${imageURL})`};
-  background-repeat: no-repeat;
-  background-size: 100%;
 `;
 
 const SubmitButton = styled.button`

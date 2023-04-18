@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+import { productMock } from '../../datas/product.data';
 
 export const addProduct = rest.post('/api/product', async (req, res, ctx) => {
   let title;
@@ -19,6 +20,10 @@ export const addProduct = rest.post('/api/product', async (req, res, ctx) => {
   tag = data.tag;
   images = data.images;
 
+  productMock.unshift(data);
+
+  console.log(productMock);
+
   return res(
     ctx.status(200),
     ctx.json({
@@ -35,3 +40,10 @@ export const addProduct = rest.post('/api/product', async (req, res, ctx) => {
 });
 
 /* api를 만들었다면 handler에서 등록을 해주자 */
+
+export const getProducts = rest.get(
+  '/api/product/search',
+  async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(productMock));
+  }
+);

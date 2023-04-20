@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import PostCode from '../../../practice-components/Pages/Main/Components/postCode/PostCodeModal';
 import ImageInputs from './Components/upload-image/ImageInputs';
 import Tag from './Components/tag/Tag';
+import Price from './Components/price/Price';
 
 const CATEGORY = ['무료상품', '중고거래'];
 
@@ -92,12 +93,7 @@ function TestMSW() {
         <Line>
           <h3>가격*</h3>
           <ItemBox>
-            <Input
-              placeholder="상품 가격을 입력해주세요"
-              name="price"
-              value={formData.price}
-              onChange={onChangeForm}
-            />
+            <Price setFormData={setFormData} />
           </ItemBox>
         </Line>
         <Line state={'start'}>

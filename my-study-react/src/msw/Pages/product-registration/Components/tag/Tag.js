@@ -54,10 +54,8 @@ const Wrapper = styled.div`
   align-items: center;
   flex-wrap: wrap;
   min-height: 50px;
-  margin: 10px;
   padding: 0 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
   width: 100%;
 `;
 

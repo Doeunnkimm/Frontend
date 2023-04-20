@@ -15,6 +15,7 @@ function PostSearchModal({ setPost, onAddRecentPost }) {
     setPost(jibun);
     onAddRecentPost(jibun);
     setIsOpenModal(false);
+    document.body.style.overflow = 'auto';
   };
 
   return (

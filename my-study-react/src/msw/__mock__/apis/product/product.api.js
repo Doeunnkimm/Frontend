@@ -10,7 +10,7 @@ export const addProduct = rest.post('/api/product', async (req, res, ctx) => {
   let tag;
   let images;
 
-  const data = req.json();
+  const data = req.body;
 
   title = data.title;
   price = data.price;
@@ -21,8 +21,6 @@ export const addProduct = rest.post('/api/product', async (req, res, ctx) => {
   images = data.images;
 
   productMock.unshift(data);
-
-  console.log(productMock);
 
   return res(
     ctx.status(200),
@@ -44,6 +42,25 @@ export const addProduct = rest.post('/api/product', async (req, res, ctx) => {
 export const getProducts = rest.get(
   '/api/product/search',
   async (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(productMock));
+    const productCategory = req.url.searchParams.get('category');
+
+    let newList;
+    let returnList;
+
+    console.log(productCategory);
+    console.log(productMock);
+
+    switch (productCategory) {
+      case '0':
+        newList = [...productMock];
+        returnList = newList.filter(product => product.category === 0);
+        return res(ctx.status(200), ctx.json(returnList));
+      case '1':
+        newList = [...productMock];
+        returnList = newList.filter(product => product.category === 1);
+        return res(ctx.status(200), ctx.json(returnList));
+      default:
+        return res(ctx.status(200), ctx.json(productMock));
+    }
   }
 );

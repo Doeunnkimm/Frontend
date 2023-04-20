@@ -1,14 +1,15 @@
 import axios from 'axios';
 import styled from 'styled-components';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import PostCode from '../../../practice-components/Pages/Main/Components/postCode/PostCodeModal';
 import ImageInputs from './Components/upload-image/ImageInputs';
 import Tag from './Components/tag/Tag';
 import Price from './Components/price/Price';
+import { useNavigate } from 'react-router-dom';
+import { CATEGORY_LIST } from '../../Consts/category';
 
-const CATEGORY = ['무료상품', '중고거래'];
-
-function TestMSW() {
+function RegisterProduct() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
     price: null,
@@ -18,14 +19,6 @@ function TestMSW() {
     tag: [],
     images: [],
   });
-
-  console.log(formData);
-
-  const [recentPostList, setRecentPostList] = useState(
-    JSON.parse(localStorage.getItem('recentPosts')) === null
-      ? []
-      : [...JSON.parse(localStorage.getItem('recentPosts'))]
-  );
 
   const onChangeForm = e => {
     const { name, value } = e.target;
@@ -41,10 +34,9 @@ function TestMSW() {
 
   const onAddProduct = async e => {
     e.preventDefault();
-
     try {
-      const data = await axios.post('/api/product', formData);
-      console.log(data);
+      await axios.post('/api/product', formData);
+      navigate('/list');
     } catch (err) {
       console.log(err);
     }
@@ -72,15 +64,15 @@ function TestMSW() {
         <Line>
           <h3>카테고리*</h3>
           <ItemBox>
-            {CATEGORY.map((cate, i) => (
+            {CATEGORY_LIST.map((cate, i) => (
               <CheckBoxWrapper>
                 <input
                   type="checkbox"
                   name="category"
-                  value={cate}
+                  value={i}
                   onChange={e => {
                     onChangeCategory(i);
-                    onChangeForm(e);
+                    setFormData(prev => ({ ...prev, category: parseInt(i) }));
                   }}
                 />
                 <label key={i} for={cate}>
@@ -126,7 +118,7 @@ function TestMSW() {
     </Wrapper>
   );
 }
-export default TestMSW;
+export default RegisterProduct;
 
 const Wrapper = styled.div`
   width: 60%;

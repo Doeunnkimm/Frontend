@@ -25,18 +25,21 @@ import QueryErrorHandlingIndex from './react-query-error-handling';
 import Main from './suspense/useEffect/Main';
 import ListPage from './react-query-useInfiniteQuery/List';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import router from './practice-components/Routes/routing';
+// import router from './practice-components/Routes/routing';
 import { AnimatePresence } from 'framer-motion';
 import { RecoilRoot } from 'recoil';
 import TestMSW from './msw/Pages/product-registration';
 import { worker } from './msw/__mock__/browser';
+import RegisterProduct from './msw/Pages/product-registration';
+import ProductList from './msw/Pages/list/List';
+import router from './msw/Routes/routing';
 
 function App() {
   worker.start();
   // const queryClient = new QueryClient();
   return (
     <RecoilRoot>
-      <TestMSW />
+      <RouterProvider router={router} />
     </RecoilRoot>
     // <RecoilRoot>
     //   <AnimatePresence>

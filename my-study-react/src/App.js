@@ -33,14 +33,21 @@ import { worker } from './msw/__mock__/browser';
 import RegisterProduct from './msw/Pages/product-registration';
 import ProductList from './msw/Pages/list/List';
 import router from './msw/Routes/routing';
+import { Provider } from 'jotai';
+import JotaiTest from './jotai/JotaiTest';
 
 function App() {
   worker.start();
   // const queryClient = new QueryClient();
   return (
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <Provider>
+      <JotaiTest />
+    </Provider>
+    // ------------- Nego Market 테스트 용 컴포넌트--------------
+    // <RecoilRoot>
+    //   <RouterProvider router={router} />
+    // </RecoilRoot>
+    // ----------------------------------------------------------
     // <RecoilRoot>
     //   <AnimatePresence>
     //     <RouterProvider router={router} />

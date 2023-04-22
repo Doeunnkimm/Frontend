@@ -1,5 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { animeAtom, citiesAtom, progressAtom } from './Atoms';
+import { darkModeAtom } from './Atoms/storage.atom';
+import styled from 'styled-components';
 
 function JotaiTest() {
   const [anime, setAnime] = useAtom(animeAtom);
@@ -10,11 +12,15 @@ function JotaiTest() {
 
   const progress = useAtomValue(progressAtom);
 
+  const [darkMode, setDarkMode] = useAtom(darkModeAtom);
+
   return (
-    <>
+    <S.Wrapper darkMode={darkMode}>
       <ul>
         {anime.map(item => (
-          <li key={item.title}>{item.title}</li>
+          <S.Li key={item.title} darkMode={darkMode}>
+            {item.title}
+          </S.Li>
         ))}
         <button
           onClick={() =>
@@ -28,10 +34,21 @@ function JotaiTest() {
         </button>
       </ul>
       <ul>
-        <li>{Math.trunc(progress * 100)}% watched</li>
+        <S.Li darkMode={darkMode}>{Math.trunc(progress * 100)}% watched</S.Li>
       </ul>
-    </>
+      <button onClick={() => setDarkMode(prev => !prev)}>theme change !</button>
+    </S.Wrapper>
   );
 }
 
 export default JotaiTest;
+
+const Wrapper = styled.div`
+  background-color: ${({ darkMode }) => (darkMode ? 'black' : 'white')};
+`;
+
+const Li = styled.li`
+  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
+`;
+
+const S = { Wrapper, Li };

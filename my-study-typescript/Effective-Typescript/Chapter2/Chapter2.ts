@@ -229,5 +229,33 @@ const list = [1, 2]; // 타입은 number[]
 const triple: [number, number, number] = [1, 2, 3];
 // const double: [number, number] = triple; // error
 
-type T = Exclude<string | Date, string | number>; // 타입은 Date
-type NonZeroNums = Exclude<number, 0>;
+// type T = Exclude<string | Date, string | number>; // 타입은 Date
+// type NonZeroNums = Exclude<number, 0>;
+
+/*
+  class와 enum은 타입과 값 두 가지 모두 가능한 예약어이다.
+*/
+class Cylinder {
+  radius = 1;
+  height = 1;
+}
+
+function calculateVolume(shape: unknown) {
+  if (shape instanceof Cylinder) {
+    const radius = shape.radius; // 정상
+  }
+}
+// 클래스가 타입으로 쓰일 때는 형태(속성과 메소드)가 사용되는 반면,
+// 값으로 쓰일 때는 생성자가 사용됩니다.
+
+/*
+  class 키워드는 값과 타입 두 가지로 모두 사용
+  -> 클래스에 대한 typeof는 상황에 따라 다르게 동작
+*/
+const v = typeof Cylinder; // 값이 "function"
+type T = typeof Cylinder; // 타입이 typeof Cylinder
+
+/*
+  타입스크립트에서 구조 분해 할당을 하면 이상한 오류가 발생
+*/
+// function email({person: Person, subject: string, body: string}) // 바인딩 요소 'Person'에 암시적으로 any 형식이 있습니다.

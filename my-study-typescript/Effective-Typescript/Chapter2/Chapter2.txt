@@ -474,9 +474,165 @@
 
                         > typeof Symbol("sym")
                         "symbol"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
                 
-        
-        
+    6. 잉여 속성 체크의 한계 인지하기
 
-         
+        🏷️ 잉여 속성 체크 ?
+            객체 리터럴이나 다른 객체 할당 시에, 타입으로 선언되지 않은 속성을
+            포함하는 경우 경고나 오류를 발생시키는 기능
 
+            기본적으로 타입스크립트는 정적 타입 검사를 수행하여 코드의 안정성을 높이는 역할을 한다.
+            객체 리터럴을 사용하여 객체를 생성하거나 다른 객체에 할당할 때, 타입스크립트는 해당 타입으로 선언된 속성 외에 다른 속성이 있는지 검사
+            이를 잉여 속성 체크라고 부른다.
+
+        🟢 타입이 명시된 변수에 객체 리터럴을 할당할 때 타입스크립트는 해당 타입의 속성이 있는지, 그리고 '그 외 속성은 없는지' 확인
+
+            (1)
+            interface Room {
+                numDoors: number;
+                ceilingHeightFt: number;
+            }
+            const r: Room = {
+                numDoors: 1,
+                ceilingHeightFt: 10,
+                elephant: 'present',
+                // ~~~~~~~~~~~~~~~~~~~ 개체 리터럴은 알려진 속성만 지정할 수 있으며
+                                        'Room' 형식에 'elephant'이(가) 없습니다.
+            }
+
+            Room 타입에 생뚱맞게 elephant 속성이 있는 것이 어색하긴 하지만,
+            구조적 타이핑 관점으로 생각해 보면 오류가 발생하지 않아야 한다.
+            임시 변수를 도입해 보면 알 수 있는데, obj 객체는 Room 타입에 할당이 가능하다.
+
+            (2)
+            const obj = {
+                numDoors: 1,
+                ceilingHeightFt: 10,
+                elephant: 'present'
+            }
+            const r: Room = obj
+
+            obj의 타입은 { numDoors: number; ceilingHeightFt: number; elephant: string }으로 추론된다.
+            ✨ obj 타입은 Room 타입의 부분 집합을 포함하므로, Room에 할당이 가능하며 타입 체커도 통과 !
+
+                (1)과 (2)의 차이점에 대해 살펴보자
+
+                    ✨ (1)은 구조적 타입 시스템에서 발생할 수 있는 중요한 종류의 오류를 잡을 수 있도록 
+                        '잉여 속성 체크'라는 과정이 수행되었다.
+
+                        그러나 잉여 속성 체크 역시 조건에 따라 동작하지 않는다는 한계가 있고,
+                        통상적으로 할당 가능 검사와 함께 쓰이면 구조적 타이핑이 무엇인지 혼란스러워질 수 있다.
+                        잉여 속성 체크가 할당 가능 검사와는 별도의 과정이라는 것을 알아야
+                        타입스크립트 타입 시스템에 대한 개념을 잡을 수 있다.
+
+                        아이템1에서 설명했듯이 타입스크립트는 단순히 런타임에 예외를 던지는 코드에 오류를 표시할 뿐만 아니라
+                        의도와 다르게 작성된 코드까지 찾으려고 한다.
+
+                            interface Options {
+                                title: string'
+                                darkMode: boolean;
+                            }
+                            function createWindow(options: Options) {
+                                if(options.darkMode) {
+                                    setDarkMode();
+                                }
+                                // ...
+                            }
+                            createWindow({
+                                title: "Spider Solitaire",
+                                darkmode: true,
+                                // ~~~~~~~~~~~~~ 개체 리터럴은 알려진 속성만 지정할 수 있지만
+                                                  'Options' 형식에 'darkmode'이(가) 없습니다.
+                                                  'darkMode'을(를) 쓰려고 했습니까?
+                            })
+
+                            앞의 코드를 실행하면 런타임에 어떠한 종류의 오류도 발생하지 않는다.
+                            그러나 타입스크립트가 알려주는 오류 메시지처럼 의도한 대로 동작하지 않을 수 있다.
+                            오류가 발생한 부분은 darkmode가 아닌 darkMode이어야 한다.
+
+                            ✨ Options 타입은 범위가 매우 넓기 때문에, 순수한 구조적 타입 체커는 이런 종류의 오류를 찾아내지 못한다.
+                            darkMode의 속성에 boolean 타입이 아닌 다른 타입의 값이 지정된 경우를 제외하면,
+                            string 타입인 title 속성에 '또 다른 어떤 속성'을 가지는 모든 객체는 Options 타입의 범위에 속한다.
+
+                            ✨ 타입스크립트 타입은 범위가 아주 넓어질 수 있다.
+                                여기에 Options에 할당할 수 있는 몇 가지 값이 더 있다.
+
+                                const o1: Options = document; // 정상
+                                const o2: Options = new HTMLAnchorElement; // 정상
+
+                                ==> document와 HTMLAnchorElement의 인스턴스 모두 string 타입인 title 속성을 가지고 있기 때문에 할당문은 정상이다.
+
+        🟢 잉여 속성 체크를 사용하면 기본적으로 타입 시스템의 구조적 본질을 해치지 않으면서도 
+           --------------
+            객체 리터럴에 알 수 없는 속성을 허용하지 않음으로써,
+            앞에서 다룬 Room이나 Options 예제 같은 문제점을 방지할 수 있다.
+            그래서 '엄격한 객체 리터럴 체크'라고 불린다.
+
+            document난 new HTMLAnchorElement는 객체 리터럴이 아니기 때문에 잉여 속성 체크가 되지 않는다.
+
+                🏷️ 객체 리터럴(Object Literal)
+                    자바스크립트에서 객체를 생성하는 방법 중 하나
+                    객체는 여러 속성(key-value pairs)를 포함하는 데이터 구조로, 객체 리터럴을 사용하여 속성과 값의 집합을 표현할 수 있다.
+
+                    객체 리터럴은 중괄호({})를 사용하여 객체를 감싸고, 속성과 값은 콜록(:)으로 구분하여 정의한다.
+
+                    const person = {
+                        name: 'John',
+                        age: 30
+                    }
+
+                    위의 코드에서 'person'은 객체 변수이며, 객체 리터럴을 사용하여 정의되었다.
+
+                    ==> 객체 리터럴은 자바스크립트에서 객체를 간현하게 생성하고 초기화하는 방법 중 하나!
+
+            그러나 { title, darkmode } 객체는 체크가 된다.
+
+                const o: Options = { darkmode: true, title: 'Ski Free' };
+                                    // ~~~~~~'Options' 형식에 'darkmode'이(가) 없습니다.
+
+            오류가 사라지는 이유를 알아내기 위해 타입 구문 없는 임시 변수를 사용해보자
+
+                const intermediate = { darkmode: true, title: 'Ski Free' };
+                const o: Options: intermediate; // 정상
+
+                ===> ✨ 첫 번째 줄의 오른쪽은 객체 리터럴이지만, 두 번째 줄의 오른쪽(intermediate)은 객체 리터럴이 아니다.
+                        따라서 잉여 속성 체크가 적용되지 않고 오류는 사라진다.
+
+        🟢 잉여 속성 체크는 타입 단언문을 사용할 때에도 적용 x
+
+            const o = { darkmode: true, title: 'Ski Free' } as Options; // 정상
+
+            => 이 예제가 단언문보다 선언문을 사용해야 하는 단적인 이유 중 하나이다.
+
+        🟢 잉여 속성 체크를 원치 않는다면, 인덱스 시그니처를 사용해서 타입스크립트가 추가적인 속성을 예상하도록 할 수 있다.
+
+            interface Options {
+                darkMode?: boolean;
+                [otherOptions:: string]: unknown;
+            }
+
+            const o: Options: {darkmode: true}; // 정상
+
+        🟢 선택적 속성을 가지는 '약한(weak)' 타입에도 비슷하게 체크가 동작
+
+                interface LineChartOptions {
+                    logscale?: boolean;
+                    invertedYAxis?: boolean;
+                    areaChart?: boolean;
+                }
+                const opts: { logScale: true };
+                const o: LineChartOptions = opts;
+                    // ~ '{ logScale: boolean }' 유형에 'LineChartOptions' 유형과 공통적인 속성이 없습니다.
+
+             구조적 관점에서 LineChartOptions 타입은 모든 속성이 선택적이므로 모든 객체를 포함할 수 있다.
+             이런 약한 타입에 대해서 타입스크립트는 값 타입과 선언 타입에 공통된 속성이 있는지 확인하는 별도의 체크를 수행
+
+             공통 속성 체크는 잉여 속성 체크와 마찬가지로 오타를 잡는 데 효과적이며 구조적으로 엄격하지 않다.
+
+             그러나 잉여 속성 체크와 다르게, 약한 타입과 관련된 할당문마다 수행된다.
+             임시 변수를 제거하더라도 공통 속성 체크는 여전히 동작한다.
+
+            
+        🟢 잉여 속성 체크는 구조적 타이핑 시스템에서 허용되는 속성 이름의 오타 같은 실수를 잡는 데 효과적

@@ -259,3 +259,39 @@ type T = typeof Cylinder; // 타입이 typeof Cylinder
   타입스크립트에서 구조 분해 할당을 하면 이상한 오류가 발생
 */
 // function email({person: Person, subject: string, body: string}) // 바인딩 요소 'Person'에 암시적으로 any 형식이 있습니다.
+
+/*
+    유니온 타입에 name 속성을 붙인 타입을 만들 수도 있다.
+*/
+type Input = {
+  name: string;
+  age: number;
+};
+type Output = {
+  introduce: string;
+};
+type NamedVariable = (Input | Output) & { address: string };
+
+const person: NamedVariable = {
+  address: '경기도',
+  age: 23,
+  introduce: '안녕하세요',
+  name: 'doeunnkimm',
+};
+
+/*
+    타입은 안 되지만, 인터페이스는 보강이 가능하다. --> 선언 병합
+*/
+
+interface IState {
+  name: string;
+  capital: string;
+}
+interface IState {
+  population: number;
+}
+const wyoming: IState = {
+  name: 'Wyoming',
+  capital: 'Cheyenne',
+  population: 500_000,
+}; // 정상

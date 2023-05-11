@@ -128,11 +128,11 @@ interface Lifespan {
 // ✨ 그러나 타입 연산자는 인터페이스의 속성이 아닌, 값의 집합(타입의 범위)에 적용됨
 // 그리고 추가적인 속성을 가지는 값도 여전히 그 타입에 속함
 // ✨ 그래서 Person과 Lifespan을 둘 다 가지는 값은 인터섹션 타입에 속하게 됨
-const ps: PersonSpan = {
-  name: 'Alan Turing',
-  birth: new Date('1912/06/23'),
-  death: new Date('1954/06/07'),
-};
+// const ps: PersonSpan = {
+//   name: 'Alan Turing',
+//   birth: new Date('1912/06/23'),
+//   death: new Date('1954/06/07'),
+// };
 // 당연히 앞의 세 가지보다 더 많은 속성을 가지는 값도 PersonSpan 타입에 속한다.
 
 // 규칙이 속성에 대한 인터섹션에 관해서는 맞지만, 두 인터페이스의 유니온 타입에서는 X
@@ -252,7 +252,7 @@ function calculateVolume(shape: unknown) {
   class 키워드는 값과 타입 두 가지로 모두 사용
   -> 클래스에 대한 typeof는 상황에 따라 다르게 동작
 */
-const v = typeof Cylinder; // 값이 "function"
+// const v = typeof Cylinder; // 값이 "function"
 type T = typeof Cylinder; // 타입이 typeof Cylinder
 
 /*
@@ -295,3 +295,54 @@ const wyoming: IState = {
   capital: 'Cheyenne',
   population: 500_000,
 }; // 정상
+
+/*
+    다음은 원기둥(cylinder)의 반지름과 높이, 표면적, 부피를 출력하는 코드이다.
+*/
+console.log(
+  'Cylinder 1 x 1',
+  'Surface area:',
+  6.283185 * 1 * 1 + 6.283185 * 1 * 1,
+  'Volume:',
+  3.14159 * 1 * 1 * 1
+);
+console.log(
+  'Cylinder 1 x 2',
+  'Surface area:',
+  6.283185 * 1 * 1 + 6.283185 * 2 * 1,
+  'Volume:',
+  3.14159 * 1 * 2 * 1
+);
+console.log(
+  'Cylinder 2 x 1',
+  'Surface area:',
+  6.283185 * 2 * 1 + 6.283185 * 2 * 1,
+  'Volume:',
+  3.14159 * 2 * 1 * 1
+);
+// 비슷한 코드가 반복되어 보기 불편
+// 이 코드에서 함수, 상수, 루프의 반복을 제거해 코드를 개선해보자.
+const surfaceArea = (r, h) => 2 * Math.PI * r * (r + h);
+const volume = (r, h) => Math.PI * r * r * h;
+for (const [r, h] of [
+  [1, 1],
+  [1, 2],
+  [2, 1],
+]) {
+  console.log(
+    `Cylinder ${r} x ${h}`,
+    `Surface area: ${surfaceArea(r, h)}`,
+    `Volume: ${volume(r, h)}`
+  );
+}
+// 이게 바로 코드를 반복하지 말라는 DRY(Don't Repeat yourself) 원칙
+// 그런데 반복된 코드를 열심히 제거하며 DRY 지켜왔던 개발자라도 타입에 대해서는 간과했을지 모른다.
+interface Person {
+  firstName: string;
+  lastName: string;
+}
+interface PersonWithBirthDate {
+  firstName: string;
+  lastName: string;
+  birth: Date;
+}

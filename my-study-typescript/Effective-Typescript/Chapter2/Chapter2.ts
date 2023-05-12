@@ -113,9 +113,9 @@ const a: AB = 'A'; // 정상, 'A'는 집합 { 'A', 'B' }의 원소입니다.
     인터페이스로 타입 선언하기
 */
 
-interface Person {
-  name: string;
-}
+// interface Person {
+//   name: string;
+// }
 
 interface Lifespan {
   birth: Date;
@@ -142,9 +142,9 @@ type K = keyof (Person | Lifespan); // 타입이 never
 // keyof (A|B) = (keyof A) & (keyof B)
 
 // extends 키워드 쓰기
-interface Person {
-  name: string;
-}
+// interface Person {
+//   name: string;
+// }
 
 interface PersonSpan extends Person {
   birth: Date;
@@ -337,12 +337,77 @@ for (const [r, h] of [
 }
 // 이게 바로 코드를 반복하지 말라는 DRY(Don't Repeat yourself) 원칙
 // 그런데 반복된 코드를 열심히 제거하며 DRY 지켜왔던 개발자라도 타입에 대해서는 간과했을지 모른다.
-interface Person {
-  firstName: string;
-  lastName: string;
-}
+// interface Person {
+//   firstName: string;
+//   lastName: string;
+// }
 interface PersonWithBirthDate {
   firstName: string;
   lastName: string;
   birth: Date;
 }
+
+/*
+    Record, Mapped 타입 사용해보기
+*/
+
+// type Person = Record<'firstName' | 'lastName', string>;
+type Person = { [k in 'firstName' | 'lastName']: string };
+const jun: Person = { firstName: '', lastName: '' };
+
+// 만약에 여러 개의 필드 중 하나만 다르거나 할 경우에는
+type ABC = { [k in 'a' | 'b' | 'c']: k extends 'b' ? string : number };
+// type ABC = {
+//   a: "number";
+//   b: "string";
+//   c: "number";
+// }
+
+/*
+    ArrayLike 타입
+
+    ArrayLike 타입은 타입스크립트에서 배열과 유사한 객체를 표현하기 위한 타입이다.
+    배열과 유사한 객체는 순회 가능하며, `length` 속성을 가지고 있으며, 인덱스를 통해 요소에 접근할 수 있는 특징이 있다.
+
+    ==> Array와 같이 number 타입으로 key로 접근할 수 있으나,
+        Array 프로토타입에 있는 수많은 프로토타입에 있는 메서드들이 필요 없을 때 사용한다.
+
+*/
+
+function sumValues(values: ArrayLike<number>): number {
+  let sum = 0;
+  for (let i = 0; i < values.length; i++) {
+    sum += values[i];
+  }
+  return sum;
+}
+
+/*
+    위 코드에서 sumValues의 매개변수 자리의 values는
+    ArrayLike<number>라는 타입으로 선언되었다.
+
+    ==> 유사배열 타입의 변수가 들어와야 한다는 말 !
+
+    🏷️ 유사배열
+
+      const arr = {
+        0: '1',
+        1: '2',
+        length: 2
+      }
+
+      ==> 위와 같은 형태로 선언하면 되고, 반드시 length라는 필드값을 가져야 한다.
+          매우 원시적인 방법으로, 값이 바뀔 때마다 length를 수정해주어야 한다.
+
+        🟢 유사 배열의 조건
+
+            1) 반드시 length가 필요하다. 이 조건은 필수. 없으면 유사배열이라고 인식 X
+            2) index 번호가 0부터 시작해서 1씩 증가해야 한다. 필수는 아니지만, 예상치 못한 결과가 생길 수 있다.
+
+        🟢 유사 배열을 언제 쓰는가..?
+
+            - 키값을 number 타입으로 써야만 할 때
+*/
+
+const sumValue = sumValues({ 0: 1, 1: 2, length: 2 });
+console.log(sumValue); // 3

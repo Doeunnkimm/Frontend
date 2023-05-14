@@ -411,3 +411,38 @@ function sumValues(values: ArrayLike<number>): number {
 
 const sumValue = sumValues({ 0: 1, 1: 2, length: 2 });
 console.log(sumValue); // 3
+
+/*
+      Readonly 제너릭 사용해보기
+*/
+interface Outer {
+  inner: {
+    x: number;
+  };
+}
+const o: Readonly<Outer> = {
+  inner: { x: 0 },
+};
+// o.inner = { x: 1 }; //읽기 전용 속성이므로 'inner'에 할당할 수 없습니다.ts(2540)
+o.inner.x = 2; // 정상
+
+type T1 = Readonly<Outer>;
+// type T1 = {
+//   readonly inner: {
+//       x: number;
+//   };
+// }
+
+/*
+    const와 readonly의 차이
+*/
+const c = { p: { name: 'jun' } };
+type TT = { readonly p: { name: string } };
+
+c.p.name = 'don';
+c.p = { name: 'jun' };
+// c = { p: { name: 'don' } }; // 불가능
+
+const juni: TT = { p: { name: 'jun' } };
+// juni.p = { name: "junni" }; //읽기 전용 속성이므로 'p'에 할당할 수 없습니다.ts(2540)
+c.p.name = 'junni'; // 가능

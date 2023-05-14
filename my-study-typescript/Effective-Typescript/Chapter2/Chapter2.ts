@@ -446,3 +446,35 @@ c.p = { name: 'jun' };
 const juni: TT = { p: { name: 'jun' } };
 // juni.p = { name: "junni" }; //읽기 전용 속성이므로 'p'에 할당할 수 없습니다.ts(2540)
 c.p.name = 'junni'; // 가능
+
+/*
+    - 매핑된 타입을 사용해서 관련된 값과 타입을 동기화하도록 하자
+    - 인터페이스에 새로운 속성을 추가할 때, 선택을 강제하도록 매핑된 타입을 고려해야 한다.
+*/
+
+type SyncedObject<T> = {
+  [k in keyof T]: T[k];
+};
+
+function syncObjects<T>(source: T, target: SyncedObject<T>): void {
+  for (const key in source) {
+    target[key] = source[key];
+  }
+}
+
+const source = {
+  name: 'John',
+  age: 30,
+  email: 'john@example.com',
+};
+const target: SyncedObject<typeof source> = {
+  name: '',
+  age: 0,
+  email: '',
+  // address: '', // error
+};
+
+syncObjects(source, target);
+
+console.log(target);
+// 출력: { name: 'John', age: 30, email: 'john@example.com' }

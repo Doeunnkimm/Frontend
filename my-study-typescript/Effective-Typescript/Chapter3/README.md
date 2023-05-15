@@ -508,3 +508,165 @@
           ```
         - 넓히기로 인해 오류가 발생하낟고 생각되면, 명시적 타입 구문 또는 const 단언문을 추가하는 것을 고려해야 한다.
         - 단언문으로 인해 추론이 어떻게 변화하는지 편집기에서 주기적으로 타입을 살펴보자 !
+
+---
+
+## 🪐 아이템22. 타입 좁히기
+
+- 타입 좁히기는 타입스크립트가 넓은 타입으로부터 좁은 과정으로 진행하는 과정을 말한다.
+- (1) 아마도 가장 일반적인 예시는 null 체크 !
+  ```
+  const el = document.getElementById('foo'); // 타입이 HTMLElement | null
+  if (el) {
+    el.innerHTML = 'Party Time'.blink();
+  } else {
+    alert('No element #foo');
+  }
+  ```
+  첫 번째 블록에서 HTMLElement | null 타입의 null을 제외하므로, 더 좁은 타입이 되어 작업이 훨씬 쉬워진다. 타입 체커는 일반적으로 이러한 조건문에서 타입 좁히기를 잘 해내지만, **타입 별칭이 존재한다면 그러지 못할 수도** 있다.
+
+<br>
+
+- (2) 분기문에서 예외를 던지거나 함수를 반환하여 블록의 나머지 부분에서 변수의 타입을 좁힐 수도 있다.
+  ```
+  const el = document.getElementById('foo'); // 타입이 HTMLElement | null
+  if (!el) throw new Error('Unable to find #foo');
+  el.innerHTML = 'Party Time'.blink();
+  ```
+
+<br>
+
+- (3) 다음은 instanceof를 사용해서 타입을 좁히는 예제이다.
+  ```
+  function contains(text: string, search: string|RegExp) {
+    if (search instanceof RegExp) {
+      // search의 타입은 ExgExp
+      return !!search.exec(text);
+    }
+    // search의 타입은 string
+    return text.includes(search);
+  }
+  ```
+
+<br>
+
+- (4) 속성 체크로도 타입을 좁힐 수 있다.
+  ```
+  interface A { a: number }
+  interface B { b: number }
+  function pickAB(ab: A | B) {
+    if ('a' in ab) {
+      // ab의 타입은 A
+    } else {
+      // ab의 타입은 B
+    }
+    // ab의 타입은 A | B
+  }
+  ```
+
+<br>
+
+- (5) Array.isArray 같은 일부 내장 함수로도 타입을 좁힐 수 있다.
+  ```
+  function contains(text: string, terms: string | string[]) {
+    const termList = Array.isArray(terms) ? terms : [terms];
+    // termList의 타입은 string[]
+    // ...
+  }
+  ```
+
+<br>
+
+- 타입스크립트는 일반적으로 조건문에서 타입을 좁히는 데 매우 능숙하다.
+- 그러나 타입을 섣불리 판단하는 실수를 저지르기 쉬우므로 다시 한번 꼼꼼히 따져 봐야 한다.
+- 예를 들어, 다음 예제는 유니온 타입에서 null을 제외하기 위해 잘못된 방법을 사용했다.
+
+  ```
+  const el = document.getElementById('foo'); // 타입이 HTMLElement | null;
+  if (typeof el === 'object') {
+    // el의 타입은 HTMLElement | null
+  }
+  ```
+
+  <p align="center"><strong>자바스크립트에서 typeof null은 "object"이다 !</strong></p>
+
+  그래서 if 구문에서 null이 제외되지 않았다. 또한 기본형 값이 잘못되어도 비슷한 사례가 발생한다.
+
+  ```
+  function foo(x?: number | string | null) {
+    if (!x) {
+      // x의 타입은 string | number | null | undefined
+    }
+  }
+  ```
+
+  빈 문자열 ''과 0은 모두 false가 되기 때문에, 타입은 전혀 좁혀지지 않았고 x는 여전히 블록 내에서 string 또는 number가 된다.
+
+<br>
+
+- (6) 타입을 좁히는 또 다른 일반적인 방법은 **명시적 '태그'를 붙이는 것**이다.
+
+  ```
+  interface UploadEvent { type: 'upload'; filename: string; contents: string }
+  interface DownloadEvent { type: 'download'; filename: string; }
+  type AppEvent = UploadEvent | DownloadEvent;
+
+  function handleEvent(e: AppEvent) {
+    switch(e.type) {
+      case 'download':
+          // e의 타입이 DownloadEvent
+          break;
+      case 'upload':
+          // e의 타입이 UploadEvent
+          break;
+    }
+  }
+  ```
+
+  이 패턴은 '태그된 유니온(tagged union)' 또는 '구별된 유니온(discriminated union)'이라고 불리며, 타입스크립트 어디에서나 찾아볼 수 있다.
+
+<br>
+
+- (7) 만약 타입스크립트가 타입을 식별하지 못한다면, 식별을 돕기 위해 커스텀 함수를 도입할 수 있다.
+
+  ```
+  function isInputElement(el: HTMLElement): el is HTMLInputElement {
+    return 'value' in el;
+  }
+
+  function getElementContent(el: HTMLElement) {
+    if (isInputElement(el)) {
+      // el의 타입은 HTMLInputElement
+      return el.value;
+    }
+    // el의 타입은 HTMLElement
+    return el.textContent;
+  }
+  ```
+
+  이러한 기법을 **사용자 정의 타입 가드**라고 한다. 반환 타입이 `el is HTMLInputElement`는 **함수의 반환이 true일 경우**, 타입 체커에게 매개변수의 타입을 좁힐 수 있다고 알려 준다.
+
+<br>
+
+- (8) 어떤 함수들은 타입 가드를 사용하여 배열과 객체의 타입 좁히기를 할 수 있다.
+  ```
+  const jackson5 = ['Jackie', 'Tito', 'Jermaine', 'Marlon', 'Michael'];
+  const members = ['Janet', 'Michael'].map(who => jackson5.find(n => n === who)); // 타입이 (string | undefined)[]
+  ```
+  filter 함수를 사용해 undefined를 걸러 내려고 해도 잘 동작하지 않을 것이다.
+  ✅ 타입스크립트의 `filter`를 적용한 결과로 새로운 배열을 생성하지 않고, 기존 배열의 타입을 그대로 유지하기 때문이다. 따라서 `filter` 함수를 적용해도 결과의 타입은 `(string | undeinfed)[]`로 유지된다.
+  ```
+  const members = ['Janet', 'Michael']
+      .map(who => jackson5.find(n => n === who))
+      .filter(who => who !== undefined); // 타입이 (string | undefined)[]
+  ```
+  이럴 때 **타입 가드를 사용**하면 타입을 좁힐 수 있다.
+  ```
+  function isDefined<T>(x: T | undefined): x is T {
+    return x !== undefined;
+  }
+  const members = ['Janet', 'Michael']
+      .map(who => jackson5
+      .find(n => n === who)).filter(isDefined); // 타입이 string[]
+  ```
+  편집기에서 타입을 조사하는 습관을 가지면 타입 좁히기가 어떻게 동작하는지 자연스레 익힐 수 있다. 타입스크립트에서 타입이 어떻게 좁혀지는지 이해한다면 타입 추론에 대한 개념을 잡을 수 있고, 오류 발생의 원인을 알 수 있으며, 타입 체커를 더 효율적으로 이용할 수 있다.

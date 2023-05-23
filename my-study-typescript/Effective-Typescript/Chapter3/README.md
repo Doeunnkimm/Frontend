@@ -1413,3 +1413,186 @@ callWithRandomNumbers(fn);
 ```
 
 또는 가능할 경우 전체 함수 표현식에 타입 선언을 적용하는 것이다.
+
+---
+
+## 🌱 아이템27. 함수형 기법과 라이브러리 타입 흐름 유지하기
+
+- 파이썬, C, 자바 등에서 볼 수 있는 표준 라이브러리가 자바스크립트에는 포함 X
+- 수년간 많은 라이브러리들은 표준 라이브러리의 역할을 대신하기 위해 노력해 왔다.
+- 제이쿼리(jQuery)는 DOM과의 상호작용뿐만 아니라 객체와 배열을 순회하고 매핑하는 기능을 제공했다.
+- 언더스코어(Underscore)는 주로 일반적인 유틸리티 함수를 제공하는 데 초점을 맞추었고, 이러한 노력을 바탕으로 로대시(Lodash)가 만들어졌다.
+- 람다(Ramda) 같은 최근의 라이브러리는 함수형 프로그래밍의 개념을 자바스크립트 세계에 도입하고 있다.
+
+<br>
+
+- 이러한 라이브러리들의 일부 기능(map, flatMap, filter, reduce 등)는 순수 자바스크립트로 구현되어 있다.
+- 이러한 기법(그리고 로대시에서 제공되는 다른 것들)은 루프로 대신할 수 있기 때문에 자바스크립트에서 유용하게 사용되는데, 타입스크립트와조합하여 사용하면 더욱 빛을 발한다!
+- 그 이유는 **타입 정보가 그대로 유지되면서 타입 흐름(flow)이 계속 전달**되도록 하기 때문이다.
+- 반면에, 직접 루프를 구현하면 타입 체크에 대한 관리도 직접 해야 한다.
+
+<br>
+
+- 예를 들어, 어떤 CSV 데이터를 파싱한다고 생각해보자.
+- 순수 자바스크립트에서는 절차형(imperative) 프로그래밍 형태로 구현할 수 있다.
+
+  ```
+  const csvData = "...";
+  const rawRows = csvData.split('\n');
+  const headers = rawRows[0].split(',');
+
+  const rows = rawRows.slice(1).map(rowStr => {
+    const row = {};
+    rowStr.split(',').forEach((val, j) => {
+      row[headers[j]] = val;
+    });
+    return row;
+  });
+
+  ```
+
+  함수형 마인드를 조금이라도 가진 자바스크립트 개발자라면 reduce를 사용해서 행 객체를 만드는 방법을 선호할 수도 있다.
+
+  ```
+  const rows = rawRows.slice(1)
+    .map(rowStr => rowStr.split(',').reduce((row, val, i) => (row[headers[i]] = val, row)))
+  ```
+
+  이 코드는 절차형 코드에 비해 세 줄(약 20개의 글자)을 절약했지만 보는 사람에 따라 더 복잡하게 느껴질 수도 있다. 키와 값 배열로 취합(zipping)해서 객체로 만들어 주는, 로대시의 zipObject 함수를 이용하면 코드를 더욱 짧게 만들 수 있다.
+
+  ```
+  import _ from 'lodash';
+  const rows = rawRows.slice(1)
+    .map(rowStr => _.zipObject(headers, rowStr.split(',')));
+  ```
+
+  코드가 매우 짧아졌다. 그런데 자바스크립트에서는 프로젝트에 서드파티 라이브러리 종속성을 추가할 때 신중해야 한다. 만약 서드파티 라이브러리 기반으로 코드를 짧게 줄이는 데 시간이 많이 든다면, 서드파티 라이브러리를 사용하지 않는 게 낫기 때문이다.
+
+  ```
+  [서드파티 라이브러리]
+  제 3자 라이브러리
+  제작사에서 만든 것이 아니라 다른 업체에서 만든 해당 툴 지원 라이브러리.
+
+  제조사와 사용자 이외의 외부 생산자를 가리키는 뜻으로 쓰인다.
+
+  프로그래밍 개발과 개발자 사이에 플러그인, 라이브러리, 프레임워크를 서드파티로 볼 수 있다.
+  서비스와 사용자 사이는 응용프로그램, 애플리케이션, 웹 서비스가 서드파티라고 볼 수 있다.
+  ```
+
+- 그러나 같은 코드를 타입스크립트로 작성하면 서드파티 라이브러리를 사용하는 것이 무조건 유리하다.
+- 타입 정보를 참고하며 작업할 수 있기 때문에 서드파티 라이브러리 기반으로 바꾸는 게 시간이 훨씬 단축된다.
+
+<br>
+
+- 한편, CSV 파서의 절차형 버전과 함수형 버전 모두 같은 오류를 발생시킨다.
+
+  ```
+  cons rowsA = rawRows.slice(1).map(rowStr => {
+    const row = {};
+    rowStr.split(',').forEach((val, j) => {
+      row[headers[j]] = val;
+    //~~~~~~~~~~~~~~~ '{}' 형식에서 'string' 형식의 매개변수가 포함된
+    //                 인덱스 시그니처를 찾을 수 없습니다.
+    });
+    return row;
+  });
+  const rowsB = rawRows.slice(1)
+    .map(rowStr => rowStr.split(',').reduce(
+      (row, val, i) => (row[headers[i]] = val, row),
+                     // ~~~~~~~~~~~~~~~ '{}' 형식에서 'string' 형식의 매개변수가
+                     //                 포함된 인덱스 시그니처를 찾을 수 없습니다.
+    {}));
+  ```
+
+  두 버전 모두 {}의 타입으로 {[column: string]: string} 또는 Record<string, string>을 제공하면 오류가 해결된다.
+
+  <br>
+
+  반면 로대시 버전은 별도의 수정 없이도 타입 체커를 통과한다.
+
+  ```
+  const rows = rawRows.slice(1)
+    .map(rowStr => _.zipObject(headers, rowStr.split(',')));
+    // 타입이 _.Dictionary<string>[]
+  ```
+
+  Dictionary는 로대시의 타입 별칭이다.
+  Dictionary\<string>은 { [key: string]: string } 또는 Record<string, string>과 동일하다.
+  여기서 중요한 점은 타입 구문이 없어도 rows의 타입이 정확하다는 것이다.
+
+- 데이터의 가공(munging)이 정교해질수록 이러한 장점은 더욱 분명해진다.
+- 예를 들어, 모든 NBA 팀의 선수 명단을 가지고 있다고 가정해보자.
+
+  ```
+  interface BasketballPlayer {
+    name: string;
+    team: string;
+    salary: number;
+  }
+  declare const rosters: {[team: string]: BasketballPlayer[]}
+  ```
+
+  루프를 사용해 단순(flat) 목록을 만들려면 배열에 concat를 사용해야 한다.
+  다음 코드는 동작이 되지만 타입 체크는 되지 않는다.
+
+  ```
+  let allPlayers = [];
+  //  ~~~~~~~~~ 'allPlayers' 변수는 형식을 확인할 수 없는 경우
+  //            일부 위치에서 암시적으로 'any[]' 형식입니다.
+  for(const players of Object.values(players)) {
+    allPlayers = allPlayers.concat(players);
+              // ~~~~~~~~~~ 'allPlayers' 변수에는 암시적으로
+              //            'any[]' 형식이 포함됩니다.
+  }
+  ```
+
+  이 오류를 고치려면 allPlayers에 타입 구문을 추가해야 한다.
+
+  ```
+  let allPlayers: BasketballPlayer[] = [];
+  for (const players of Object.values(rosters)) {
+    allPlayers = allPlayers.concat(players); // 정상
+  }
+  ```
+
+  그러나 더 나은 해법은 Array.prototype.flat을 사용하는 것이다.
+
+  ```
+  const allPlayers = Object.values(rosters).flat();
+  // 정상, 타입이 BasketballPlayer[]
+  ```
+
+  flat 메서드는 다차원 배열을 평탄화해(flatten)준다. 타입 시그니처는 T[][] => T[] 같은 형태이다. 이 버전이 가장 간결하고 타입 구문도 필요 없다. 또한 allPlayers 변수가 향후에 변경되지 않도록 let 대신 const를 사용할 수 있다.
+
+  <br>
+
+  allPlayers를 가지고 각 팀별로 연봉 순으로 정렬해서 최고 연봉 선수의 명단을 만든다고 가정해 보자.
+  로대시 없는 방법은 다음과 같다. 함수형 기법을 쓰지 않은 부분은 타입 구문이 필요하다.
+
+  ```
+  const teamToPlayers: {[team: string]: BasketballPlayer[]} = {};
+  for (const player of allPlayers) {
+    const { team } = player;
+    teamToPlayers[team] = teamToPlayers[team] || [];
+    teamToPlayers[team].push(player);
+  }
+
+  for (const players of Object.values(teamToPlayers)) {
+    players.sort((a, b) => b.salary - a.salary);
+  }
+
+  const bestPaid = Object.values(teamToPlayers).map(players => players[0]);
+  bestPaid.sort((playerA, playerB) => playerB.salary - playerA.salary);
+  console.log(bestPaid);
+  ```
+
+  로대시를 사용해서 동일한 작업을 하는 코드를 구현하면 다음과 같다.
+
+  ```
+  const bestPaid = _(allPlayers)
+    .groupBy(player => player.team)
+    .mapValues(players => _.maxBx(players, p => p.salary)!)
+    .values()
+    .sortBy(p => -p.salary)
+    .value() // 타입이 BasketballPlayer[]
+  ```

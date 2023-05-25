@@ -1,15 +1,7 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
-export async function getStaticProps() {
-  console.log('server');
-  return {
-    props: { time: new Date().toISOString() },
-    revalidate: 1, // 1초
-  };
-}
-
-export default function ISR({ time }) {
+export default function Layout({ children }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,10 +9,7 @@ export default function ISR({ time }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h2>SSG 페이지입니다 :)</h2>
-        <h3 className={styles.title}>{time}</h3>
-      </main>
+      <main>{children}</main>
 
       <footer>
         <a
@@ -33,7 +22,19 @@ export default function ISR({ time }) {
         </a>
       </footer>
 
-      <style jsx>{`
+      <style jsx global>{`
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
+        }
+        * {
+          box-sizing: border-box;
+        }
+
         main {
           padding: 5rem 0;
           flex: 1;
@@ -67,20 +68,6 @@ export default function ISR({ time }) {
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
         }
       `}</style>
     </div>

@@ -1,7 +1,15 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
-export default function Layout({ children }) {
+export async function getStaticProps() {
+  console.log('server');
+  return {
+    props: { time: new Date().toISOString() },
+    revalidate: 1, // 1초
+  };
+}
+
+export default function ISR({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -9,7 +17,10 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>{children}</main>
+      <main>
+        <h2>SSG 페이지입니다 :)</h2>
+        <h3 className={styles.title}>{time}</h3>
+      </main>
 
       <footer>
         <a

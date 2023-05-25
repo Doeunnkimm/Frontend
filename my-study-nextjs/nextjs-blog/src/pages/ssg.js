@@ -1,7 +1,5 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Layout from '../components/Layout';
-import SubLayout from '../components/SubLayout';
+import Layout from 'components/Layout';
+import SubLayout from 'components/SubLayout';
 
 export async function getStaticProps() {
   console.log('server');
@@ -14,7 +12,7 @@ export default function SSG({ time }) {
   return (
     <>
       <h2>SSG 페이지입니다 :)</h2>
-      <h3 className={styles.title}>{time}</h3>
+      <h3>{time}</h3>
     </>
   );
 }

@@ -63,3 +63,57 @@ const output2: OutputData = processFn(input2); // "ALICE";
 // 이 예제에서 사용할 때는 너그럽게 처리(InputData의 경우 string 혹은 number)
 // 생성할 때는 엄격하게 처리(OutputData의 경우 string)하는 방식을 따르고 있다.
 // 이렇게 함으로써 해당 함수의 사용범위와 유연성을 높일 수 있다.
+
+/**
+ * ☀️ 아이템31. 타입 주변에 null 값 배치하기
+ */
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+function getProduct(id: string): Product | null {
+  const products: Product[] = [
+    {
+      id: '1',
+      name: 'Product A',
+      price: 100,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: '2',
+      name: 'Product B',
+      price: 200,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: '3',
+      name: 'Product C',
+      price: 300,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ];
+
+  const product = products.find(p => p.id === id);
+  return product ? product : null; // 찾은 게 있으면 그걸 반환, 아니면 null을 반환
+}
+
+// product 변수가 Product type이 맞는지 타입 가드
+function isProduct(product: any): product is Product {
+  return (product as Product).id !== undefined;
+}
+
+// getProduct 함수 호출
+const product = getProduct('1');
+
+if (product && isProduct(product)) {
+  console.log(processFn.name);
+  console.log(product.createdAt.toISOString());
+} else {
+  console.log('Product not found !');
+}

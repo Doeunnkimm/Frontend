@@ -1,15 +1,15 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   console.log('server');
   return {
     props: { time: new Date().toISOString() },
+    revalidate: 1, // 1초
   };
 }
 
-export default function Home({ time }) {
+export default function ISR({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,16 +18,8 @@ export default function Home({ time }) {
       </Head>
 
       <main>
-        <h1 className={styles.title}>{time}</h1>
-        <h2>
-          <Link href="/csr">CSR로 이동하기</Link>
-        </h2>
-        <h2>
-          <Link href="/ssg">SSG로 이동하기</Link>
-        </h2>
-        <h2>
-          <Link href="/isr">ISR로 이동하기</Link>
-        </h2>
+        <h2>SSG 페이지입니다 :)</h2>
+        <h3 className={styles.title}>{time}</h3>
       </main>
 
       <footer>

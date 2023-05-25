@@ -1,15 +1,14 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+import { useEffect, useState } from 'react';
 
-export async function getServerSideProps() {
-  console.log('server');
-  return {
-    props: { time: new Date().toISOString() },
-  };
-}
+export default function CSR() {
+  const [time, setTime] = useState();
 
-export default function Home({ time }) {
+  useEffect(() => {
+    setTime(new Date().toISOString());
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -18,16 +17,8 @@ export default function Home({ time }) {
       </Head>
 
       <main>
-        <h1 className={styles.title}>{time}</h1>
-        <h2>
-          <Link href="/csr">CSR로 이동하기</Link>
-        </h2>
-        <h2>
-          <Link href="/ssg">SSG로 이동하기</Link>
-        </h2>
-        <h2>
-          <Link href="/isr">ISR로 이동하기</Link>
-        </h2>
+        <h2>CSR 페이지입니다 :)</h2>
+        <h3 className={styles.title}>{time}</h3>
       </main>
 
       <footer>

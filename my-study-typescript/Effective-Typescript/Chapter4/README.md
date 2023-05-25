@@ -791,3 +791,177 @@
   ```
 
   앞의 두 경우 모두 타입 정의를 통해 속성 간의 관계를 더 명확하게 만들 수 있다.
+
+---
+
+## 🌱 아이템33. string 타입보다 더 구체적인 타입 사용하기
+
+- string 타입의 범위는 매우 넓다.
+- "x"나 "y" 같은 한 글자로, '모비 딕'의 전체 내용도 string 타입이다.
+- string 타입으로 변수를 선언하려 한다면, 혹시 그보다 더 좁은 타입이 적절하지는 않을지 검토해 봐야 한다.
+- 음악 컬렉션을 만들기 위해 앨범의 타입을 정의한다고 가정해 보자
+
+  ```
+  interface Album {
+    artist: string;
+    title: string;
+    releaseDate: string; // YYYY-MM-DD
+    recordingType: string; // 예를 들어, 'live' 또는 'studio'
+  }
+  ```
+
+  string 타입을 남발한 모습이다. 게다가 주석에 타입 정보를 적어둔 걸 보면 현재 인터페이스가 잘못되었다는 것을 알 수 있다. 다음 예시처럼 **Album 타입에 엉뚱한 값을 설정할 수** 있다.
+
+  ```
+  const kindOfBlue: Album = {
+    artist: 'Miles Davis',
+    title: 'Kind of Blue',
+    releaseDate: 'August 17th, 1959', // 날짜 형식이 다르다.
+    recordingType: 'Studio', // 오타(대문자 S)
+  }; // 정상
+  ```
+
+  releaseDate 필드의 값은 주석에 설명된 형식과 다르며, recordingType 필드의 값 "Studio"는 소문자 대신 대문자가 쓰였다. 그러나 이 두 값 모두 문자열이고, 해당 객체는 Album 타입에 할당 가능하며 타입 체커를 통과한다.
+
+  <br>
+
+  또한 string 타입의 범위가 넓기 때문에 제대로 된 Album 객체를 사용하더라도 **매개변수 순서가 잘못된 것이 오류로 드러나지 않는다.**
+
+  ```
+  function recordRelease(title: string, date: string) { ... }
+  recordRelease(kindOfBlue.releaseDate, kindOfBlue.title); // 오류여야 하지만 정상
+  ```
+
+  recordRelease 함수의 호출에서 매개변수들의 순서가 바뀌었지만, 둘 다 문자열이기 때문에 타입 체커가 정상적으로 인식한다. 앞의 예제처럼 string 타입이 남용된 코드를 "문자열을 남발하여 선언되었다(stringly typed)"고 표현하기도 한다.
+
+  <br>
+
+- 앞의 오류를 방지하기 위해 타입의 범위를 좁히는 방법을 생각해보자.
+
+  ```
+  type RecordingType = 'studio' | 'live';
+
+  interface Album {
+    artist: string;
+    title: string;
+    releaseDate: Date;
+    recordingType: RecordingType;
+  }
+  ```
+
+  위와 같은 방식에는 세 가지 장점이 더 있다.
+
+  - 첫 번째, 타입을 명시적으로 정의함으로써 다른 곳으로 값이 전달되어도 타입 정보가 유지된다.
+    예를 들어, 특정 레코딩 타입의 앨범을 찾는 함수를 작성한다면 다음처럼 정의할 수 있다.
+
+    ```
+    function getAlbumOfType(recordingType: string): Album[] {
+      // ...
+    }
+    ```
+
+    getAlbumOfType 함수를 호출하는 곳에서 recordingType의 값이 string타입이어야 한다는 것 외에는 다른 정보가 없다. 주석으로 써놓은 "studio" 또는 "live"는 Album의 정의에 숨어 있고, 함수를 사용하는 사람은 recordingType이 "studio" 또는 "live"여야 한다는 것을 알 수 없다.
+
+    <br>
+
+  - 두 번째, 타입을 명시적으로 정의하고 해당 타입의 의미를 설명하는 주석을 붙여 넣을 수 있다.
+    ```
+    /** 이 녹음은 어떤 환경에서 이루어졌는지? */
+    type RecordingType = 'live' | 'studio';
+    ```
+    getAlbumOfType이 받는 매개변수를 string 대신 RecordingType으로 바꾸면, 함수를 사용하는 곳에서 RecordingType의 설명을 볼 수 있다.
+
+  <br>
+
+  - 세 번째, keyof 연산자로 더욱 세밀하게 객체의 속성 체크가 가능해진다.
+
+<br>
+
+- 함수의 매개변수에 string을 잘못 사용하는 일은 흔하다.
+- 어떤 배열에서 한 필드의 값만 추출하는 함수를 작성한다고 생각해보자.
+- 실제로 언더스코어(Underscore) 리어브러리에는 pluck이라는 함수가 있다.
+
+  ```
+  function pluck(records, key) {
+    return records.map(r => r[key]);
+  }
+  ```
+
+  pluck 함수의 시그니처를 다음처럼 작성할 수 있다.
+
+  ```
+  function pluck(records: any[], key: string): any[] {
+    return records.map(r => r[key]);
+  }
+  ```
+
+  타입 체크가 되긴 하지만 any 타입이 있어서 정밀하게 못한다. 특히 반환 값에 any를 사용하는 것은 매우 좋지 않은 설계이다. 먼저 타입 시그니처를 개선하는 첫 단계로 제너릭 타입을 도입해 보자.
+
+  ```
+  function pluck<T>(records: T[], key: string): any[] {
+    return records.map(r => r[key]);
+                          // ~~~~~~ '{}' 형식에 인덱스 시그니처가 없으므로
+                          //         요소에 암시적으로 'any' 형식이 있습니다.
+  }
+  ```
+
+  이제 타입스크립트는 key의 타입이 string이기 때문에 범위가 너무 넓다는 오류를 발생시킨다. Album의 배열을 매개변수로 전달하면 기존의 string 타입의 넓은 범위와 반대로, key는 단 네 개의 값("artist", "title", "releaseDate", "recordingType")만이 유효하다. 다음 예시는 keyof Album 타입으로 얻게 되는 결과이다.
+
+  ```
+  type K = keyof Album;
+  // 탸입이 "artist" | "title" | "releaseDate" | "recordingType"
+  ```
+
+  그러므로 string의 keyof T로 바꾸면 된다.
+
+  ```
+  function pluck<T>(records: T[], key: keyof T) {
+    return records.map(r => r[key])
+  }
+  ```
+
+  이 코드는 타입 체커를 통과한다. 또한 타입스크립트가 반환 타입을 추론할 수 있게 해준다. pluck 함수에 마우스를 올려 보면, 추론된 타입을 알 수 있다.
+
+  ```
+  function pluck<T>(records: T[], key: keyof T): T[keyof T][]
+  ```
+
+  T[keyof T]는 T 객체 내의 가능한 모든 값의 타입이다.
+
+  <br>
+
+  그런데 key의 값으로 하나의 문자열을 넣게 되면, 그 범위가 너무 넓어서 적절한 타입이라고 보기 어렵다. 예를 들어보자
+
+  ```
+  const releaseDates = pluck(albums, 'releaseDate'); // 타입이 (string | Date)[]
+  ```
+
+  releaseDate의 타입은 (string | Date)[]가 아니라 Date[]이어야 한다. keyof T는 string에 비하면 훨씬 범위가 좁기는 하지만 그래도 여전히 넓다. 따라서 범위를 좁히기 위해서, keyof T의 부분 집합(아마도 단일 값)으로 두 번째 제너릭 매개변수를 도입해야 한다.
+
+  ```
+  function pluck<T, K extends keyof T>(records: T[], key: K): T[k][] {
+    return records.map(r => r[key]);
+  }
+  ```
+
+  이제 타입 시그니처가 완벽해졌다. pluck을 여러 가지 방법으로 호출하면서 제대로 반환 타입이 추론되는지, 무효한 매개변수를 방지할 수 있는지 확인해 볼 수 있다.
+
+  ```
+  pluck(albums, 'releaseDate'); // 타입이 Date[]
+  pluck(albums, 'artist'); // 타입이 string[]
+  pluck(albums, 'recordingType'); // 타입이 RecordingType[]
+  pluck(albums, 'recordingDate');
+               // ~~~~~~~~~~~~~ '"recordingDate"' 형식의 인수는
+                                 ... 형식의 매개변수에 할당될 수 없습니다.
+
+  ```
+
+  매개변수 타입이 정밀해진 덕분에 언어 서비스는 Album의 키에 자동 완성 기능을 제공할 수 있게 해준다.
+
+<br>
+
+- string은 any와 비슷한 문제를 가지고 있다.
+- 따라서 잘못 사용하게 되면 무효한 값을 허용하고 타입 간의 관계도 감추어 버린다.
+- 이러한 문제점은 타입 체커를 방해하고 실제 버그를 찾지 못하게 만든다.
+- 타입스크립트에서 string의 부분 집합을 정의할 수 있는 기능은 자바스크립트 코드에 타입 안전성을 높인다.
+- 보다 정확한 타입을 사용하면 오류를 방지하고 코드의 가독성도 향상시킬 수 있다.

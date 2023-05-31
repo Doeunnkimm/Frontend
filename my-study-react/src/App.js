@@ -35,14 +35,17 @@ import ProductList from './msw/Pages/list/List';
 import router from './msw/Routes/routing';
 import { Provider } from 'jotai';
 import JotaiTest from './jotai/JotaiTest';
+import StoryMain from './storybook-pratice/src';
+import './index.css'; // storybook을 위해
 
 function App() {
   worker.start();
   // const queryClient = new QueryClient();
   return (
-    <Provider>
-      <JotaiTest />
-    </Provider>
+    <StoryMain />
+    // <Provider>
+    //   <JotaiTest />
+    // </Provider>
     // ------------- Nego Market 테스트 용 컴포넌트--------------
     // <RecoilRoot>
     //   <RouterProvider router={router} />

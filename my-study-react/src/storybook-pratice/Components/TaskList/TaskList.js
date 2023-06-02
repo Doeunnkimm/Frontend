@@ -71,11 +71,11 @@ export default TaskList;
  *
  * Type의 propTypes에서 정의한 것을 재사용하자
  */
-TaskList.PropTypes = {
+TaskList.propTypes = {
   /** Checks if it`s in loading state */
   loading: PropTypes.bool,
   /** The list of tasks */
-  tasks: PropTypes.arrayOf(Task.PropTypes.task).isRequired,
+  tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
   /** Event to change the task to pinned */
   onPinTask: PropTypes.func,
   /** Event to change the task to archived */

@@ -1,5 +1,14 @@
 import '../src/index.css'; // 적용하고 싶은 css 파일을 import
 
+// msw addon 등록
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+
+// Initialize MSW
+initialize();
+
+// msw addon을 글로벌로 provider
+export const decorators = [mswDecorator];
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {

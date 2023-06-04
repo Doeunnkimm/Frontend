@@ -571,3 +571,129 @@
     ```
   - this의 사용법을 반드시 기억해야 한다.
   - 콜백 함수에서 this 값을 사용해야 한다면 this API의 일부가 되는 것이기 때문에 반드시 타입 선언에 포함해야 한다.
+
+---
+
+## 🌱 아이템 50. 오버로딩 타입보다는 조건부 타입을 사용하기
+
+- 다음 예제의 double 함수에 타입 정보를 추가해 보자.
+
+  ```typescript
+  function double(x) {
+    return x + x;
+  }
+  ```
+
+  - double 함수에는 string 또는 number 타입의 매개변수가 들어올 수 있다.
+  - 그러므로 유니온 타입을 추가했다.
+    ```typescript
+    function double(x: number | string): number | string;
+    function double(x: any) {
+      return x + x;
+    }
+    ```
+  - 선언이 틀린 것은 아니지만, 모호한 부준이 있다.
+    ```typescript
+    const num = double(12); // string | number
+    const str = double('x'); // string | number
+    ```
+  - double에 number 타입을 매개변수로 넣으면 number 타입을 반환한다.
+  - 그리고 string 타입을 매개변수로 넣으면 string 타입을 반환한다.
+  - 그러나 선언문에는 number 타입을 매개변수로 넣고 string 타입을 반환하는 경우도 포함되어 있다.
+
+  <br>
+
+  **✔️ 제너릭을 사용하면 이러한 동작을 모델링할 수 있다.**
+
+  - 코드로 나타내면 다음과 같다.
+    ```typescript
+    function double<T extends number | string>(x: T): T;
+    function double(x: any) {
+      return x + x;
+    }
+    const num = double(12); // 타입이 12
+    const str = double('x'); // 타입이 "x"
+    ```
+  - 타입을 구체적으로 만들어 보려는 시도는 좋았지만 너무 과했다.
+  - 이제는 타입이 너무 과하게 구체적이다.
+  - string 타입을 매개변수로 넘기면 string 타입이 반환되어야 한다.
+  - 그러나 리터럴 문자열 'x'를 매개변수로 넘긴다고 해서 동일한 리터럴 문자열 'x' 타입이 반환되어야 하는 것은 아니다.
+  - 'x'의 두 배는 'x'가 아니라 'xx'이다.
+
+  <br>
+
+  **✔️ 여러 타입 선언으로 분리**
+
+  - 타입스크립트에서 함수의 구현체는 하나지만, 타입 선언은 몇 개든지 만들 수 있다.
+  - 이를 활용하여 double의 타입을 개선할 수 있다.
+
+    ```typescript
+    function double(x: number): number;
+    function double(x: string): string;
+    function double(x: any) {
+      return x + x;
+    }
+
+    const num = double(12); // 타입이 number
+    const str = double('x'); // 타입이 string
+    ```
+
+  - 함수 타입이 조금 명확해졌지만 **여전히 버그는 남아있다.**
+  - string이나 number 타입의 값으로는 동작하지만, 유니온 타입 관련해서 문제가 발생한다.
+    ```typescript
+    function f(x: number | string) {
+      return double(x);
+      //            ~~ 'string | number' 형식의 인수는
+      //                ' string' 형식의 매개변수에 할당될 수 없습니다.
+    }
+    ```
+  - 위 코드에서 double 함수의 호출은 정상적이며 string | number 타입이 반환되기를 기대한다.
+  - 한편 타입스크립트는 오버로딩 타입 중에서 일치하는 타입을 찾을 때까지 순차적으로 검색한다.
+  - 그래서 오버로딩 타입의 마지막 선언(string 버전)까지 검색했을 때, string | number 타입은 string에 할당할 수 없기 때문에 오류가 발생한다.
+
+  <br>
+
+  **✔️ 가장 좋은 해결책은 조건부 타입(conditional type)을 사용**
+
+  - 조건부 타입은 타입 공간의 if 구문과 같다.
+    ```typescript
+    function double<T extends number | string>(
+      x: T
+    ): T extends string ? string : number;
+    function double(x: any) {
+      return x + x;
+    }
+    ```
+  - 이 코드는 제너릭을 사용했던 예제와 유사하지만, 반환 타입이 더 정교하다.
+  - 조건부 타입은 자바스크립트의 삼항 연산자(?:)처럼 사용하면 된다.
+    ```
+    1. T가 string의 부분 집합이면(string, 또는 문자열 리터럴, 또는 문자열 리터럴의 유니온), 반환 타입이 string이다.
+    2. 그 외의 경우는 반환 타입이 number이다.
+    ```
+  - 조건부 타입이라면 앞선 모든 예제가 동작한다.
+
+    ```typescript
+    const num = double(12); // number
+    const str = double('x'); // string
+
+    // function f(x: string | number): string | number
+    function f(x: number | string) {
+      return double(x);
+    }
+    ```
+
+  - 유니온에 조건부 타입을 적용하면, 조건부 타입의 유니온으로 분리되기 때문에 number | string의 경우에도 동작한다.
+  - 예를 들어, T가 number | string이라면, 타입스크립트는 조건부 타입을 다음 단계로 해석한다.
+
+    ```
+    (number | string) extends string ? string : number
+    -> (number extends string ? string | number) | (string extends string ? string : number)
+    -> number | string
+    ```
+
+<br>
+
+- 오버로딩 타입이 작성하기는 쉽지만, 조건부 타입은 개별 타입의 유니온으로 일반화하기 때문에 타입이 더 정확해 진다.
+- 타입 오버로딩이 필요한 경우에 가끔 조건부 타입이 필요한 상황이 발생한다.
+- 각각의 오버로딩 타입이 독립적으로 처리되는 반면, 조건부 타입은 타입 체커가 단일 표현식으로 받아들이기 때문에 유니온 문제를 해결할 수 있다.
+- 오버로딩 타입을 작성 중이라면 조건부 타입을 사용해서 개선할 수 있을지 검토해 보는 것이 좋다.

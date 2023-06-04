@@ -170,3 +170,34 @@ const shared: SharedProperties = {
 
 // --> 오히려 타입을 다루는 데 어려움이 있을 수 있다.
 //      미러링 기법을 사용하기보다는 유틸리티 타입을 사용하는 방법도 고려해보자.
+
+/**
+ * ⛅ 아이템52. 테스팅 타입의 함정에 주의하기
+ *
+ * 함수 타입에 관한 중요한 개념
+ * 동일성(equality)와 할당 가능성(assignability)
+ */
+
+/**
+ * 1. 동일성(equality)
+ * 함수의 타입의 동일성은 두 함수 타입이 서로 완벽하게 일치할 때,
+ * 즉 그들의 매개변수와 반환 타입이 같은 경우를 의미
+ * 이때, 두 함수의 타입은 완전히 교환 가능하며 서로에게 '같다(equal)'고 간주되는 상태이다.
+ */
+type Func1 = (arg1: string) => number;
+type Func2 = (arg1: string) => number;
+// --> 동일성: Func1과 Func2는 동일한 함수 타입이다.
+
+/**
+ * 2. 할당 가능성(Assignability)
+ * 함수 타입의 할당 가능성은 특정 함수 타입이 다른 함수 타입에 할당될 수 있을지를 확인하는 것
+ * 이때, 매개변수와 반환 타입이 대상 타입과 호환 가능해야 할당 가능하다고 할 수 있다.
+ */
+type SourceFunc = (arg1: string) => number;
+type TargetFunc = (arg1: string, arg2: number) => number;
+
+// 할당 가능성: SourceFunc은 TargetFunc에 할당 가능하다.
+const assignableFunc: TargetFunc = (arg1: string) => 42;
+
+//--> 타입스크립트에서 함수 타입을 테스트하거나 사용하는데
+//    혼동 없이 진행할 수 있게 된다.

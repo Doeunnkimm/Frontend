@@ -6,8 +6,14 @@ import { initialize, mswDecorator } from 'msw-storybook-addon';
 // Initialize MSW
 initialize();
 
+const decoratorStyle = Story => (
+  <div style={{ margin: '1em' }}>
+    <Story />
+  </div>
+);
+
 // msw addon을 글로벌로 provider
-export const decorators = [mswDecorator];
+export const decorators = [mswDecorator, decoratorStyle];
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {

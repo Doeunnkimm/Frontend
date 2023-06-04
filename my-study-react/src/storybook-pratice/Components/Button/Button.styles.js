@@ -68,9 +68,9 @@ const sizeCSS = {
 };
 
 export const Button = styled.button`
-  ${({ variant }) => variantCSS[variant]}
-  ${({ shape }) => shapeCSS[shape]}
-    ${({ size }) => sizeCSS[size]}
-    width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  ${({ variant }) => variantCSS[variant]};
+  ${({ shape }) => shapeCSS[shape]};
+  ${({ size }) => sizeCSS[size]};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `;

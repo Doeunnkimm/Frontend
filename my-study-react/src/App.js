@@ -36,7 +36,7 @@ import router from './msw/Routes/routing';
 import { Provider } from 'jotai';
 import JotaiTest from './jotai/JotaiTest';
 import StoryMain from './storybook-pratice/src';
-import './index.css'; // storybook을 위해
+// import './index.css'; // storybook을 위해
 
 function App() {
   worker.start();

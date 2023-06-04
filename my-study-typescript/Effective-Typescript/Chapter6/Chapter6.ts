@@ -132,3 +132,41 @@ function anyFunc(x: string | number) {
 
 // ✨ 오버로딩 방법보다는 조건부 타입을 사용하는 것이 더 좋다.
 //    조건부 타입은 추가적인 오버로딩 없이 유니온 타입을 지원할 수 있다.
+
+/**
+ * ⛅ 아이템 51. 의존성 분리를 위해 미러 타입 사용하기
+ *
+ * 타입스크립트의 미러링(Mirroring) 기법
+ * --> 실제 값에 대응하는 타입이 없을 때 또는 복잡한 타입 구조에서
+ *     코드의 '반복성'을 줄이기 위해 유틸리티 타입과 관련된 연산을 사용하는 것
+ */
+interface Person {
+  name: string;
+  age: number;
+  id: number;
+}
+
+interface Product {
+  name: string;
+  price: number;
+  id: number;
+}
+
+type CommonAttributes<T, U> = {
+  [t in keyof T & keyof U]: T[t];
+};
+
+type SharedProperties = CommonAttributes<Person, Product>;
+
+const shared: SharedProperties = {
+  name: '이름',
+  id: 1,
+};
+// CommonAttributes는 Person과 Product 간의 공통 프로퍼티를 추출하여
+// 새로운 타입을 생성한다.
+// 결과적으로 SharedProperties 타입은 { name: string, id: number }이 된다.
+// 이는 두 인터페이스 또는 객체에 같은 이름의 프로퍼티를 반복하지 않고,
+// 타입 미러링 기법을 통해 중복을 줄이는 효율적인 방법이다.
+
+// --> 오히려 타입을 다루는 데 어려움이 있을 수 있다.
+//      미러링 기법을 사용하기보다는 유틸리티 타입을 사용하는 방법도 고려해보자.

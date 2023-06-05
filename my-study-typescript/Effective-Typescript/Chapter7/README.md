@@ -703,3 +703,102 @@
 - 어쨌든 구현 방식과 무관하게 데이터는 동일하게 비공개이다.
 - 2021년 기준으로 비공개 필드는 자바스크립트 표준화 3단계이고, 타입스크립트에서 사용 가능핟,
 - 만약 설계 관점의 캡슐화가 아닌 '보안'에 대해 걱정하고 있다면, 내장된 프로토타입과 함수에 대한 변조 같은 문제를 알고 있어야 한다.
+
+---
+
+## 아이템 57. 소스맵을 사용하여 타입스크립트 디버깅하기
+
+<p align="center"><strong>타입스크립트 코드를 실행한다는 것은, <br />엄밀히 말하자면 ⭐ 타입스크립트 컴파일러가 생성한 자바스크립트 코드를 실행 ⭐한다는 것이다.</strong></p>
+
+<br>
+
+- 사실 컴파일러뿐 아니라 압축기(minifier)나 전처리기(preprocessor)처럼, 기존 코드를 다른 형태의 코드로 변환하는 도구들에게도 모두 해당된다.
+- 이러한 변환 과정들이 투명하고 직관적이라면 이상적일 것이다.
+- 자바스크립트 코드를 살펴볼 필요 없이 마치 타입스크립트 코드가 직접 실행되는 것처럼 느껴진다면 말이다.
+- 하지만 현실은 그렇지 못하다.
+
+<br>
+
+- 디버깅이 필요한 시점에 비로소 타입스크립트가 직접 실행되는 것이 아니라는 사실을 깨닫게 될 것이다.
+
+<p align="center"><strong>디버거는 런타임에 동작하며, <br /> 현재 동작하는 코드가 어떤 과정을 거쳐서 만들어진 것인지 알지 못한다.</strong></p>
+
+<br>
+
+**✔️ 소스맵(source map)**
+
+- 디버깅을 하면 보게 되는 코드는 전처리기, 컴파일러, 압축기를 거친 자바스크립트 코드일 것이다.
+- 이렇게 변환된 자바스크립트 코드는 복잡해 디버깅하기 매우 어렵다.
+- 디버깅 문제를 해결하기 위해 브라우저 제조사들은 서로 협력하여 소스맵(source map)이라는 해결책을 내놓았다.
+- 소스맵은 변환된 코드의 위치와 심벌들을 원본 코드의 원래 위치와 심벌들로 매핑한다.
+- 대부분의 브라우저와 많은 IDE가 소스맵을 지원한다.
+- 클릭할 때마다 숫자를 증가시키는 버튼을 HTML 페이지에 추가하는 간단한 스크립트를 작성한다고 가정해 보자.
+  ```typescript
+  function addCounter(el: HTMLElement) {
+    let clickCount = 0;
+    const button = document.createElement('button');
+    button.textContent = 'Click me';
+    button.addEventListener('click', () => {
+      clickCount++;
+      button.textContent = `Click me (${clickCount})`;
+    });
+    el.appendChild(document.body);
+  }
+  ```
+- 이 코드를 브라우저에서 로드하고 디버거를 열면, 변환된 코드는 원본 코드와 거의 비슷하기 때문에 디버깅은 크게 어렵지 않다.
+- numbersapi.com으로부터 각 숫자에 대한 흥미로운 설명들을 로드한 후 페이지를 더 재미있게 꾸며보겠다.
+  ```typescript
+  function addCounter(el: HTMLElement) {
+    let clickCount = 0;
+    const triviaEl = document.createElement('p');
+    const button = document.createElement('button');
+    button.textContent = 'Click me';
+    button.addEventListener('click', async () => {
+      clickCount++;
+      const response = await fetch('http://numbersapi.com/${clickCount}');
+      const trivia = await response.text();
+      trivial.textContent = trivia;
+      button.textContent = `Click me (${clickCount})`;
+    });
+    el.appendChild(triviaEl);
+    el.appendChild(button);
+  }
+  ```
+- 이제 브라우저의 디버거를 열어 보면, 변환된 코드가 엄청나게 복잡해진 것을 확인할 수 있다.
+- 오래된 브라우저에서 async와 await를 지원하기 위해, 타입스크립트는 이벤트 핸들러를 상태 머신(state machine)으로 재작성한다.
+- 재작성된 코드는 원본 코드와 동일하게 동작하지만, 코드의 형태는 매우 다른 모습을 띠게 된다.
+- 코드가 복잡하게 변환된다면 소스맵이 필요하다.
+- 타입스크립트가 소스맵을 생성할 수 있도록 `tsconfig.json`에서 sourceMap 옵션을 설정해 보겠다.
+
+```json
+{
+  "compilerOptions": {
+    "sourceMap": true
+  }
+}
+```
+
+- 이제 컴파일을 실행함녀 각 .ts파일에 대해서 .js와 .js.map 두 개의 파일이 생성한다.
+- js.map 파일이 바로 소스맵이다.
+- 소스맵이 .js 파일과 같이 있으면, 브라우저의 디버거에서 새로운 index.ts 파일이 나타난다.
+- 이제 원하는 대로 브레이크포인트를 설정할 수 있고 변수를 조사할 수 있다.
+
+<br>
+
+**✔️ 소스맵에 대해 알아야 할 몇 가지 사항**
+
+- 타입스크립트와 함께 번들러(bundler)나 압축기(minifier)를 사용하고 있다면, 번들러나 압축기가 각자의 소스맵을 생성하게 된다.
+- 이상적인 디버깅 환경이 되려면 생성된 자바스크립트가 아닌 원본 타입스크립트 소스로 매핑되도록 해야 한다.
+- 번들러가 기본적으로 타입스크립트를 지원한다면 벼롣 설정 없이 잘 동작해야 한다.
+- 그렇지 않다면 번들러가 소스맵을 인식할 수 있도록 추가적인 설정이 필요하다.
+- 상용 환경에 소스맵이 유출되고 있는지 확인해야 한다.
+- 디버거를 열지 않는 이상은 소스맵이 로드되지 않으므로, 실제 사용자에게 성능 저하는 발생하지 않는다.
+- 그러나 소스맵에 원본 코드의 인라인 복사본이 포함되어 있다면 공개해서는 안 될 내용이 들어 있을 수 있다.
+- 저질 주석이나 내부 버그 추적을 위한 URL을 공개할 필요는 없다.
+
+<br>
+
+- NodeJS 프로그램의 디버깅에도 소스맵을 사용할 수 있다.
+- 보통 편집기가 자동 인식하거나 NodeJS 프로세스를 브라우저 디버거와 연결하면 된다.
+- 타입 체커가 코드를 실행하기 전에 많은 오류를 잡을 수 있지만, 디버거를 대체할 수는 없다.
+- 소스맵을 사용해서 제대로 된 타입스크립트 디버깅 환경을 구축하기 바란다.

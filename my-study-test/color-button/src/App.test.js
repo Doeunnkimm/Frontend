@@ -1,5 +1,6 @@
 import { fireEvent, logRoles, render, screen } from '@testing-library/react';
 import App from './App';
+import { replaceCamelWithSpaces } from './App';
 
 test('button has correct initial color', () => {
   // const { container } = render(<App />);
@@ -77,4 +78,20 @@ test('Clicked disabled button has gray background and reverts to blue', () => {
   // 다시 체크박스 체크 -> 버튼 활성화(파란색)
   fireEvent.click(checkbox);
   expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+});
+
+// describe 문은 테스트를 결합하는 것
+// 모든 테스트에 대해 카멜 케이스 대문자 앞에 공백을 삽입하는 구문
+describe('spaces before camel-case capital letters', () => {
+  test('Works for no inner capital letters', () => {
+    expect(replaceCamelWithSpaces('Red')).toBe('Red');
+  });
+
+  test('Works for on inner capital letter', () => {
+    expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue');
+  });
+
+  test('Works for multiple inner capital letters', () => {
+    expect(replaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red');
+  });
 });

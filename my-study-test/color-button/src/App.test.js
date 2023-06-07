@@ -47,7 +47,8 @@ test('Disable the button by checking the check box', () => {
   render(<App />);
 
   const colorButton = screen.getByRole('button', { name: 'Change to blue' });
-  const checkbox = screen.getByRole('checkbox');
+  // checkbox의 name은 label
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
 
   // 체크박스 체크
   fireEvent.click(checkbox);
@@ -56,4 +57,24 @@ test('Disable the button by checking the check box', () => {
   // 두 번째 클릭  (체크 해제)
   fireEvent.click(checkbox);
   expect(colorButton).not.toBeDisabled();
+});
+
+/**
+ * 비활성화된 버튼 동작 테스트
+ */
+test('Clicked disabled button has gray background and reverts to blue', () => {
+  render(<App />);
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+
+  // 클릭해서 파란색으로
+  fireEvent.click(colorButton);
+
+  // 체크박스 체크 -> 버튼 비활성화
+  fireEvent.click(checkbox);
+  expect(colorButton).toHaveStyle({ backgroundColor: 'gray' });
+
+  // 다시 체크박스 체크 -> 버튼 활성화(파란색)
+  fireEvent.click(checkbox);
+  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
 });

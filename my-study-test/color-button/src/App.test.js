@@ -35,7 +35,7 @@ test('initial conditions', () => {
   // 버튼이 활성화 상태로 시작하는지를 확인
   const colorButton = screen.getByRole('button', { name: 'Change to blue' });
   // toBeEnabled : 활성화를 확인할 수 있는 매처
-  expect(colorButton).not.toBeDisabled();
+  expect(colorButton).toBeEnabled();
 
   // 체크박스가 체크 안 된 상태로 시작하는지 확인
   const checkbox = screen.getByRole('checkbox');
@@ -57,7 +57,7 @@ test('Disable the button by checking the check box', () => {
 
   // 두 번째 클릭  (체크 해제)
   fireEvent.click(checkbox);
-  expect(colorButton).not.toBeDisabled();
+  expect(colorButton).toBeEnabled();
 });
 
 /**

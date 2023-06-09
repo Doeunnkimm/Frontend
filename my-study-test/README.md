@@ -23,3 +23,21 @@ $ npm test
 - [공식문서](https://testing-library.com/docs/user-event/intro)
 - `npm list @testing-library/user-event`로 확인 가능
 - 14버전 설치 : `npm i @testing-library/user-event@^14`
+
+- 일부 test 파일만 테스팅하기
+
+  ```bash
+  $ npm test
+  p
+  [fileName]
+  ```
+
+- 일부 test 파일에서도 특정 test만 테스팅하기
+
+  ```javascript
+  // 테스팅 하고 싶은 테스트
+  test.only('...', () => {});
+
+  // 테스팅 안 하고 싶은 테스트
+  test.skip('...', () => {});
+  ```

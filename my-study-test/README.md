@@ -12,11 +12,11 @@ $ npm test
 
 ### Github/testing-libaray/jest-dom
 
-- [여기서 필요한 Matcher 확인]("https://github.com/testing-library/jest-dom/tree/main#tohavestyle")
+- [Github]("https://github.com/testing-library/jest-dom/tree/main#tohavestyle")
 
 ### W3C
 
-- [여기서 역할(Role) 확인]("https://www.w3.org/TR/wai-aria/#role_definitions")
+- [공식문서]("https://www.w3.org/TR/wai-aria/#role_definitions")
 
 ### user-event of Testing Library
 

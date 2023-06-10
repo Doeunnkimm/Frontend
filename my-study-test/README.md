@@ -41,3 +41,8 @@ $ npm test
   // 테스팅 안 하고 싶은 테스트
   test.skip('...', () => {});
   ```
+
+### Custom Render
+
+- wrapper를 모든 컴포넌트에 전역적으로 적용하고 싶을 때
+- [공식문서](https://testing-library.com/docs/react-testing-library/setup/)

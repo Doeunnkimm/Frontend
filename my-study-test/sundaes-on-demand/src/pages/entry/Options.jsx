@@ -15,15 +15,27 @@ export default function Options({ optionType }) {
 
   // optionType is 'scoops' or 'toppings'
   useEffect(() => {
+    // create an abortController to attach to network request
+    const controller = new AbortController();
+
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/${optionType}`);
+        // axios요청에서 controller를 확인하고 있음
+        const res = await axios.get(`http://localhost:3030/${optionType}`, {
+          single: controller.signal,
+        });
         setItems(res.data);
       } catch (err) {
         setError(true);
       }
     };
     fetchData();
+
+    // abort axios call on component unmount
+    // 테스트가 종료되기 전에 언마운트 시키는 것
+    return () => {
+      controller.abort();
+    };
   }, [optionType]);
 
   if (error) {

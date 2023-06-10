@@ -14,7 +14,7 @@ test('displays image for each scoop option from server', async () => {
   // alt expect
   const altText = scoopImages.map(el => el.alt);
   // 배열이나 객체의 동등함을 expect할 때는 toBe...가 아니라 toEqual !!
-  expect(altText).toEqual(['Chocolate scoop', 'Vanilla scoop ']);
+  expect(altText).toEqual(['Chocolate scoop', 'Vanilla scoop']);
 });
 
 test('Display image for each toppings option from server', async () => {

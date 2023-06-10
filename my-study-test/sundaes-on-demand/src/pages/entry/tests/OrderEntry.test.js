@@ -11,7 +11,7 @@ import { server } from '../../../__mocks__/server';
 /**
  * 스쿱 및 토핑 라우트 핸들링
  */
-test.only('handles error for scoops and toppings routes', async () => {
+test('handles error for scoops and toppings routes', async () => {
   // handler 오버라이드
   server.resetHandlers(
     rest.get('http://localhost:3030/scoops', (req, res, ctx) =>
@@ -22,7 +22,12 @@ test.only('handles error for scoops and toppings routes', async () => {
     )
   );
 
-  render(<OrderEntry />);
+  /**
+   * 원래 OrderEntry는 setOrderPhase라는 props가 필요
+   * 그런데 테스트에서는 훅 함수를 전달해줄 수는 없기 때문에
+   * Jest Mock 함수를 전달
+   */
+  render(<OrderEntry setOrderPhase={jest.fn()} />);
   await waitFor(async () => {
     const alerts = await screen.findAllByRole('alert');
 

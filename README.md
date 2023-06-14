@@ -13,4 +13,4 @@
 <br>
 
 ## 📌 공부한 주요 스텍 및 라이브러리
-<img src="https://github.com/Doeunnkimm/Frontend/assets/112946860/f1feefe3-44dc-409b-acea-0abc27ad4337" width="70%"/>
+<img src="https://github.com/Doeunnkimm/Frontend/assets/112946860/7ff1bb56-dfe8-48a0-9c50-e71ae5d6e618" width="70%"/>

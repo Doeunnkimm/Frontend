@@ -1,21 +1,21 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/Layout'
 import utilStyles from '../styles/utils.module.css'
-// import { getSortedPostsData } from '../lib/posts'
-import { useEffect, useState } from 'react'
+import { getSortedPostsData } from '../lib/posts'
+// import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Date from '../components/Date'
 
 /** SSG */
-// export async function getStaticProps() {
-//   const allPostsData = getSortedPostsData()
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
 
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   }
-// }
+  return {
+    props: {
+      allPostsData,
+    },
+  }
+}
 
 /** SSR */
 // export async function getServerSideProps() {
@@ -29,16 +29,18 @@ import Date from '../components/Date'
 // }
 
 /** SSG & 직접 fetch하여 return */
-export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/posts')
-  const json = await response.json()
+// API Routes는 Client Side에서 Server Side로 요청하기 위해 사용하는 것이기 때문에
+// 아래처럼 Server Side에서 Server Side로 요청할 때 사용하는 것이 X
+// export async function getServerSideProps() {
+//   const response = await fetch('http://localhost:3000/api/posts')
+//   const json = await response.json()
 
-  return {
-    props: {
-      allPostsData: json.allPostsData,
-    },
-  }
-}
+//   return {
+//     props: {
+//       allPostsData: json.allPostsData,
+//     },
+//   }
+// }
 
 export default function Home({ allPostsData }) {
   // const [allPostsData, setAllPostsData] = useState([])

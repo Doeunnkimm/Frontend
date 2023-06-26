@@ -6,6 +6,7 @@ import html from 'remark-html'
 import { serialize } from 'next-mdx-remote/serialize'
 
 // 해당 프로젝트의 root 경로 + '/posts' <- md 파일을 저장해둔 경로
+// eslint-disable-next-line no-undef
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {

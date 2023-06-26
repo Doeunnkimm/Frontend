@@ -56,3 +56,27 @@ yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/m
 - github의 issues와 comments를 활용하기 때문에
 - github 마켓플레이스에서 utterances 설치
   - [설치하러가기](https://github.com/marketplace)
+
+### ESLint 적용하기
+
+- install
+  ```bash
+  $ yarn add -D eslint
+  ```
+- init
+  ```bash
+  $ yarn eslint --init
+  ```
+- `yarn build`를 해보면 정말 문제가 없는지 알 수 있다.
+- 이 상태로 서비스를 배포한다면?
+  - tailwindCSS가 적용되지 않을 수 있다.
+  - 우리가 사용하는 도구에 맞는 eslint 룰을 추가해줘야 한다.
+  - tailwind를 위한 eslint plugin
+    ```bash
+    $ yarn add -D eslint-plugin-tailwindcss
+    ```
+  - 그리고 `eslintrc.json` 파일에서 `plugins`에 "tailwindcss"를 추가
+  - next를 위한 eslint도 잡아주는 plugin 추가
+    ```bash
+    $ yarn add -D @next/eslint-plugin-next
+    ```

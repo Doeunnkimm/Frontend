@@ -18,3 +18,15 @@ yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/m
 - [getPostData](https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticprops)
 - [getPostData함수\_확장](https://nextjs.org/learn/basics/dynamic-routes/render-markdown)
 - [polishing](https://nextjs.org/learn/basics/dynamic-routes/polishing-index-page)
+
+### tailwind CSS with Next
+
+- [DOCS](https://tailwindcss.com/docs/guides/nextjs)
+- install
+  ```bash
+   $ yarn add -D tailwindcss postcss autoprefixer
+  ```
+- setup
+  ```bash
+  $ npx tailwindcss init -p
+  ```

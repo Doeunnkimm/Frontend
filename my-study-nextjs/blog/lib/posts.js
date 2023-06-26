@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import { serialize } from 'next-mdx-remote/serialize'
 
 // 해당 프로젝트의 root 경로 + '/posts' <- md 파일을 저장해둔 경로
 const postsDirectory = path.join(process.cwd(), 'posts')
@@ -15,7 +16,7 @@ export function getSortedPostsData() {
   // ssg-ssr.md -> ssg-ssr : 이를 id로 가져가고 있다
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '')
+    const id = fileName.replace(/\.md$|\.mdx$/, '')
 
     // postsDirectory + '/pre-rendering.md'
     const fullPath = path.join(postsDirectory, fileName)
@@ -55,30 +56,51 @@ export function getAllPostIds() {
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ''),
+        id: fileName.replace(/\.md$|\.mdx$/, ''),
       },
     }
   })
 }
 
 export async function getPostData(id) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const fullMdPath = path.join(postsDirectory, `${id}.md`)
 
-  // mate 데이터를 읽어온다
-  const matterResult = matter(fileContents)
+  const mdExist = fs.existsSync(fullMdPath)
 
-  // html로 변환
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-  const contentHtml = processedContent.toString()
+  if (mdExist) {
+    // md가 있다면
+    const fullPath = path.join(postsDirectory, `${id}.md`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-  // id랑 내용이랑 같이 return
-  return {
-    id,
-    contentHtml,
-    ...matterResult.data,
+    // mate 데이터를 읽어온다
+    const matterResult = matter(fileContents)
+
+    // html로 변환
+    const processedContent = await remark()
+      .use(html)
+      .process(matterResult.content)
+    const contentHtml = processedContent.toString()
+
+    // id랑 내용이랑 같이 return
+    return {
+      id,
+      contentHtml,
+      ...matterResult.data,
+    }
+  } else {
+    const fullPath = path.join(postsDirectory, `${id}.mdx`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+    // mate 데이터를 읽어온다
+    const matterResult = matter(fileContents)
+
+    const mdxSource = await serialize(matterResult.content)
+
+    return {
+      id,
+      mdxSource,
+      ...matterResult.data,
+    }
   }
 }
 

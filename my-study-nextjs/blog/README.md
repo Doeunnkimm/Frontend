@@ -39,7 +39,7 @@ yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/m
 ### md + jsx => mdx
 
 - [DOCS](https://mdxjs.com)
-- [Next.js로*MDX*활용](https://nextjs.org/docs/pages/building-your-application/configuring/mdx)
+- [Next.js로\_MDX\_활용](https://nextjs.org/docs/pages/building-your-application/configuring/mdx)
 - install
   ```bash
   $ yarn add next-mdx-remote react-syntax-highlighter

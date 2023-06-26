@@ -27,6 +27,20 @@ yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/m
    $ yarn add -D tailwindcss postcss autoprefixer
   ```
 - setup
+
   ```bash
   $ npx tailwindcss init -p
+  ```
+
+### free svg
+
+- [SITE](https://www.iconpacks.net/)
+
+### md + jsx => mdx
+
+- [DOCS](https://mdxjs.com)
+- [Next.js로*MDX*활용](https://nextjs.org/docs/pages/building-your-application/configuring/mdx)
+- install
+  ```bash
+  $ yarn add next-mdx-remote react-syntax-highlighter
   ```

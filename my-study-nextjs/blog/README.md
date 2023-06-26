@@ -48,3 +48,11 @@ yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/m
 ### next-sitemap
 
 - [NPM](https://www.npmjs.com/package/next-sitemap)
+
+### 댓글 기능
+
+- [DOCS](https://utteranc.es/)
+- github public repository 필요
+- github의 issues와 comments를 활용하기 때문에
+- github 마켓플레이스에서 utterances 설치
+  - [설치하러가기](https://github.com/marketplace)

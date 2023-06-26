@@ -44,3 +44,7 @@ yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/m
   ```bash
   $ yarn add next-mdx-remote react-syntax-highlighter
   ```
+
+### next-sitemap
+
+- [NPM](https://www.npmjs.com/package/next-sitemap)

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://fastcampus-blog.vercel.app/
+
+# Sitemaps
+Sitemap: https://fastcampus-blog.vercel.app/sitemap.xml

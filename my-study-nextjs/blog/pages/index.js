@@ -1,9 +1,8 @@
-import Layout from '@components/Layout'
-import utilStyles from '@styles/utils.module.css'
-import { getSortedPostsData } from '@lib/posts'
+import utilStyles from '@/styles/utils.module.css'
+import { getSortedPostsData } from '@/lib/posts'
 // import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Date from '@components/Date'
+import Date from '@/components/Date'
 
 /** SSG */
 export async function getStaticProps() {
@@ -50,7 +49,7 @@ export default function Home({ allPostsData }) {
   //     .then((data) => setAllPostsData(data.allPostsData))
   // }, [])
   return (
-    <Layout home>
+    <>
       {/* Keep the existing code here */}
 
       {/* Add this <section> tag below the existing <section> tag */}
@@ -68,6 +67,6 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
-    </Layout>
+    </>
   )
 }

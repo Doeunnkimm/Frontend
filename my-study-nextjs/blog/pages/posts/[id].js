@@ -6,6 +6,8 @@ import { MDXRemote } from 'next-mdx-remote'
 import CodeBlock from '@/components/CodeBlock'
 // import Button from '../../components/Button'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
+import { siteTitle } from '../_document'
 
 const Button = dynamic(() => import('@/components/Button'), {
   loading: () => <div>Loading...</div>,
@@ -51,18 +53,23 @@ export default function Post({ postData, pathname }) {
     return <div>Loading...</div>
   }
   return (
-    <article>
-      <h2>pathname: {pathname}</h2>
-      <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-      <div className={utilStyles.lightText}>
-        <Date dateString={postData.date} />
-      </div>
-      {postData.contentHtml && (
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-      )}
-      {postData.mdxSource && (
-        <MDXRemote {...postData.mdxSource} components={components} />
-      )}
-    </article>
+    <>
+      <Head>
+        <title>{`${postData.title} - ${siteTitle}`}</title>
+      </Head>
+      <article>
+        <h2>pathname: {pathname}</h2>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <div className={utilStyles.lightText}>
+          <Date dateString={postData.date} />
+        </div>
+        {postData.contentHtml && (
+          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        )}
+        {postData.mdxSource && (
+          <MDXRemote {...postData.mdxSource} components={components} />
+        )}
+      </article>
+    </>
   )
 }

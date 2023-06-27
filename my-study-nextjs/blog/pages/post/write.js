@@ -1,8 +1,20 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Layout from '../../components/Layout'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Write() {
+  const router = useRouter()
+
+  useEffect(() => {
+    /**
+     * query가 존재해도
+     * 정적 페이지는 hydration 이전에는 빈 객체를 보여주고
+     * 그 이후에는 query 값을 보여준다.
+     */
+    console.log(router.query)
+  }, [router.query])
+
   const idRef = useRef(undefined)
   const titleRef = useRef(undefined)
   const contentRef = useRef(undefined)

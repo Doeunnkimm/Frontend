@@ -8,6 +8,7 @@ import CodeBlock from '@/components/CodeBlock'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { siteTitle } from '../_document'
+import { useState } from 'react'
 
 const Button = dynamic(() => import('@/components/Button'), {
   loading: () => <div>Loading...</div>,
@@ -49,6 +50,23 @@ const components = {
 export default function Post({ postData, pathname }) {
   const router = useRouter()
 
+  const ErrorComponent = () => {
+    const [error, setError] = useState(false)
+
+    if (error) {
+      throw new Error('Error occurred')
+    }
+
+    return (
+      <button
+        className="rounded px-2 bg-green-500"
+        onClick={() => setError(true)}
+      >
+        Error Fire
+      </button>
+    )
+  }
+
   if (router.isFallback) {
     return <div>Loading...</div>
   }
@@ -57,6 +75,7 @@ export default function Post({ postData, pathname }) {
       <Head>
         <title>{`${postData.title} - ${siteTitle}`}</title>
       </Head>
+      <ErrorComponent />
       <article>
         <h2>pathname: {pathname}</h2>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>

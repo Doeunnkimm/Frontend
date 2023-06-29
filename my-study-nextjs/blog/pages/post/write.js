@@ -2,9 +2,18 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import getConfig from 'next/config'
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+console.log(serverRuntimeConfig.mySecret)
+console.log(publicRuntimeConfig.staticFolder)
 
 export default function Write() {
   const router = useRouter()
+
+  useEffect(() => {
+    console.log(process.env.customKey)
+  }, [])
 
   useEffect(() => {
     if (router.isReady) {

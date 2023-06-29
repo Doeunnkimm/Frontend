@@ -7,6 +7,29 @@ export default function Write() {
   const router = useRouter()
 
   useEffect(() => {
+    if (router.isReady) {
+      console.log(JSON.stringify(router))
+    }
+    // next/link가 없는 탐색에서 유용
+    // 미리 페이지를 가져오도록 할 수 있다.
+    router.prefetch('/posts/ssg-ssr')
+  }, [router])
+
+  useEffect(() => {
+    // 라우터가 동작하기 전에 무언가 작업하고 싶을 때
+    router.beforePopState((state) => {
+      // 바뀐 주소를 원상태로 되돌리도록
+      // pushState는 popState 이벤트를 발생X, 주소만 추가
+      window.history.pushState(null, '', router.asPath) // asPath는 어디로부터 왔는지 그 주소
+      if (confirm('안녕하세요')) {
+        router.beforePopState(() => true)
+        router.back()
+      }
+      return false
+    })
+  }, [])
+
+  useEffect(() => {
     /**
      * query가 존재해도
      * 정적 페이지는 hydration 이전에는 빈 객체를 보여주고
@@ -84,6 +107,40 @@ export default function Write() {
       {showLink && (
         <Link href={`/posts/${idRef.current.value}`}>Created Post</Link>
       )}
+      <br />
+      <br />
+      <button
+        onClick={() => router.push('/posts/pre-rendering')}
+        className="rounded bg-pink-200 px-2"
+      >
+        pre-rendering 포스트로 이동
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() =>
+          router.push(`/posts/[id]`, `/posts/ssg-ssr`, { scroll: false })
+        }
+        className="rounded bg-pink-200 px-2"
+      >
+        router.push
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() => router.replace(`/posts/ssg-ssr`)}
+        className="rounded bg-pink-200 px-2"
+      >
+        router.replace
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() => router.back()}
+        className="rounded bg-pink-200 px-2"
+      >
+        router.back
+      </button>
     </>
   )
 }

@@ -11,8 +11,9 @@
 
 ## 🏃‍♂️ 구현 과정 중 정리
 
-1. [planet Scale tutorials](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide)
-2. Prisma 연결
+1. [Notion API](https://developers.notion.com/reference/post-page)
+2. [planet Scale tutorials](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide)
+3. Prisma 연결
 
    - 1️⃣ prisma 설치
      ```bash

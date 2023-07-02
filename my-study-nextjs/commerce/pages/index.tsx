@@ -1,13 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
+  // const [products, setProducts] = useState<
+  //   { id: string; properties: { id: string } }[]
+  // >([])
+  // useEffect(() => {
+  //   fetch(`/api/get-items`)
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data.items))
+  // }, [])
   const [products, setProducts] = useState<
-    { id: string; properties: { id: string } }[]
+    { id: string; name: string; createdAt: string }[]
   >([])
   useEffect(() => {
-    fetch(`/api/get-items`)
+    fetch(`/api/get-products`)
       .then((res) => res.json())
-      .then((data) => setProducts(data.items))
+      .then((data) => setProducts(data.products))
   }, [])
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -31,6 +39,13 @@ export default function Home() {
       <div>
         <p>Product List</p>
         {products &&
+          products.map((product) => (
+            <div key={product.id}>
+              {product.name}
+              <span>{product.createdAt}</span>
+            </div>
+          ))}
+        {/* {products &&
           products.map((item) => (
             <div key={item.id}>
               {JSON.stringify(item)}
@@ -54,7 +69,7 @@ export default function Home() {
               <br />
               <br />
             </div>
-          ))}
+          ))} */}
       </div>
     </div>
   )

@@ -9,7 +9,7 @@
 
 ---
 
-## 🏃‍♂️ 구현 과정 중 정리
+## 🔥 구현 과정 중 정리
 
 1. [Notion API](https://developers.notion.com/reference/post-page)
 2. [planet Scale tutorials](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide)
@@ -17,7 +17,7 @@
 
    - 1️⃣ prisma 설치
      ```bash
-     $ yarn add -D prisma
+     🏃‍♂️   $ yarn add -D prisma
      $ yarn add @prisma/client
      ```
    - 2️⃣ init하기
@@ -33,3 +33,28 @@
 
    - 스키마를 변경하고 싶다면 새로운 브랜치에서 add 해야한다.
    - 스키마를 변경했다면, `generate`를 한번더 해줘서 반영해준다.
+
+4. Emotion
+
+   - 설치
+     ```bash
+     $ yarn add @emotion/react @emotion/styled
+     ```
+   - next.config.js 설정 추가
+     ```javascript
+     const nextConfig = {
+       compiler: {
+         emotion: true,
+       },
+     }
+     ```
+   - tsconfig.json 설정 추가
+     ```json
+     "types": ["@emotion/react/types/css-prop"]
+     ```
+
+5. 그 밖의 스타일링 라이브러리
+   - [radix-ui](https://www.radix-ui.com/)
+   - [matine](https://mantine.dev/)
+   - [next_ui](https://nextui.org/)
+   - [material_ui](https://mui.com/)

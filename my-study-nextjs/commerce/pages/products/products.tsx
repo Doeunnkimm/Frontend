@@ -26,29 +26,49 @@ const images = [
   },
 ]
 
-export default function Products() {
+export async function getServerSideProps() {
+  const ogUrl =
+    'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html'
+  const ogType = 'article'
+  const ogTitle = 'When Great Minds Don’t Think Alike'
+  const ogDescription = 'How much does culture influence creative thinking?'
+  const ogImage =
+    'http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg'
+
+  return {
+    props: {
+      ogUrl,
+      ogType,
+      ogTitle,
+      ogDescription,
+      ogImage,
+    },
+  }
+}
+
+export default function Products({
+  ogUrl,
+  ogType,
+  ogTitle,
+  ogDescription,
+  ogImage,
+}: {
+  ogUrl: string
+  ogType: string
+  ogTitle: string
+  ogDescription: string
+  ogImage: string
+}) {
   const [index, setIndex] = useState(0)
 
   return (
     <>
       <Head>
-        <meta
-          property="og:url"
-          content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html"
-        />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:title"
-          content="When Great Minds Don’t Think Alike"
-        />
-        <meta
-          property="og:description"
-          content="How much does culture influence creative thinking?"
-        />
-        <meta
-          property="og:image"
-          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"
-        />
+        <meta property="og:url" content={ogUrl} />
+        <meta property="og:type" content={ogType} />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={ogDescription} />
+        <meta property="og:image" content={ogImage} />
       </Head>
 
       <Carousel

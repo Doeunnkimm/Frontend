@@ -76,3 +76,9 @@
    - https://developers.facebook.com/docs/sharing/webmasters
    - https://react.dev/
    - og:title, og:type, og:url, og:description, og:image
+   - 위 부분들은 Next가 SSR 혹은 SSG로 동작할 때 미리 그려져야지 유의미하게 bot이 긁어갈 것!
+
+10. Editor Library
+    - [draft.js](https://draftjs.org/)
+    - [slate.js](https://docs.slatejs.org/)
+    - [tiptap](https://tiptap.dev/)

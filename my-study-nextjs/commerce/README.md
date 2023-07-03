@@ -65,3 +65,14 @@
 7. 번들 사이즈 고려
    - [bundle phohia](https://bundlephobia.com/)
    - extension: Import Cost
+8. 봇(bot)에게 보이는 부분
+
+   - robots.txt
+   - meta data
+   - 시맨틱 HTML
+
+9. SEO
+
+   - https://developers.facebook.com/docs/sharing/webmasters
+   - https://react.dev/
+   - og:title, og:type, og:url, og:description, og:image

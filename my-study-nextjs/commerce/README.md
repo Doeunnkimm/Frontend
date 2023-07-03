@@ -54,7 +54,14 @@
      ```
 
 5. 그 밖의 스타일링 라이브러리
+
    - [radix-ui](https://www.radix-ui.com/)
    - [matine](https://mantine.dev/)
    - [next_ui](https://nextui.org/)
    - [material_ui](https://mui.com/)
+
+6. react-image-gallery 라이브러리
+   - [NPM](https://www.npmjs.com/package/react-image-gallery)
+7. 번들 사이즈 고려
+   - [bundle phohia](https://bundlephobia.com/)
+   - extension: Import Cost

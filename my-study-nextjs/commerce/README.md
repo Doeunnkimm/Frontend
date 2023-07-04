@@ -79,6 +79,22 @@
    - 위 부분들은 Next가 SSR 혹은 SSG로 동작할 때 미리 그려져야지 유의미하게 bot이 긁어갈 것!
 
 10. Editor Library
+
     - [draft.js](https://draftjs.org/)
     - [slate.js](https://docs.slatejs.org/)
     - [tiptap](https://tiptap.dev/)
+
+11. next/image에 blur 효과 주기
+
+    - [blurDataUrl\_생성](https://png-pixel.com/)
+
+12. Pagination은 `@mantine/core`에서 제공하는 컴포넌트를 사용
+
+13. Infinite scroll
+    - 스크롤이 하단에 도달했는지 판단이 필요
+    - 그 판단을 위해 scroll event를 활용할 수 있고, intersection observer를 활용할 수 있다.
+    - scroll event를 활용하면 잦은 호출을 방지하기 위해 throttle을 적용하거나 requestAnimationFrame(rAF)를 활용하는 것이 좋다.
+    - 무한 스크롤을 했을 경우, React에서 한 화면에 너무 많은 컴포넌트를 들고 있는 경우가 발생
+    - 로드한 컴포넌트가 늘어날수록 느려지는 현상이 발생할 수 있다.
+    - 그럴 때는 Virtual Scroll(가상 스크롤)을 활용할 수 있다.
+    - n개의 컴포넌트만 그리고 이 요소를 재활용할 수 있도록 해준다.

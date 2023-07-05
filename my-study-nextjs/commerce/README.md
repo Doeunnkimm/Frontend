@@ -9,6 +9,7 @@
 - mantine
 - Planet Scale
 - Prisma
+- Google OAuth
 
 ---
 
@@ -107,6 +108,7 @@
     - [prisma-client-reference](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference)
 
 15. React Query
+
     - 설치
       ```bash
       $ yarn add @tanstack/react-query
@@ -115,3 +117,8 @@
       ```typescript
       const getData = useQuery<queyFn에서 반환된 타입, queryFn에서 예상되는 오류 타입, 최종적으로 보유하게 될 데이터 타입, queryKey의 타입>
       ```
+
+16. [Google OAuth](https://developers.google.com/identity/protocols/oauth2?hl=ko)
+    - [credentials](https://console.cloud.google.com/apis/credentials)
+    - [로그인을\_위한\_라이브러리](https://github.com/MomenSherif/react-oauth#googlelogin)
+    - jwt로 전달되는 google credential의 내용은 `jwt-decode`로 decode 해볼 수 있다.

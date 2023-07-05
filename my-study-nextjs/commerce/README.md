@@ -4,6 +4,9 @@
 
 - Next12
 - TypeScript
+- React Query
+- TailwindCSS
+- mantine
 - Planet Scale
 - Prisma
 
@@ -98,3 +101,17 @@
     - 로드한 컴포넌트가 늘어날수록 느려지는 현상이 발생할 수 있다.
     - 그럴 때는 Virtual Scroll(가상 스크롤)을 활용할 수 있다.
     - n개의 컴포넌트만 그리고 이 요소를 재활용할 수 있도록 해준다.
+14. Prisma API
+
+    - [prisma-client/crud](https://www.prisma.io/docs/concepts/components/prisma-client/crud)
+    - [prisma-client-reference](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference)
+
+15. React Query
+    - 설치
+      ```bash
+      $ yarn add @tanstack/react-query
+      ```
+    - react-query의 타입
+      ```typescript
+      const getData = useQuery<queyFn에서 반환된 타입, queryFn에서 예상되는 오류 타입, 최종적으로 보유하게 될 데이터 타입, queryKey의 타입>
+      ```

@@ -1,15 +1,22 @@
-import { Pagination, SegmentedControl } from '@mantine/core'
+import { Input, Pagination, SegmentedControl, Select } from '@mantine/core'
 import { categories, products } from '@prisma/client'
-import { CATEGORY_MAP, TAKE } from 'constants/products'
+import { IconAt } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+import { CATEGORY_MAP, FILTERS, TAKE } from 'constants/products'
+import useDebounce from 'hooks/useDebounce'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function Products() {
-  const [products, setProducts] = useState<products[]>([])
+  // const [products, setProducts] = useState<products[]>([])
   const [total, setTotal] = useState(0)
   const [categories, setCategories] = useState<categories[]>([])
   const [activePage, setPage] = useState(1)
   const [selectedCategory, setCategory] = useState<string>('-1')
+  const [selectedFilter, setFilter] = useState<string | null>(FILTERS[0].value)
+  const [keyword, setKeyword] = useState('')
+
+  const debouncedKeyword = useDebounce<string>(keyword) // 디바운스된 값이 담김
 
   useEffect(() => {
     fetch(`/api/get-categories`)
@@ -18,22 +25,60 @@ export default function Products() {
   }, [])
 
   useEffect(() => {
-    fetch(`/api/get-products-count?category=${selectedCategory}`)
-      .then((res) => res.json())
-      .then((data) => setTotal(Math.ceil(data.products / TAKE)))
-  }, [selectedCategory])
-
-  useEffect(() => {
-    const skip = TAKE + (activePage - 1)
     fetch(
-      `/api/get-products?skip=${skip}&take=${TAKE}&category=${selectedCategory}`
+      `/api/get-products-count?category=${selectedCategory}?contains=${debouncedKeyword}`
     )
       .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-  }, [activePage, selectedCategory])
+      .then((data) => setTotal(Math.ceil(data.products / TAKE)))
+  }, [selectedCategory, debouncedKeyword])
+
+  // useEffect(() => {
+  //   const skip = TAKE + (activePage - 1)
+  //   fetch(
+  //     `/api/get-products?skip=${skip}&take=${TAKE}&category=${selectedCategory}&orderBy=${selectedFilter}?contains=${debouncedKeyword}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data.products))
+  // }, [activePage, selectedCategory, selectedFilter, debouncedKeyword])
+
+  const { data: products } = useQuery<
+    { items: products[] },
+    unknown,
+    products[]
+  >(
+    [
+      `/api/get-products?skip=${
+        TAKE + (activePage - 1)
+      }&take=${TAKE}&category=${selectedCategory}&orderBy=${selectedFilter}?contains=${debouncedKeyword}`,
+    ],
+    () =>
+      fetch(
+        `/api/get-products?skip=${
+          TAKE + (activePage - 1)
+        }&take=${TAKE}&category=${selectedCategory}&orderBy=${selectedFilter}?contains=${debouncedKeyword}`
+      ).then((res) => res.json()),
+    {
+      select: (data) => data.items,
+    }
+  )
+
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value)
+  }
 
   return (
     <div className="px-36 mt-36 mb-36">
+      <div className="mb-4">
+        <Input
+          icon={<IconAt />}
+          placeholder="Search"
+          value={keyword}
+          onChange={handleKeyword}
+        />
+      </div>
+      <div className="mb-4">
+        <Select value={selectedFilter} onChange={setFilter} data={FILTERS} />
+      </div>
       {categories && (
         <div className="mb-4">
           <SegmentedControl
@@ -50,7 +95,6 @@ export default function Products() {
           />
         </div>
       )}
-
       {products && (
         <div className="grid grid-cols-3 gap-3">
           {products.map((product) => (

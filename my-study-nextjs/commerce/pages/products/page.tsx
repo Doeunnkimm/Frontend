@@ -5,12 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 import { CATEGORY_MAP, FILTERS, TAKE } from 'constants/products'
 import useDebounce from 'hooks/useDebounce'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function Products() {
-  // const [products, setProducts] = useState<products[]>([])
-  const [total, setTotal] = useState(0)
-  const [categories, setCategories] = useState<categories[]>([])
   const [activePage, setPage] = useState(1)
   const [selectedCategory, setCategory] = useState<string>('-1')
   const [selectedFilter, setFilter] = useState<string | null>(FILTERS[0].value)
@@ -18,28 +15,29 @@ export default function Products() {
 
   const debouncedKeyword = useDebounce<string>(keyword) // 디바운스된 값이 담김
 
-  useEffect(() => {
-    fetch(`/api/get-categories`)
-      .then((res) => res.json())
-      .then((data) => setCategories(data.items))
-  }, [])
+  const { data: categories } = useQuery<
+    { items: categories[] },
+    unknown,
+    categories[]
+  >(
+    [`/api/get-categories`],
+    () => fetch(`/api/get-categories`).then((res) => res.json()),
+    {
+      select: (data) => data.items,
+    }
+  )
 
-  useEffect(() => {
-    fetch(
-      `/api/get-products-count?category=${selectedCategory}?contains=${debouncedKeyword}`
-    )
-      .then((res) => res.json())
-      .then((data) => setTotal(Math.ceil(data.products / TAKE)))
-  }, [selectedCategory, debouncedKeyword])
-
-  // useEffect(() => {
-  //   const skip = TAKE + (activePage - 1)
-  //   fetch(
-  //     `/api/get-products?skip=${skip}&take=${TAKE}&category=${selectedCategory}&orderBy=${selectedFilter}?contains=${debouncedKeyword}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setProducts(data.products))
-  // }, [activePage, selectedCategory, selectedFilter, debouncedKeyword])
+  const { data: total } = useQuery(
+    [
+      `/api/get-products-count?category=${selectedCategory}?contains=${debouncedKeyword}`,
+    ],
+    () =>
+      fetch(
+        `/api/get-products-count?category=${selectedCategory}?contains=${debouncedKeyword}`
+      )
+        .then((res) => res.json())
+        .then((data) => Math.ceil(data.products / TAKE)) // 리턴된 값이 total로 주입될 것
+  )
 
   const { data: products } = useQuery<
     { items: products[] },
@@ -125,12 +123,14 @@ export default function Products() {
         </div>
       )}
       <div className="w-full flex mt-5">
-        <Pagination
-          className="m-auto"
-          value={activePage}
-          onChange={setPage}
-          total={total}
-        />
+        {total && (
+          <Pagination
+            className="m-auto"
+            value={activePage}
+            onChange={setPage}
+            total={total}
+          />
+        )}
       </div>
     </div>
   )

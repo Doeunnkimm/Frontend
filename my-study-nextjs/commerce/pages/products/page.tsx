@@ -1,14 +1,17 @@
 import { Input, Pagination, SegmentedControl, Select } from '@mantine/core'
 import { categories, products } from '@prisma/client'
+import { CATEGORY_MAP, FILTERS, TAKE } from 'constants/products'
+
 import { IconAt } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
-import { CATEGORY_MAP, FILTERS, TAKE } from 'constants/products'
 import useDebounce from 'hooks/useDebounce'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export default function Products() {
+  const router = useRouter()
   const { data: session } = useSession()
   const [activePage, setPage] = useState(1)
   const [selectedCategory, setCategory] = useState<string>('-1')
@@ -42,7 +45,7 @@ export default function Products() {
   )
 
   const { data: products } = useQuery<
-    { items: products[] },
+    { products: products[] },
     unknown,
     products[]
   >(
@@ -58,7 +61,7 @@ export default function Products() {
         }&take=${TAKE}&category=${selectedCategory}&orderBy=${selectedFilter}?contains=${debouncedKeyword}`
       ).then((res) => res.json()),
     {
-      select: (data) => data.items,
+      select: (data) => data.products,
     }
   )
 
@@ -99,7 +102,11 @@ export default function Products() {
       {products && (
         <div className="grid grid-cols-3 gap-3">
           {products.map((product) => (
-            <div key={product.id} style={{ maxWidth: 310 }}>
+            <div
+              key={product.id}
+              style={{ maxWidth: 310 }}
+              onClick={() => router.push(`/products/${product.id}`)}
+            >
               {product.image_url && (
                 <Image
                   className="rounded"

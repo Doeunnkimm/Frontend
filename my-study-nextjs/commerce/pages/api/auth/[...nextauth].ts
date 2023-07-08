@@ -1,12 +1,13 @@
+import NextAuth, { NextAuthOptions } from 'next-auth'
+
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
-import NextAuth from 'next-auth'
 import { Adapter } from 'next-auth/adapters'
 import GoogleProvider from 'next-auth/providers/google'
 
 const prisma = new PrismaClient()
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
@@ -14,4 +15,10 @@ export default NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
     }),
   ],
-})
+  session: {
+    strategy: 'database',
+    maxAge: 1 * 24 * 60 * 60, // 세션 만료 기한을 1일로
+  },
+}
+
+export default NextAuth(authOptions)

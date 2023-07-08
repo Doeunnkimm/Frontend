@@ -4,10 +4,12 @@ import { IconAt } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
 import { CATEGORY_MAP, FILTERS, TAKE } from 'constants/products'
 import useDebounce from 'hooks/useDebounce'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useState } from 'react'
 
 export default function Products() {
+  const { data: session } = useSession()
   const [activePage, setPage] = useState(1)
   const [selectedCategory, setCategory] = useState<string>('-1')
   const [selectedFilter, setFilter] = useState<string | null>(FILTERS[0].value)
@@ -66,6 +68,7 @@ export default function Products() {
 
   return (
     <div className="px-36 mt-36 mb-36">
+      {session && <p>안녕하세요. {session.user?.name}님</p>}
       <div className="mb-4">
         <Input
           icon={<IconAt />}

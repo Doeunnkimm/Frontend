@@ -21,7 +21,7 @@
 
    - 1️⃣ prisma 설치
      ```bash
-     🏃‍♂️   $ yarn add -D prisma
+     $ yarn add -D prisma
      $ yarn add @prisma/client
      ```
    - 2️⃣ init하기
@@ -122,3 +122,16 @@
     - [credentials](https://console.cloud.google.com/apis/credentials)
     - [로그인을\_위한\_라이브러리](https://github.com/MomenSherif/react-oauth#googlelogin)
     - jwt로 전달되는 google credential의 내용은 `jwt-decode`로 decode 해볼 수 있다.
+17. Next.js에서는 Authentication(인증)을 어떻게 가이드?
+
+    - [DOCS](https://nextjs.org/docs/pages/building-your-application/routing/authenticating)
+    - [NextAuth.js](https://next-auth.js.org/)
+    - 현재 DB는 Prisma로 통신하고 있다. 그래서 next-auth도 Prisma랑 adapting해서 사용하자
+      - [DOCS](https://authjs.dev/reference/adapter/prisma)
+    - 로그인에 성공하면 인증 관련 정보들이 Cookie storage에 담기게 된다.
+
+18. Prisma DB 관련 트러블 슈팅
+    - env를 계속 못찾는다
+      - env("DATABASE_URL")은 `.env.local`를 못찾는다. 꼭 `.env`에서 환경변수를 관리하자.
+    - `yarn prisma db push` 해도 올라가지 않는다
+      - DATABASE_URL 환경변수에 브랜치 URL이 제대로 올라가 있는지 확인하자. 그 후에 `yarn prisma db push`를 해보자.

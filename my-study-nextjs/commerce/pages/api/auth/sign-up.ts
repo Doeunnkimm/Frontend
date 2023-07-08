@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const prisma = new PrismaClient()
 
-const signIn = async (credential: string) => {
+const signUp = async (credential: string) => {
   const decoded: { id: string; name: string; email: string; image: string } =
     jwtDecode(credential)
 
@@ -43,7 +43,7 @@ export default async function handler(
   const { credential } = req.query
 
   try {
-    const response = await signIn(String(credential))
+    const response = await signUp(String(credential))
     res.status(200).json({ items: response, message: `Success` })
   } catch (error) {
     return res.status(400).json({ message: `Failed` })

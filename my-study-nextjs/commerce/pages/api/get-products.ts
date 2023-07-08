@@ -1,6 +1,7 @@
-import { PrismaClient } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getOrderBy } from './../../constants/products'
+
+import { PrismaClient } from '@prisma/client'
+import { getOrderBy } from '../../constants/products'
 
 const prisma = new PrismaClient()
 
@@ -66,15 +67,15 @@ export default async function handler(
   }
 
   try {
-    const response = await getProducts({
+    const products = await getProducts({
       skip: Number(skip),
       take: Number(take),
       category: Number(category),
       orderBy: String(orderBy),
-      contains: String(contains),
+      contains: contains ? String(contains) : '',
     })
-    res.status(200).json({ products: response, message: `Success` })
+    res.status(200).json({ products, message: 'Success' })
   } catch (error) {
-    return res.status(400).json({ message: `Failed` })
+    res.status(400).json({ message: 'Failed' })
   }
 }

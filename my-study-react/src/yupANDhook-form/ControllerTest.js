@@ -1,7 +1,7 @@
 import * as FORM_SCHEMA from './constants/form.schema'
 import * as yup from 'yup'
 
-import FormInputText from './ControllerForm'
+import FormInputText from './components/ControllerForm'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'

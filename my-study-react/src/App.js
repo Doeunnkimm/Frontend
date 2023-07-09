@@ -16,7 +16,7 @@
 // // import Home from './useContext/Home';
 // import Home from './useNavigate-useLocation/Home';
 
-import ControllerTest from './yupANDhook-form/ControllerTest'
+import NonControllerTest from './yupANDhook-form/NonControllerTest'
 
 // // import './useContext/Styles/index.css';
 // import SignupPage from './react-hook-form/components/Signup';
@@ -44,7 +44,8 @@ function App() {
   // worker.start()
   // const queryClient = new QueryClient();
   return (
-    <ControllerTest />
+    // <ControllerTest />
+    <NonControllerTest />
     // <YupAndHookForm />
     // <ControllerForm />
     // <StoryMain />

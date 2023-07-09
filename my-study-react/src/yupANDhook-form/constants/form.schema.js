@@ -22,6 +22,7 @@ export const password = yup
 export const password_confirm = yup
   .string()
   .oneOf([yup.ref('password')], '입력한 비밀번호와 일치하지 않습니다')
+  .required('비밀번호 확인을 입력해주세요')
 
 export const phone = yup
   .string()

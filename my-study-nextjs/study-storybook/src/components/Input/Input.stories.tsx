@@ -45,3 +45,10 @@ export const WithError: Story = {
     message: '이메일 형식에 알맞게 입력해주세요',
   },
 }
+
+export const Disabled: Story = {
+  args: {
+    label: '이메일',
+    disabled: true,
+  },
+}

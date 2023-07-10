@@ -53,8 +53,9 @@ export const Input = styled.input<InputProps>`
   }
 
   &:disabled {
-    color: ${({ theme }) => theme.COLOR.common.gray[400]};
-    opacity: 1;
+    border-color: ${({ theme }) => theme.COLOR.common.gray[100]};
+    background-color: ${({ theme }) => theme.COLOR.common.gray[300]};
+    opacity: 0.1;
   }
 `
 

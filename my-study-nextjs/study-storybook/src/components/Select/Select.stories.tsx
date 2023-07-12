@@ -1,15 +1,11 @@
 import type { Meta } from '@storybook/react'
-
-import { useState } from 'react'
 import Select from './Select'
+import { useState } from 'react'
 
 const meta: Meta<typeof Select> = {
   title: 'components/Select',
   component: Select,
   tags: ['autodocs'],
-  argTypes: {
-    setValue: { action: 'clicked' },
-  },
   decorators: [
     (Story) => (
       <div style={{ width: '20rem' }}>

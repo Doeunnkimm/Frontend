@@ -175,3 +175,7 @@ export async function getData() {
 ## Google Search Engine
 
 - [DOCS](https://developers.google.com/custom-search?hl=en)
+
+## Handle Error
+
+- `error.tsx`는 props로 `{ error, reset }`을 받을 수 있다.

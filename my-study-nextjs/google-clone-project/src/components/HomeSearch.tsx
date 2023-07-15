@@ -1,10 +1,10 @@
 'use client'
 
-import { AiOutlineSearch } from 'react-icons/ai'
-import { BsFillMicFill } from 'react-icons/bs'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { BsFillMicFill } from 'react-icons/bs'
 
 export default function HomeSearch() {
   const router = useRouter()
@@ -25,7 +25,7 @@ export default function HomeSearch() {
       .then((data) => data[0])
 
     if (!response) return
-    router.push(`/search/web?searchTerm=${response}`)
+    router.push(`/search/image?searchTerm=${response}`)
     setRandomSearchLoading(false)
   }
 

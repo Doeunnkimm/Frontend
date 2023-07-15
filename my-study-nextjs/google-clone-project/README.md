@@ -171,3 +171,7 @@ export async function getData() {
 - 클라이언트 컴포넌트에서 데이터를 가져올 수 있지만
 - 클라이언트에서 데이터를 가져와야 하는 특별한 이유가 없는한 서버 컴포넌트에서 데이터를 가져오는 것이 좋다.
 - Data Fetching을 서버에서 하게 되면 성능과 사용자 경험이 향상된다.
+
+## Google Search Engine
+
+- [DOCS](https://developers.google.com/custom-search?hl=en)

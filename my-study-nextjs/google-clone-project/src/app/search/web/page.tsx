@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 interface Props {
-  searchParams: { searchTerm: string }
+  searchParams: { searchTerm: string; start: string }
 }
 export interface DataProps {
   items: ItemProp[]
@@ -32,8 +32,9 @@ interface SearchInformationProps {
 }
 
 const WebSearchPage: FC<Props> = async ({ searchParams }) => {
+  const start = searchParams.start || '1'
   const response = fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}`
+    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&start=${start}`
   )
 
   if (!(await response).ok) {

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 interface Props {
-  searchParams: { searchTerm: string }
+  searchParams: { searchTerm: string; start: string }
 }
 export interface DataProps {
   kind: string
@@ -40,8 +40,9 @@ interface ImageProps {
 }
 
 const ImageSearchPage: FC<Props> = async ({ searchParams }) => {
+  const start = searchParams.start || '1'
   const response = fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&searchType=image`
+    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&searchType=image&start=${start}`
   )
 
   if (!(await response).ok) {

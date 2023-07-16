@@ -1,12 +1,13 @@
+import WebSearchResult from '@/components/WebSearchResult'
 import Link from 'next/link'
 import { FC } from 'react'
 
 interface Props {
   searchParams: { searchTerm: string }
 }
-
-interface DataProps {
+export interface DataProps {
   items: ItemProp[]
+  searchInformation: SearchInformationProps
 }
 
 interface ItemProp {
@@ -18,12 +19,19 @@ interface ItemProp {
   snippet: string
   cacheId: string
   formattedUrl: string
+  htmlSnippet: string
   htmlFormattedUrl: string
   pagemap: { metatage: Object[] }
 }
 
+interface SearchInformationProps {
+  searchTime: number
+  formattedSearchTime: string
+  totalResults: string
+  formattedTotalResults: string
+}
+
 const WebSearchPage: FC<Props> = async ({ searchParams }) => {
-  console.log({ searchParams })
   const response = fetch(
     `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}`
   )
@@ -32,9 +40,10 @@ const WebSearchPage: FC<Props> = async ({ searchParams }) => {
     throw new Error('Something went wrong')
   }
 
-  const data: Promise<DataProps> = (await response).json()
-  const results = (await data).items
+  const data: DataProps = await (await response).json()
+  const results = data.items
 
+  console.dir(data)
   if (!results) {
     return (
       <div className='flex flex-col justify-center items-center pt-10'>
@@ -51,11 +60,6 @@ const WebSearchPage: FC<Props> = async ({ searchParams }) => {
     )
   }
 
-  return (
-    <>
-      {results &&
-        results.map((result) => <h1 key={result.cacheId}>{result.title}</h1>)}
-    </>
-  )
+  return <>{data && <WebSearchResult results={data} />}</>
 }
 export default WebSearchPage

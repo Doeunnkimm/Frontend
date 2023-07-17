@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query'
 import { FC, PropsWithChildren, cache } from 'react'
 
-import HydrateOnClient from './hydrateOnClient'
+import HydrateOnClient from './HydrateOnClient'
 
 interface Props {
   queryKey: QueryKey

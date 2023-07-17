@@ -1,58 +1,32 @@
+'use client'
+
 import ImageSearchResult from '@/components/ImageSearchResult'
+import { useGetSearch } from '@/hooks/reactQuery/search/query'
+import { AxiosResponse } from 'axios'
 import Link from 'next/link'
 import { FC } from 'react'
+import Loading from './loading'
 
-interface Props {
-  searchParams: { searchTerm: string; start: string }
-}
-export interface DataProps {
-  kind: string
-  url: { type: string; template: string }
-  searchInformation: {
-    searchTime: number
-    formattedSearchTime: string
-    totalResults: string
-    formattedTotalResults: string
+export interface Props {
+  searchParams: {
+    searchTerm: string
+    start?: string
+    searchType?: 'image' | 'web'
   }
-  items: ItemProps[]
 }
 
-export interface ItemProps {
-  kind: string
-  title: string
-  htmlTitle: string
-  link: string
-  displayLink: string
-  snippet: string
-  mime: string
-  fileFormat: string
-  image: ImageProps
-}
-
-interface ImageProps {
-  contextLink: string
-  height: number
-  width: number
-  byteSize: number
-  thumbnailLink: string
-  thumbnailHeight: number
-  thumbnailWidth: number
-}
-
-const ImageSearchPage: FC<Props> = async ({ searchParams }) => {
+const ImageSearchPage: FC<Props> = ({ searchParams }) => {
   const start = searchParams.start || '1'
-  const response = fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&searchType=image&start=${start}`
-  )
+  const q = searchParams.searchTerm || ''
+  const { data: searchResult, isLoading } = useGetSearch({
+    q,
+    start,
+    searchType: 'image',
+  })
 
-  if (!(await response).ok) {
-    throw new Error('Something went wrong')
-  }
+  if (isLoading) return <Loading />
 
-  const data: DataProps = await (await response).json()
-  const results = data.items
-
-  if (!results) {
+  if (!searchResult) {
     return (
       <div className='flex flex-col justify-center items-center pt-10'>
         <h1 className='text-3xl mb-4'>No results found</h1>
@@ -68,6 +42,14 @@ const ImageSearchPage: FC<Props> = async ({ searchParams }) => {
     )
   }
 
-  return <>{data && <ImageSearchResult results={data} />}</>
+  return (
+    <>
+      {searchResult && (
+        <ImageSearchResult
+          results={(searchResult as unknown as AxiosResponse).data}
+        />
+      )}
+    </>
+  )
 }
 export default ImageSearchPage

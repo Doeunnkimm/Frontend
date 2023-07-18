@@ -1,15 +1,47 @@
-import { DataProps } from '@/app/search/web/page'
+'use client'
+
+import { SearchResponse } from '@/apis/search/types/search'
+import Loading from '@/app/search/image/loading'
+import { useGetSearch } from '@/hooks/reactQuery/search/query'
+import { AxiosResponse } from 'axios'
 import Parser from 'html-react-parser'
 import Link from 'next/link'
 import { FC } from 'react'
 import PaginationButtons from './PaginationButtons'
 
 interface Props {
-  results: DataProps
+  q: string
+  start?: string
+  searchType?: 'image' | 'web'
 }
 
-const WebSearchResult: FC<Props> = ({ results }) => {
-  const { searchInformation, items } = results
+const WebSearchResult: FC<Props> = ({ q, start, searchType = 'web' }) => {
+  const { data: searchResult, isLoading } = useGetSearch({
+    q,
+    start,
+    searchType,
+  })
+
+  if (isLoading) return <Loading />
+
+  if (!searchResult) {
+    return (
+      <div className='flex flex-col justify-center items-center pt-10'>
+        <h1 className='text-3xl mb-4'>No results found</h1>
+        <p className='text-lg'>
+          Try searching for something else or go back to the homepage{' '}
+          <Link
+            href='/'
+            className='text-blue-500'>
+            Home
+          </Link>
+        </p>
+      </div>
+    )
+  }
+
+  const { data } = searchResult as unknown as AxiosResponse
+  const { searchInformation, items } = data as SearchResponse['getWeb']
 
   return (
     <div className='w-full mx-auto px-3 pb-36 sm:pb-24 sm:pl-[5%] md:pl-[14%] lg:pl-52'>

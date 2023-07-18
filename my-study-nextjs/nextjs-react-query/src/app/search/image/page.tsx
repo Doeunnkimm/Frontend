@@ -1,11 +1,8 @@
-'use client'
-
+import SearchApi from '@/apis/search/search.api'
 import ImageSearchResult from '@/components/ImageSearchResult'
-import { useGetSearch } from '@/hooks/reactQuery/search/query'
-import { AxiosResponse } from 'axios'
-import Link from 'next/link'
+import PrefetchHydration from '@/lib/tanstackQuery/PrefetchHydration'
+import { SEARCH_KEY } from '@/shared/constants/queryKeys'
 import { FC } from 'react'
-import Loading from './loading'
 
 export interface Props {
   searchParams: {
@@ -18,38 +15,19 @@ export interface Props {
 const ImageSearchPage: FC<Props> = ({ searchParams }) => {
   const start = searchParams.start || '1'
   const q = searchParams.searchTerm || ''
-  const { data: searchResult, isLoading } = useGetSearch({
-    q,
-    start,
-    searchType: 'image',
-  })
+  const searchType = searchParams.searchType || 'web'
 
-  if (isLoading) return <Loading />
-
-  if (!searchResult) {
-    return (
-      <div className='flex flex-col justify-center items-center pt-10'>
-        <h1 className='text-3xl mb-4'>No results found</h1>
-        <p className='text-lg'>
-          Try searching for something else or go back to the homepage{' '}
-          <Link
-            href='/'
-            className='text-blue-500'>
-            Home
-          </Link>
-        </p>
-      </div>
-    )
-  }
+  const params = { start, q, searchType }
 
   return (
-    <>
-      {searchResult && (
-        <ImageSearchResult
-          results={(searchResult as unknown as AxiosResponse).data}
-        />
-      )}
-    </>
+    <PrefetchHydration
+      queryKey={SEARCH_KEY.detail([{ ...params }])}
+      queryFn={() => SearchApi.get(params)}>
+      <ImageSearchResult
+        start={start}
+        q={q}
+      />
+    </PrefetchHydration>
   )
 }
 export default ImageSearchPage

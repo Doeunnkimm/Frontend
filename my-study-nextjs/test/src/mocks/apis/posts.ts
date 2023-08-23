@@ -8,6 +8,6 @@ import { posts } from '../fixture'
 export const getPostList = rest.get(
   'https://jsonplaceholder.typicode.com/posts',
   (_, res, ctx) => {
-    return res(ctx.json<PostProps[]>(posts))
+    return res(ctx.status(200), ctx.json<PostProps[]>(posts))
   }
 )

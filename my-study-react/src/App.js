@@ -16,7 +16,8 @@
 // // import Home from './useContext/Home';
 // import Home from './useNavigate-useLocation/Home';
 
-import NonControllerTest from './yupANDhook-form/NonControllerTest'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import TransitionPage from './useTransition/pages'
 
 // // import './useContext/Styles/index.css';
 // import SignupPage from './react-hook-form/components/Signup';
@@ -42,10 +43,13 @@ import NonControllerTest from './yupANDhook-form/NonControllerTest'
 
 function App() {
   // worker.start()
-  // const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
   return (
+    <QueryClientProvider client={queryClient}>
+      <TransitionPage />
+    </QueryClientProvider>
     // <ControllerTest />
-    <NonControllerTest />
+    // <NonControllerTest />
     // <YupAndHookForm />
     // <ControllerForm />
     // <StoryMain />

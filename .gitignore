@@ -1,3 +1,4 @@
 node_module
 learn-typescript/
 learn-nestjs/
+.DS_Store

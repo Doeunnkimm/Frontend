@@ -3,14 +3,44 @@
 <br>
 
 ## ⭐ 설명
-* 프론트엔드를 공부하면서 작성한 코드들을 모았습니다 :D
+
+- 프론트엔드를 공부하면서 작성한 코드들을 모았습니다 :D
 
 <br>
 
 ## 🕒 기간
-* 2022.07 ~
+
+- 2022.07 ~
 
 <br>
 
-## 📌 공부한 주요 스텍 및 라이브러리
-<img src="https://github.com/Doeunnkimm/Frontend/assets/112946860/7ff1bb56-dfe8-48a0-9c50-e71ae5d6e618" width="70%"/>
+## 📌 TIL
+
+### Language
+
+- HTML
+- CSS
+- JavaScript
+- TypeScript
+
+### Library & Framework
+
+- React
+- Next.js `(pages router, app router)`
+- styled-components
+- emotion
+- react-query
+- msw
+- storybook
+- react-hook-form
+- Jest
+- react-test-library
+- redux
+- recoil
+- jotai
+- yarn berry
+- yarn workspace
+
+### Other
+
+- 함수형 프로그래밍

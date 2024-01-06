@@ -25,10 +25,10 @@
 
 ## 04장 변수
 
-- [4.1 변수란 무엇인가? 왜 필요한가?]()
-- [4.2 식별자]()
-- [4.3 변수 선언]()
-- [4.4 변수 선언의 실행 시점과 변수 호이스팅]()
-- [4.5 값의 할당]()
-- [4.6 값의 재할당]()
-- [4.7 식별자 네이밍 규칙]()
+- [4.1 변수란 무엇인가? 왜 필요한가?](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.1.%EB%B3%80%EC%88%98%EB%9E%80_%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80_%EC%99%9C_%ED%95%84%EC%9A%94%ED%95%9C%EA%B0%80.md)
+- [4.2 식별자](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.2.%EC%8B%9D%EB%B3%84%EC%9E%90.md)
+- [4.3 변수 선언](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.3.%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8.md)
+- [4.4 변수 선언의 실행 시점과 변수 호이스팅](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.4.%EB%B3%80%EC%88%98_%EC%84%A0%EC%96%B8%EC%9D%98_%EC%8B%A4%ED%96%89%EC%8B%9C%EC%A0%90%EA%B3%BC_%EB%B3%80%EC%88%98_%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85.md)
+- [4.5 값의 할당](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.5.%EA%B0%92%EC%9D%98_%ED%95%A0%EB%8B%B9.md)
+- [4.6 값의 재할당](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.6.%EA%B0%92%EC%9D%98_%EC%9E%AC%ED%95%A0%EB%8B%B9.md)
+- [4.7 식별자 네이밍 규칙](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.7.%EC%8B%9D%EB%B3%84%EC%9E%90_%EB%84%A4%EC%9D%B4%EB%B0%8D_%EA%B7%9C%EC%B9%99.md)

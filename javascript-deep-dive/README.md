@@ -22,3 +22,13 @@
 - [3.1 자바스크립트 실행 환경](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/03%EC%9E%A5_%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%EA%B3%BC_%EC%8B%A4%ED%96%89%EB%B0%A9%EB%B2%95/3.1.%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8__%EC%8B%A4%ED%96%89%ED%99%98%EA%B2%BD.md)
 - [3.2 웹 브라우저](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/03%EC%9E%A5_%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%EA%B3%BC_%EC%8B%A4%ED%96%89%EB%B0%A9%EB%B2%95/3.2.%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80.md)
 - [3.3 Node.js](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/03%EC%9E%A5_%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%EA%B3%BC_%EC%8B%A4%ED%96%89%EB%B0%A9%EB%B2%95/3.3.NodeJS.md)
+
+## 04장 변수
+
+- [4.1 변수란 무엇인가? 왜 필요한가?]()
+- [4.2 식별자]()
+- [4.3 변수 선언]()
+- [4.4 변수 선언의 실행 시점과 변수 호이스팅]()
+- [4.5 값의 할당]()
+- [4.6 값의 재할당]()
+- [4.7 식별자 네이밍 규칙]()

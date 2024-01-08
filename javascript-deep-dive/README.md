@@ -32,3 +32,12 @@
 - [4.5 값의 할당](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.5.%EA%B0%92%EC%9D%98_%ED%95%A0%EB%8B%B9.md)
 - [4.6 값의 재할당](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.6.%EA%B0%92%EC%9D%98_%EC%9E%AC%ED%95%A0%EB%8B%B9.md)
 - [4.7 식별자 네이밍 규칙](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/04%EC%9E%A5_%EB%B3%80%EC%88%98/4.7.%EC%8B%9D%EB%B3%84%EC%9E%90_%EB%84%A4%EC%9D%B4%EB%B0%8D_%EA%B7%9C%EC%B9%99.md)
+
+## 05장 표현식과 문
+
+- [5.1 값]()
+- [5.2 리터럴]()
+- [5.3 표현식]()
+- [5.4 문]()
+- [5.5 세미콜론과 세미콜론 자동 삽입 기능]()
+- [5.6 표현식인 문과 표현식이 아닌 문]()

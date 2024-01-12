@@ -41,3 +41,16 @@
 - [5.4 문](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/05%EC%9E%A5_%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC_%EB%AC%B8/5.4.%EB%AC%B8.md)
 - [5.5 세미콜론과 세미콜론 자동 삽입 기능](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/05%EC%9E%A5_%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC_%EB%AC%B8/5.5.%EC%84%B8%EB%AF%B8%EC%BD%9C%EB%A1%A0%EA%B3%BC_%EC%84%B8%EB%AF%B8%EC%BD%9C%EB%A1%A0_%EC%9E%90%EB%8F%99%EC%82%BD%EC%9E%85_%EA%B8%B0%EB%8A%A5.md)
 - [5.6 표현식인 문과 표현식이 아닌 문](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/05%EC%9E%A5_%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC_%EB%AC%B8/5.6.%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%B8%20%EB%AC%B8%EA%B3%BC%20%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%B4%20%EC%95%84%EB%8B%8C%20%EB%AC%B8.md)
+
+## 06장 데이터 타입
+
+- [6.1 숫자 타입]()
+- [6.2 문자열 타입]()
+- [6.3 템플릿 리터럴]()
+- [6.4 불리언 타입]()
+- [6.5 undefined 타입]()
+- [6.6 null 타입]()
+- [6.7 심벌 타입]()
+- [6.8 객체 타입]()
+- [6.9 데이터 타입의 필요성]()
+- [6.10 동적 타이핑]()

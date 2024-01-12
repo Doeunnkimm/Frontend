@@ -44,13 +44,13 @@
 
 ## 06장 데이터 타입
 
-- [6.1 숫자 타입]()
-- [6.2 문자열 타입]()
-- [6.3 템플릿 리터럴]()
-- [6.4 불리언 타입]()
-- [6.5 undefined 타입]()
-- [6.6 null 타입]()
-- [6.7 심벌 타입]()
-- [6.8 객체 타입]()
-- [6.9 데이터 타입의 필요성]()
-- [6.10 동적 타이핑]()
+- [6.1 숫자 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.1.%EC%88%AB%EC%9E%90_%ED%83%80%EC%9E%85.md)
+- [6.2 문자열 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.2.%EB%AC%B8%EC%9E%90%EC%97%B4_%ED%83%80%EC%9E%85.md)
+- [6.3 템플릿 리터럴](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.3.%ED%85%9C%ED%94%8C%EB%A6%BF_%EB%A6%AC%ED%84%B0%EB%9F%B4.md)
+- [6.4 불리언 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.4.%EB%B6%88%EB%A6%AC%EC%96%B8_%ED%83%80%EC%9E%85.md)
+- [6.5 undefined 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.5.undefined_%ED%83%80%EC%9E%85.md)
+- [6.6 null 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.6.null_%ED%83%80%EC%9E%85.md)
+- [6.7 심벌 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.7.%EC%8B%AC%EB%B2%8C_%ED%83%80%EC%9E%85.md)
+- [6.8 객체 타입](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.8.%EA%B0%9D%EC%B2%B4_%ED%83%80%EC%9E%85.md)
+- [6.9 데이터 타입의 필요성](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.9.%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85%EC%9D%98_%ED%95%84%EC%9A%94%EC%84%B1.md)
+- [6.10 동적 타이핑](https://github.com/Doeunnkimm/Frontend/blob/main/javascript-deep-dive/06%EC%9E%A5_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%83%80%EC%9E%85/6.10.%EB%8F%99%EC%A0%81_%ED%83%80%EC%9D%B4%ED%95%91.md)

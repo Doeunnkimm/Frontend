@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { pageRoutes } from '@/apiRoutes';
 
+// 여러 컴포넌트가 조합됨 → 하지만 홈으로 이동 기능만 있는 단순한 컴포넌트
 const EmptyNotice = () => {
   const navigate = useNavigate();
 

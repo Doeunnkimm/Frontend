@@ -22,3 +22,17 @@
 
 - 각 테스트의 독립성과 안정성을 보장하기 위해 `teardown`에서 모킹을 초기화 하자
 - vitest의 `resetAllMocks`, `clearAllMocks`, `restoreAllMocks`를 활용해 초기화 하자
+
+## 리액트 훅 테스트(feat. act함수)
+
+**리액트 훅**
+
+- 리액트 렌더링 매커니즘을 따른 단순 함수이기 때문에 독립적인 단위 테스트를 작성하기 적합함
+- React Testing Library의 renderHook API를 사용해 편하게 검증할 수 있음
+
+**act()**
+
+- 상호 작용(렌더링, 이펙트 등..)을 함께 그룹화하고 실행하여 실제 앱에서 동작하는 것처럼 렌더링과 업데이트 상태를 반영하도록 도와줌
+- 테스트 환경에서 컴포넌트의 렌더링, 업데이트 결과를 jsdom에 반영할 때 사용해야 함
+- React Testing Library의 `render 함수`와 `user-event`는 **내부적으로 act 함수를 호출**하기 때문에 편리하게 테스트 코드 작성이 가능
+- 이외에 별도로 리액트 state를 업데이트하여 변경 사항을 검증해야 한다면 **act 함수를 사용하여 state를 반영**해야 함

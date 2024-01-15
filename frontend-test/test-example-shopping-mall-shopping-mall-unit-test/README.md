@@ -49,3 +49,18 @@
 
 - 테스트가 실행된 후 다른 테스트에 영향을 주지 않기 위해 타이머 모킹을 해제해야 한다.
 - `useRealTimers()`를 호출해 타이머를 원래대로 되돌릴 수 있다.
+
+## userEvent를 사용한 사용자 상호작용 테스트
+
+**fireEvent**
+
+- `@testing-library/react` 모듈에 내장되어 제공
+- 특정 요소에서 원하는 이벤트만 쉽게 발생시킬 수 있음
+
+**fireEvent vs userEvent**
+
+- fireEvent는 DOM 이벤트만 발생시키는 반면, userEvent는 다양한 상호 작용을 시뮬레이션 할 수 있음
+- 클릭 이벤트가 발생한다면.. `pointerdown`, `mousedown`, `pointerup`, `mouseup`, `click`, `focus`가 연쇄적으로 발생
+- 실제 상황처럼 disabled된 버튼이나 인풋 입력이 불가능함
+- 테스트 코드 작성 시에는 `userEvent`를 활용해 실제 상황과 유사한 코드로 테스트의 신뢰성을 높이자
+- `userEvent`에서 지원하지 않는 부분이 있을 때, `fireEvent` 활용을 고민하자

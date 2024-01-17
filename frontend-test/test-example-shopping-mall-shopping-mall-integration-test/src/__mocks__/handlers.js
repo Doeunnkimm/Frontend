@@ -12,6 +12,8 @@ export const handlers = [
     apiRoutes.categories,
     apiRoutes.couponList,
   ].map(path =>
+    // request 쿼리 파라미터에 따라 응답을 변경
+    // http status를 변경하는 것과 같은 다양한 처리 가능
     rest.get(`${API_DOMAIN}${path}`, (_, res, ctx) =>
       res(ctx.status(200), ctx.json(response[path])),
     ),

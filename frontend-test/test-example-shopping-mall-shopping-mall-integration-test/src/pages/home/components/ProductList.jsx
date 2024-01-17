@@ -13,6 +13,7 @@ import { useFilterStore } from '@/store/filter';
 import { useUserStore } from '@/store/user';
 import { pick } from '@/utils/common';
 
+// API 호출 → 여러 컴포넌트가 조합된 영역에서 발생 → 통합 테스트 검증 필요
 const PRODUCT_PAGE_LIMIT = 20;
 // 실제 앱에서 사용자와 상호 작용할 로직
 const ProductList = ({ limit = PRODUCT_PAGE_LIMIT }) => {

@@ -34,7 +34,7 @@
 - storybook
 - react-hook-form
 - Jest
-- react-test-library
+- react-testing-library
 - redux
 - recoil
 - jotai

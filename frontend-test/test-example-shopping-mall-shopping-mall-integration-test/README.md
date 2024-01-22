@@ -53,3 +53,16 @@
 - 쿼리가 통과하거나 시간 초과될 때까지 재시도한다. (1초동안 50ms간격으로)
 - API 호출과 같은 **비동기 처리로 인한 변화를 감지해야 할때 사용하기** 좋다.
 - RTL에서는 findBy같은 비동기 메서드의 반환값은 Promise이기에, 해당 요소를 사용하려면 `await`나 `then`을 사용해야 한다.
+
+## 통합 테스트 작성하기 - ProductFilter
+
+**ProductFilter**
+
+- 테스트를 위한 사전 준비
+  - 컴포넌트의 초기 필터 정보를 갱신하기 위한 filter 스토어 모킹
+  - 카테고리 필드의 정보를 렌더링하기 위한 API 호출을 msw로 모킹
+- 테스트 작성하기
+  - Setup 과정(beforeEach)에서 스토어 모킹
+  - 스파이 함수를 통한 스토어의 액션 호출 여부 확인
+  - getByLabelText, getByPlaceholderText 쿼리를 통한 요소 조회
+  - findBy~ 쿼리를 통한 카테고리 API 호출 기다리기

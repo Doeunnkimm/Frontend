@@ -12,6 +12,13 @@ const ProductFilterBox = ({ children }) => (
   <Box sx={{ padding: '10px 0' }}>{children}</Box>
 );
 
+/**
+ * ProductFilter의 비즈니스 로직
+ * - 카테고리 목록을 가져온 후 필드에 정보가 올바르게 렌더링
+ * - 상품명을 수정하는 경우 setTitle이 호출
+ * - 카테고리를 클릭한 경우, 클릭한 카테고리가 체크
+ * - 최소/최대 가격을 수정하면 setMinPrice/setMaxPrice가 호출
+ */
 const ProductFilter = () => {
   const { categoryId, setCategoryId, setMaxPrice, setMinPrice, setTitle } =
     useFilterStore(state =>

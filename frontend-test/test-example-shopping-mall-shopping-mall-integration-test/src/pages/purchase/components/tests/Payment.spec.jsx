@@ -38,6 +38,8 @@ beforeEach(() => {
   });
 });
 
+// react-hook-form의 FormProvider로 래핑된 형태의 테스트 컴포넌트
+// 쿠폰의 디폴트 값을 설정하기 위해
 const TestPayment = (props = {}) => {
   const methods = useForm({
     defaultValues: {

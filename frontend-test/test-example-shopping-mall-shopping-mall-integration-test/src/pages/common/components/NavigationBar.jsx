@@ -15,6 +15,18 @@ import { useCartStore } from '@/store/cart';
 import { useUserStore } from '@/store/user';
 import { pick } from '@/utils/common';
 
+/**
+ * NavigationBar의 비즈니스 로직
+ * - "Wish Mart" 텍스트 로고를 클릭할 경우 메인 페이지로 이동
+ * - 로그인이 안 된 경우
+ *   - 로그인 버튼이 노출되며, 클릭시 로그인 페이지로 이동
+ * - 로그인이 된 경우
+ *   - 장바구니 카트 버튼, 장바구니에 담긴 상품수가 나타남
+ *   - 회원 이름으로 된 로그아웃 버튼이 노출됨
+ *   - 장바구니 카트 버튼을 누르면 장바구니 페이지로 이동
+ *   - 로그아웃 버튼을 클릭할 경우 "로그아웃 하시겠습니까?" 문구가 담긴 모달 노출
+ *     - 모달의 확인 버튼 클릭시 로그아웃, 모달 닫힘. 취소 클릭시 모달 닫힘
+ */
 const NavigationBar = () => {
   const navigate = useNavigate();
   const { isModalOpened, toggleIsModalOpened } = useConfirmModal();

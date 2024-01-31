@@ -34,6 +34,10 @@ export const handlers = [
       ctx.json({ products, lastPage: products.length < limit }),
     );
   }),
+  // 사용자 정보가 없는 비로그인 상태로 모킹
+  // 하지만, 테스트 실행 시 profile get API에 대해 사용자 정보가 응답으로 오도록 모킹 필요
+  // 이미 API 모킹 설정이 되어 있지만, 테스트 실행 시에 응답을 변경하여 API 모킹을 다시 해야 하는 경우가 있다.
+  // 이때 msw에서 제공하는 use라는 함수를 사용하면 동적으로 API 응답을 변경할 수 있다.
   rest.get(`${API_DOMAIN}${apiRoutes.profile}`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(null));
   }),

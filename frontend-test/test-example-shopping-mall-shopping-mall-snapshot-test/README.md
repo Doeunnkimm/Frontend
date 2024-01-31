@@ -1,51 +1,28 @@
-# 실무에 바로 적용하는 프런트엔드 테스트 쇼핑몰 예제
+## UI 테스트와 스냅샷 테스트
 
-<!-- TODO: need to update link -->
+**스냅샷 테스트(jsDOM)는**
 
-> 강의 링크: https://www.inflearn.com/
+- UI 컴포넌트의 렌더링 결과나 함수의 결과를 직렬화하여 기록하고 스냅샷과 비교하는 테스트
+- 이를 통해 기존 UI와 어떤 부분이 변경되었는지 탐지하여 의도하지 않은 변경 사항을 빠르게 찾아 수정할 수 있다.
 
-이 프로젝트는 "실무에 바로 적용하는 프런트엔드 테스트"에서 사용되는 예제입니다.
+**vitest에서 스냅샷을 테스트할 때는**
 
-![image](https://github.com/jung-han/jung-han/assets/35371660/86f96b11-046d-42dd-bb8d-3b780698feeb)
+- `toMatchSnapshots()` : 스냅샷 기록을 별도 파일로 관리
+- `toMatchInlineSnapshots()` : 스냅샷 기록을 테스트 파일 내에서 관리
 
-## 사용 기술 스택
+## 스냅샷 테스트의 한계
 
-| Types      | Techs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Front      | ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB) ![Tanstack Query](https://img.shields.io/badge/-tanstack%20Query-FF4154?style=flat&logo=react%20query&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=flat&logo=mui&logoColor=white) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=flat&logo=reacthookform&logoColor=white) [zustand](https://github.com/pmndrs/zustand) |
-| Server     | ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB)                                                                                                                                                                                                                                                                                                                                                                                     |
-| Build tool | ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Test       | ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=flat&logo=cypress&logoColor=058a5e) ![Testing-Library](https://img.shields.io/badge/-Testing%20Library-%23E33332?style=flat&logo=testing-library&logoColor=white) ![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=flat&logo=storybook&logoColor=white) [MSW](https://mswjs.io/) [Chromatic](https://www.chromatic.com/)                                                                                           |
+**스냅샷 테스트 관리는 어렵다**
 
-## 실행
+- 컴포넌트의 크기가 커지고 복잡할수록 스냅샷 결과는 가독성이 떨어진다.
+- 개개인에 따라 무분별한 스냅샷 업데이트가 발생할 수 있다.
 
-```sh
-$ nvm use # node 19.9.0 버전을 사용합니다.
-$ npm i
-$ npm run dev # 노드 서버와 vite 개발 서버를 동시에 실행합니다.
-```
+**이런 문제를 해결하기 위해**
 
-## 브랜치 소개
+- `eslint`의 `no-large-snapshots`와 같은 규칙을 사용해 스냅샷을 간결하게 유지하자
 
-각 장에서 사용하는 브랜치와 정답 브랜치입니다.
-강의를 진행 하실 때는 `강의` 브랜치를, 테스트를 작성하고 정답을 확인하고 싶으시다면 `정답` 브랜치를 확인해주세요!
+**그럼에도..**
 
-> ⚠️ 강의를 시작할 때 강사님이 어느 브랜치를 사용하는지 알려드리니 참고해서 진행해주세요!
-
-<!-- TODO: 브랜치 링크 넣기 -->
-
-### 1부
-
-- 2장. 단위 테스트란?
-  - 강의: [`unit-test-example`](https://github.com/practical-fe-testing/test-example-shopping-mall/tree/unit-test-example)
-  - 정답: [`unit-test-example-with-answer`](https://github.com/practical-fe-testing/test-example-shopping-mall/tree/unit-test-example-with-answer)
-- 3장. 단위 테스트 작성하기
-  - 강의: [`shopping-mall-unit-test`](https://github.com/practical-fe-testing/test-example-shopping-mall/tree/shopping-mall-unit-test)
-  - 정답: [`shopping-mall-unit-test-with-answer`](https://github.com/practical-fe-testing/test-example-shopping-mall/tree/shopping-mall-unit-test-with-answer)
-- 4장. 통합 테스트란? / 5장. 통합 테스트 작성하기
-  - 강의: [`shopping-mall-integration-test`](https://github.com/practical-fe-testing/test-example-shopping-mall/tree/shopping-mall-integration-test)
-  - 정답: [`shopping-mall-integration-test-with-answer`](shopping-mall-integration-test-with-answer)
-
-### 2부
-
-- 작성 예정
+- 여전히 스냅샷 업데이트는 쉽고, 잘못 업데이트될 가능성은 크다.
+- 실제로 렌더링을 하는 것이 아니기 때문에 CSS의 변경 또는 UI 상에서 어떤 변화가 있는지 정확하게 감지할 수 없다.
+- TDD 사이클과는 맞지 않다.

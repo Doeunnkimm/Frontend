@@ -4,4 +4,4 @@
 
 <br>
 
-- [앱 개발 유형 5가지]()
+- [앱 개발 유형 5가지](https://github.com/Doeunnkimm/Frontend/blob/main/app-development/%40NOTE/%EC%95%B1_%EA%B0%9C%EB%B0%9C_%EC%9C%A0%ED%98%95_5%EA%B0%80%EC%A7%80.md)

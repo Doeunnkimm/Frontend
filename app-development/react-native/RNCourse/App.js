@@ -1,28 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={{ margin: 16, borderWidth: 2, borderColor: '#FF0000', padding: 16 }}>인라인으로 스타일링</Text>
-      <Text style={styles.dummyText}>StyleSheet으로 스타일링</Text>
-      <Button title='Button은 title 속성을 통해 입력해요' />
+    <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder='Your course goal!'
+        />
+        <Button title='Add Goal' />
+      </View>
+      <View style={styles.goalsContainer}>
+        <Text>List of goals...</Text>
+      </View>
     </View>
   );
 }
 
-// NOTE: StyleSheet을 이용하면 스타일 프로퍼티 키값 자동완성을 제공
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 50,
+    paddingHorizontal: 16,
   },
-  dummyText: {
-    margin: 16,
-    borderWidth: 2,
-    borderColor: 'red',
-    padding: 16,
+  inputContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: '#cccccc',
+    width: '70%',
+    marginRight: 8,
+    padding: 8,
+  },
+  goalsContainer: {
+    flex: 4,
   },
 });
+
+/**
+ * @NOTE
+ * - web에서 하듯이 display: 'flex'를 하게 되면 안 먹음
+ * - flexDirection: 'row' === display: 'flex'랑 같은 역할
+ */

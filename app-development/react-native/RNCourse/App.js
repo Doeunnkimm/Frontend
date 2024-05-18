@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -28,13 +28,15 @@ export default function App() {
         />
       </View>
       <View style={styles.goalsContainer}>
-        {courseGoals.map((courseGoal, index) => (
-          <View
-            key={index}
-            style={styles.goalItem}>
-            <Text style={styles.goalText}>{courseGoal}</Text>
-          </View>
-        ))}
+        <ScrollView>
+          {courseGoals.map((courseGoal, index) => (
+            <View
+              key={index}
+              style={styles.goalItem}>
+              <Text style={styles.goalText}>{courseGoal}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   goalsContainer: {
-    flex: 4,
+    flex: 5,
   },
   goalItem: {
     margin: 8,
@@ -88,4 +90,10 @@ const styles = StyleSheet.create({
  * - 예를 들어, Text에 borderRadius를 적용할 경우
  * - 안드에서는 background에 잘 적용되지만, 아요에서는 잘 적용 X
  * - 이럴 경우를 대비하여 상위에 <View>를 감싸 사용해야 하는 경우가 존재한다.
+ */
+
+/**
+ * @NOTE
+ * - <ScrollView>를 사용할 경우, 스크롤 가능한 영역은 부모 요소가 결정
+ * - 정확하게 스크롤 영역을 스타일링 하고 싶다면 부모에 <View>를 통해 스타일링 해야 함
  */

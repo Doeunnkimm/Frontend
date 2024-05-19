@@ -20,3 +20,12 @@ $ pnpm start
 ## ScrollView
 
 - [공식문서 = ScrollView](https://reactnative.dev/docs/scrollview)
+
+## Pressable 컴포넌트
+
+- 아이템을 터치할 수 있게 하려면 .. (→ WEB에서와 같이 onClick은 아님)
+- `Pressable` 컴포넌트를 사용
+- pressed 되었을 때 스타일을 주고 싶다면
+  ```js
+  <Pressable style={({ pressed }) => pressed && styles.pressedItem} />
+  ```

@@ -2,16 +2,10 @@ import { useState } from 'react';
 import { Button, TextInput, View, StyleSheet } from 'react-native';
 
 const GoalInput = (props) => {
-  const { setCourseGoals } = props;
-
-  const [enteredGoalText, setEnteredGoalText] = useState('');
+  const { setEnteredGoalText, onAddGoal } = props;
 
   const handleGoalInput = (enteredText) => {
     setEnteredGoalText(enteredText);
-  };
-
-  const handleAddGoal = () => {
-    setCourseGoals((prev) => [...prev, enteredGoalText]);
   };
 
   return (
@@ -23,7 +17,7 @@ const GoalInput = (props) => {
       />
       <Button
         title='Add Goal'
-        onPress={handleAddGoal}
+        onPress={onAddGoal}
       />
     </View>
   );
